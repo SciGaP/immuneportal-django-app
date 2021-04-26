@@ -1,0 +1,10 @@
+cclib
+numpy
+matplotlib
+pandas
+psycopg2
+scipy
+periodictable
+dash
+django_plotly_dash
+logomaker

@@ -1,0 +1,41 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script>"https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" ></script>
+<script>
+var data_file = "localhost:8000/api/download?data-product-uri=airavata-dp%3A%2F%2Fb9221020-a117-4f15-94dc-264772479e70"; 
+$(document).ready(function() {
+	console.log('hello');
+	console.log(data_file);
+	$.fn.dataTable.ext.errMode = 'throw';
+    $('#resultTable').DataTable( {
+	    "processing": true,
+        "scrollX": true,
+		"ajax":{ type: 'GET',url: data_file},  
+        "columns": [
+            { "data": "chr" },
+            { "data": "pos" },
+            { "data": "ref" },
+            { "data": "alt" },
+            { "data": "disease prob" },
+            { "data": "FDR"},
+            { "data": "transcript"},
+            { "data": "ON/OFF splicing site"},
+            { "data": "upstream intron length" },
+            { "data": "exon length" },
+            { "data": "downstream intron length" },
+            { "data": "proximity acceptor site"},
+            { "data": "proximity donor site"},
+            { "data": "conservation"},
+            { "data": "acceptor_site strength"},
+            { "data": "donor_site strength"},
+            { "data": "junction score change"},
+            { "data": "PTM"},
+            { "data": "Pfam"}
+        ]
+    } );
+    var table = $('#resultTable').DataTable();
+    
+} );
+
+
+</script>

@@ -1,0 +1,8 @@
+README.md
+setup.py
+immuneportal_django_app_django_app.egg-info/PKG-INFO
+immuneportal_django_app_django_app.egg-info/SOURCES.txt
+immuneportal_django_app_django_app.egg-info/dependency_links.txt
+immuneportal_django_app_django_app.egg-info/entry_points.txt
+immuneportal_django_app_django_app.egg-info/requires.txt
+immuneportal_django_app_django_app.egg-info/top_level.txt

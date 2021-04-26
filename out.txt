@@ -1,0 +1,3 @@
+./histout.txt
+./immuneportal_django_app/static/js/datatable.js
+./settings_local.py

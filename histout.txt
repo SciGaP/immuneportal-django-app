@@ -1,0 +1,991 @@
+    1  sudo fdisk -l 
+    2  sudo mount /dev/sda5 /mnt
+    3  cd /mnt
+    4  ls
+    5  cd home
+    6  ls
+    7  cd pcuser
+    8  ls
+    9  ls g*
+   10  cd ..
+   11  cd pcuser/Desktop/
+   12  ls
+   13  ls *.txt
+   14  cd ..
+   15  ls *.txt
+   16  cd Downloads/
+   17  ls *.txt
+   18  l
+   19  ls
+   20  cd ../Documents/
+   21  ls *.txt
+   22  cp stepsDjangoAiravat.txt ~/Desktop/
+   23  gedit ~/Desktop/stepsDjangoAiravat.txt &
+   24  cd /home/
+   25  ls
+   26  cd /mnt/home/pcuser/
+   27  ls
+   28  ls gat*
+   29  cd gateways19-tutorial/
+   30  ls
+   31  cd ..
+   32  ls
+   33  cp -r gateways19-tutorial/ /home/pcuser/
+   34  cd /home/pcuser/
+   35  ls
+   36  cd gateways19-tutorial/
+   37  ls
+   38  sudo apt install docker
+   39  docker
+   40  sudo docker
+   41  sudo snap install docker
+   42  ls
+   43  cd immuneportal_django_app
+   44  ls
+   45  cat output_views.py 
+   46  ls
+   47  gedit output_views.py &
+   48  cd ..
+   49  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py 
+   50  exit
+   51  sudo pm-hibernate
+   52  147258
+   53  sudo hibernate
+   54  sudo apt install hibernate
+   55  sudo apt install pm-hibernate
+   56  sudo apt install pm-utils
+   57  sudo pm-hibernate
+   58  sudo swapon --show
+   59  swapoff -a
+   60  sudo swapoff -a
+   61  lvextend -L +15G /swapfile
+   62  sudo apt install lvm2
+   63  lvextend -L +15G /swapfile
+   64  sudo lvextend -L +15G /swapfile
+   65  sudo swapon --show
+   66  sudo fallocate -l 1G /swapfile
+   67  sudo fallocate -l 17G /swapfile
+   68  sudo chmod 600 /swapfile 
+   69  sudo mkswap /swapfile
+   70  sudo swapon --show
+   71  sudo swapon /swapfile
+   72  sudo swapon --show
+   73  sudo pm-hibernate
+   74  sudo nano /etc/fstab
+   75  As you put the link here, swsusp troubleshooting part of this worked for me.
+   76  First method
+   77  First, you need to check if your swap partition configured correctly. To perform this, initially, run sudo blkid
+   78  sudo blkid
+   79  sudo nano /etc/fstab
+   80  sudo mkswap /swapfile
+   81  sudo swapon /swapfile
+   82  sudo swapon --show
+   83  sudo blkid
+   84  sudo fdisk -l
+   85  sudo swapoff -v /swapfile
+   86  sudo nano /etc/fstab
+   87  sudo rm /swapfile
+   88  sudo fallocate -l 17G /swapfile
+   89  sudo chmod 600 /swapfile
+   90  sudo mkswap /swapfile
+   91  sudo swapon /swapfile
+   92  nano /etc/fstab
+   93  sudo nano /etc/fstab
+   94  sudo swapon --show
+   95  sudo nano /etc/fstab
+   96  "quiet splash resume=UUID=b7976278-0e42-4aca-b8ca-dd78be12083e"
+   97  sudo nano /etc/default/grub
+   98  sudo update-grub2
+   99  sudo pm-hibernate
+  100  reboot
+  101  top
+  102  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ; sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  103  sudo docker restart regsnps-gateway-dt
+  104  sudo docker exec regsnps-gateway-dt python manage.py migrate
+  105  sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  106  sudo docker restart regsnps-gateway-dt
+  107  sudo docker logs regsnps-gateway-dt
+  108  sudo docker restart regsnps-gateway-dt
+  109  sudo docker logs regsnps-gateway-dt
+  110  sudo docker restart regsnps-gateway-dt
+  111  sudo docker logs regsnps-gateway-dt
+  112  sudo docker stop regsnps-gateway-dt
+  113  echo 1 /sys/class/backlight/intel_backlight/brightness
+  114  sudo echo 1 /sys/class/backlight/intel_backlight/brightness
+  115  touch /sys/class/backlight/intel_backlight/brightness
+  116  sudo touch /sys/class/backlight/intel_backlight/brightness
+  117  sudo echo 1 /sys/class/backlight/intel_backlight/brightness
+  118  sudo touch /sys/class/backlight/intel_backlight/brightness
+  119  sudo echo 1 > /sys/class/backlight/intel_backlight/brightness
+  120  echo 1 > /sys/class/backlight/intel_backlight/brightness 
+  121  sudo echo 1 > /sys/class/backlight/intel_backlight/brightness 
+  122  sudo su
+  123  sudo update grub
+  124  sudo update-grub
+  125  cd ~/Downloads/
+  126  ls
+  127  sudo dpkg -i *
+  128  docker
+  129  cd /home
+  130  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ; sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  131  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ;
+  132  sudo apt install git
+  133  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ;
+  134  sudo chmod -R 777 /home
+  135  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ;
+  136  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-porta
+  137  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  138  sudo docker logs  regsnps-gateway-dt 
+  139  sudo docker restart regsnps-gateway-dt 
+  140  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  141  sudo docker restart regsnps-gateway-dt 
+  142  ls
+  143  gedit build_js.sh 
+  144  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  145  cd django_airavata/static/common
+  146  ls
+  147  gedit package.json 
+  148  cd django_airavata/static/common
+  149  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  150  cd ..
+  151  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ; sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  152  ls
+  153  cd /home ; git clone https://github.com/apache/airavata-django-portal.git ; cd airavata-django-portal ; sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  154  sudo docker stop regsnps-gateway-dt
+  155  sudo docker start regsnps-gateway-dt
+  156  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  157  sudo docker restart regsnps-gateway-dt
+  158  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  159  sudo docker stop regsnps-gateway-dt
+  160  sudo docker restart regsnps-gateway-dt
+  161  cd ~/gateways19-tutorial/
+  162  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  163  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  164  yarn
+  165  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  166  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  167  sudo docker restart regsnps-gateway-dt
+  168  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  169  sudo docker logs regsnps-gateway-dt
+  170  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  171  sudo docker logs regsnps-gateway-dt
+  172  ls
+  173  cd immuneportal_django_app
+  174  ls
+  175  cd ..
+  176  cd immuneportal_django_app/data/
+  177  ls
+  178  cd ..
+  179  ls
+  180  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  181  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  182  sudo pm-hibernate
+  183  pm-hibernate
+  184  shutdown -h now
+  185  cd /home/airavata-django-portal/
+  186  sudo apt install uswusp
+  187  sudo apt install uswsusp
+  188  sudo apt install s2disk
+  189  s2disk
+  190  sudo apt update && sudo apt upgrade
+  191  sudo s2disk
+  192  s2disk
+  193  sudo apt install s2disk
+  194  cd Downloads/
+  195  sudo dpkg -i uswsusp_1.0+20120915-6.2_amd64.deb 
+  196  swapon --show
+  197  sudo fallocate -l 17G /swapfile
+  198  sudo chmod 600 /swapfile 
+  199  sudo mkswap /swapfile
+  200  sudo swapon /swapfile
+  201  swapon --show
+  202  sudo /etc/fstab
+  203  sudo nano /etc/fstab
+  204  sudo dpkg -i uswsusp_1.0+20120915-6.2_amd64.deb 
+  205  dpkg-reconfigure uswsusp
+  206  sudo dpkg-reconfigure uswsusp
+  207  sudo s2disk
+  208  sudo mount /dev/sda5 /mnt
+  209  cd /mnt
+  210  ls
+  211  cd home/
+  212  ls
+  213  cd pcuser/
+  214  ls
+  215  ls *.txt
+  216  find . -type f -name STEPS*
+  217  cp ./Desktop/STEPS\ FOR\ GENERALIZING ~/Desktop/
+  218  exit
+  219  cd /mnt
+  220  ls
+  221  cd home/pcuser/Documents/
+  222  ls
+  223  cd share_data/
+  224  ls
+  225  sftp jkaefer@bigred3.uits.iu.edu
+  226  ssh jkaefer@bigred3.uits.iu.edu
+  227  cd ~/Pictures/
+  228  nano hello.txt
+  229  nano hello2.txt
+  230  sed -i 's/jk//g' *
+  231  cat hello.txt 
+  232  cat hello2.txt 
+  233  wget localhost:8000/api/download?data-product-uri=airavata-dp%3A%2F%2Fb9221020-a117-4f15-94dc-264772479e70
+  234  wget "localhost:8000/api/download?data-product-uri=airavata-dp%3A%2F%2Fb9221020-a117-4f15-94dc-264772479e70"
+  235  cd ~/Documents/django-plotly-dash/
+  236  cd ..
+  237  ls
+  238  cd dash-django-example-master/
+  239  ls
+  240  cd dash_test/
+  241  ls
+  242  python
+  243  sudo apt install python3
+  244  python3
+  245  ls
+  246  python3 manage.py runserver
+  247  ls
+  248  cd viz
+  249  ls
+  250  cd ..
+  251  ls
+  252  cat manage.py 
+  253  ls
+  254  cd dash_test/
+  255  ls
+  256  cat settings.py 
+  257  ls
+  258  cd ..
+  259  ls
+  260  python3 manage.py 
+  261  python3 manage.py runserver
+  262  ls
+  263  cd viz
+  264  ls
+  265  cat tests.py 
+  266  python3 dashapp.py 
+  267  cd ..
+  268  ls
+  269  cd viz
+  270  ls
+  271  cat dashapp.py 
+  272  ls
+  273  cat server.py 
+  274  nano server.py 
+  275  cd ..
+  276  python3 manage.py runserver
+  277  cd viz/
+  278  ls
+  279  cd ..
+  280  ls
+  281  cd viz
+  282  ls
+  283  nano dashapp.py 
+  284  cd /home/airavata-django-portal/
+  285  sudo docker start regsnps-gateways-dt
+  286  sudo docker start regsnps-gateway-dt
+  287  cd django_airavata/
+  288  ls
+  289  cd apps/
+  290  ls
+  291  cd api
+  292  ls
+  293  cd ..
+  294  find . -type f -name entry-
+  295  find . -type f -name entry-*
+  296  cd js
+  297  cd ..
+  298  ls
+  299  cd js
+  300  cd django_airavata/apps/
+  301  ls
+  302  cd workspace/static/
+  303  ls
+  304  cd django_airavata_workspace/
+  305  ls
+  306  cd js
+  307  ls
+  308  cat entry-create-experiment.js 
+  309  ls
+  310  cd components/
+  311  ls
+  312  cd experiment/
+  313  ls
+  314  cd ..
+  315  ls
+  316  cd ..
+  317  ls
+  318  cd ..
+  319  ls
+  320  cd tests/
+  321  ls
+  322  cd ..
+  323  ls
+  324  cd ..
+  325  ls
+  326  cd ..
+  327  ls
+  328  cd groups
+  329  ls
+  330  cd ..
+  331  cd workspace/
+  332  ls
+  333  cd templates/
+  334  ls
+  335  cd django_airavata_workspace/
+  336  ls
+  337  gedit view_experiment.html &
+  338  cd ..
+  339  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  340  sudo docker logs regsnps-gateway-dt
+  341  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  342  sudo docker logs regsnps-gateway-dt
+  343  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  344  sudo docker logs regsnps-gateway-dt
+  345  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  346  sudo docker logs regsnps-gateway-dt
+  347  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  348  sudo docker start regsnps-gateway-dt
+  349  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  350  sudo docker logs regsnps-gateway-dt
+  351  sudo docker exec regsnps-gateway-dt python manage.py migrate
+  352  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  353  sudo docker logs regsnps-gateway-dt
+  354  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  355  sudo docker logs regsnps-gateway-dt
+  356  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  357  sudo docker exec regsnps-gateway-dt python manage.py migrate
+  358  sudo docker exec regsnps-gateway-dt python manage.py makemigrations --merge
+  359  sudo docker exec regsnps-gateway-dt python manage.py migrate
+  360  sudo docker exec regsnps-gateway-dt python manage.py makemigrations --merge
+  361  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  362  sudo docker logs regsnps-gateway-dt
+  363  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  364  sudo docker logs regsnps-gateway-dt
+  365  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  366  sudo docker restart regsnps-gateway-dt
+  367  sudo docker logs regsnps-gateway-dt
+  368  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  369  sudo docker logs regsnps-gateway-dt
+  370  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  371  sudo docker restart regsnps-gateway-dt
+  372  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  373  sudo docker logs regsnps-gateway-dt
+  374  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  375  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  376  ls
+  377  cd django_airavata/apps/
+  378  ls
+  379  cd summary/
+  380  ls
+  381  cd django-airavata-workspace-plugin-api/
+  382  ls
+  383  cd js
+  384  ls
+  385  gedit index.js 
+  386  ls
+  387  cd ..
+  388  ls
+  389  cd ..
+  390  ls
+  391  cd static
+  392  ls
+  393  cd django_airavata_workspace/
+  394  ls
+  395  cd js
+  396  ls
+  397  cd components/
+  398  ls
+  399  cd experiment/
+  400  ls
+  401  gedit ExperimentSummary.vue 
+  402  cd ..
+  403  ls
+  404  cd ..
+  405  ls
+  406  cd ..
+  407  ls
+  408  cd tests
+  409  ls
+  410  cd unit
+  411  ls
+  412  cd ..
+  413  ls
+  414  cd ..
+  415  ls
+  416  cd tests/
+  417  ls
+  418  cd ../..
+  419  ls
+  420  cd ..
+  421  ls
+  422  mv django-airavata-workspace-plugin-api/ django-airavata-summary-plugin-api/
+  423  cd static/
+  424  ls
+  425  mv django_airavata_workspace/ django_airavata_summary/
+  426  cd django_airavata_summary/
+  427  ls
+  428  cd js
+  429  ls
+  430  cd ..
+  431  ls
+  432  cd ..
+  433  ls
+  434  cd ..
+  435  ls
+  436  cat vue.config.js 
+  437  gedit vue.config.js 
+  438  ls
+  439  cd static
+  440  ls
+  441  cd ..
+  442  gedit jest.config.js 
+  443  ls
+  444  cat signals.py 
+  445  ls
+  446  gedit package.json 
+  447  cd ..
+  448  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  449  cd django_airavata/apps/summary/
+  450  ls
+  451  time find . -type f -name "*" -print0 | xargs -I {}  -0 grep -l "workspace" "{}" > out.txt
+  452  cat out.txt c
+  453  sed -i 's/workspace/summary/g' $(find . -type f -name "*" -print0 | xargs -I {}  -0 grep -l "workspace" "{}")
+  454  time find . -type f -name "*" -print0 | xargs -I {}  -0 grep -l "workspace" "{}" > out.txt
+  455  cat out.txt 
+  456  cat signals.py 
+  457  grep summary signals.py 
+  458  cd ..
+  459  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  460  sudo docker logs regsnps-gateway-dt
+  461  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  462  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  463  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  464  sudo docker logs regsnps-gateway-dt
+  465  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  466  sudo swapon --show
+  467  cat /proc/sys/vm/swappiness
+  468  top
+  469  sudo apt install vlc
+  470  120
+  471  echo 1 > /sys/class/backlight/intel_backlight/brightness 
+  472  sudo echo 1 > /sys/class/backlight/intel_backlight/brightness 
+  473  sudo su
+  474  sudo docker restart regsnps-gateway-dt
+  475  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  476  sudo docker logs regsnps-gateway-dt
+  477  sudo docker restart regsnps-gateway-dt
+  478  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  479  sudo docker logs regsnps-gateway-dt
+  480  sudo docker restart regsnps-gateway-dt
+  481  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  482  sudo docker logs regsnps-gateway-dt
+  483  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  484  sudo docker logs regsnps-gateway-dt
+  485  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  486  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  487  sudo docker logs regsnps-gateway-dt
+  488  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  489  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  490  sudo docker logs regsnps-gateway-dt
+  491  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  492  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  493  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  494  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  495  sudo docker logs regsnps-gateway-dt
+  496  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  497  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  498  sudo docker logs regsnps-gateway-dt
+  499  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  500  sudo docker logs regsnps-gateway-dt
+  501  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  502  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  503  sudo docker logs regsnps-gateway-dt
+  504  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  505  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  506  sudo docker logs regsnps-gateway-dt
+  507  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  508  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  509  sudo docker logs regsnps-gateway-dt
+  510  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  511  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  512  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  513  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  514  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  515  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  516  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  517  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  518  sudo docker logs regsnps-gateway-dt
+  519  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  520  sudo docker logs regsnps-gateway-dt
+  521  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  522  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  523  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  524  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  525  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  526  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  527  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  528  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  529  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  530  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  531  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  532  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  533  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  534  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  535  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  536  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  537  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  538  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  539  cd ~/Documents/
+  540  git clone https://github.com/GibbsConsulting/django-plotly-dash.git
+  541  cd django-plotly-dash/
+  542  ls
+  543  cd django_plotly_dash/
+  544  ls
+  545  gedit dash_wrapper.py 
+  546  ls
+  547  cd template
+  548  ls
+  549  cd templates
+  550  ls
+  551  cd django_plotly_dash/
+  552  ls
+  553  cd ..
+  554  ls
+  555  gedit ../apps.py
+  556  ls
+  557  cd ..
+  558  ls
+  559  cd ...
+  560  ls
+  561  cat tests_dash_contract.
+  562  cat tests_dash_contract.py
+  563  ls
+  564  time find . -type f -name "*" -print0 | xargs -I {}  -0 grep -l "app.layout" "{}" > out.txt
+  565  cat out.txt 
+  566  cat models.py 
+  567  cat out.txt 
+  568  cat tests_dash_contract.
+  569  cat tests_dash_contract.py 
+  570  cat out.txt 
+  571  cd ..
+  572  ./make_env
+  573  sudo apt install pip
+  574  ./make_env
+  575  ls
+  576  cd django_plotly_dash/
+  577  ls
+  578  cat middleware.py 
+  579  ls
+  580  cat urls.py
+  581  gedit urls.py
+  582  cd ~/Downloads/
+  583  sudo dpkg -i teamviewer_15.15.5_amd64.deb 
+  584  sudo apt install
+  585  sudo apt --fix-broken install
+  586  cd ../../../../
+  587  cd ../
+  588  cd django_airavata/apps/
+  589  ls
+  590  cp -r workspace/ ~/Desktop/
+  591  cd ~/Desktop/
+  592  ls
+  593  cd workspace/
+  594  ls
+  595  cd ..
+  596  mv workspace/ workspcea
+  597  ls
+  598  cd workspcea/
+  599  ls
+  600  cat apps.py 
+  601  gedit apps.py 
+  602  cd ..
+  603  mv workspcea summary
+  604  ls
+  605  cp -r summary/ /home/airavata-django-portal/django_airavata/apps/
+  606  cd /home/airavata-django-portal/django_airavata/apps/
+  607  ls
+  608  cd summary/
+  609  ls
+  610  cd templates/
+  611  ls
+  612  mv django_airavata_workspace/ django_airavata_summary/
+  613  cd ..
+  614  cd Downloads/
+  615  gedit ../Desktop/stepsDjangoAiravat.txt 
+  616  gedit ../Desktop/stepsDjangoAiravat.txt  &
+  617  cd ../gateways19-tutorial/
+  618  sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py
+  619  cd ~/Desktop/
+  620  ls
+  621  cd summary/
+  622  ls
+  623  gedit apps.py 
+  624  ls
+  625  cd templates/
+  626  ls
+  627  cd django_airavata_workspace/
+  628  ls
+  629  gedit dashboard.html 
+  630  ls
+  631  gedit view_experiment.html 
+  632  sudo docker exec -t -i regsnps-gateway-dt /bin/bash
+  633  ls
+  634  cd ..
+  635  mv django_airavata_workspace/ django_airavata_summary/
+  636  shutdown -r now
+  637  sudo docker start regsnps-gateway-dt
+  638  shutdown -h now
+  639  shutdown -r now
+  640  sudo mount /dev/sda5 /mnt
+  641  cd /mnt
+  642  ls
+  643  cd home/pcuser/Downloads/
+  644  cp test_Aligned.sortedByCoord.out_intron_candidates_weak_bind_peptide_predict_result.txt ~/Desktop/
+  645  exit
+  646  xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+  647  xrandr --addmode Virtual1 1920x1080
+  648  xrandr
+  649  xrandr --addmode LVDS-1 1920x1080
+  650  xrandr --output LVDS-1 --mode 1920x1080
+  651  cvt 1600 900
+  652  xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+  653  xrandr --addmode LVDS-1 "1600x900_60.00"
+  654  xrandr --output LVDS-1 "1600x900_60.00"
+  655  xrandr --output LVDS-1 1600x900_60.00
+  656  xrandr --addmode LVDS-1 "1600x900_60.00"
+  657  xrandr --output LVDS-1 1600x900_60.00
+  658  xrandr --output LVDS-1 1600x900
+  659  xrandr --addmode LVDS-1 1600x900_60.00
+  660  xrandr --output LVDS-1 1600x900_60.00
+  661  xrandr --newmode "1600x900"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+  662  xrandr --addmode LVDS-1 1600x900
+  663  xrandr --output LVDS-1 1600x900
+  664  cd gateways19-tutorial/
+  665  ls
+  666  cd immuneportal_django_app
+  667  ls
+  668  cd static/
+  669  ls
+  670  mkdir files
+  671  ls
+  672  cd files/
+  673  cp ~/Desktop/test_Aligned.sortedByCoord.out_intron_candidates_weak_bind_peptide_predict_result.txt .
+  674  ls
+  675  cd ..
+  676  cd gateways19-tutorial/
+  677  ls
+  678  cd immuneportal_django_app
+  679  ls
+  680  cd static/
+  681  ls
+  682  cd js
+  683  ls
+  684  cp datatable.js irneo.js
+  685  gedit irneo.js &
+  686  sudo docker logs regsnps-gateway-dt
+  687  sudo docker start regsnps-gateway-dt
+  688  sudo docker logs regsnps-gateway-dt
+  689  cd ..
+  690  sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme
+  691  cd /home/airavata-django-portal/
+  692  ls
+  693  cd django_airavata/
+  694  ls
+  695  cd templates/
+  696  ls
+  697  cat base.html 
+  698  gedit base.html 
+  699  edit base.html &
+  700  cd ..
+  701  cd .
+  702  cd ..
+  703  sudo docker logs regsnps-gateway-dt
+  704  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  705  sudo docker logs regsnps-gateway-dt
+  706  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  707  sudo docker logs regsnps-gateway-dt
+  708  sudo docker kill $(sudo docker ps -q) ; sudo docker rm regsnps-gateway-dt ; sudo docker image rm airavata-django-portal-dt ; sudo docker build -t airavata-django-portal-dt . ; cd /home/pcuser/gateways19-tutorial ; sudo docker run -d --name regsnps-gateway-dt -p 8000:8000 -v "$PWD:/extensions" -v "$PWD/settings_local.py:/code/django_airavata/settings_local.py" airavata-django-portal-dt ; sudo docker exec regsnps-gateway-dt python manage.py migrate ; sudo docker exec regsnps-gateway-dt python manage.py load_cms_data new_default_theme ; sudo docker exec -w /extensions regsnps-gateway-dt python setup.py develop ; sudo docker exec regsnps-gateway-dt touch /code/django_airavata/wsgi.py ; cd /home/airavata-django-portal
+  709  sudo docker logs regsnps-gateway-dt
+  710  xdg-open .
+  711  cd ~/Desktop/
+  712  jupyter notebook
+  713  cd ~/Videos/
+  714  ls
+  715  ls -lat
+  716  ffmpeg -i Screencast\ from\ 03-24-2021\ 12\:54\:50\ PM.webm movie.mp4
+  717  sudo apt install ffmpeg
+  718  ls
+  719  ffmpeg -i Screencast\ from\ 03-24-2021\ 12\:54\:50\ PM.webm irneoOutput.mp4
+  720  pip install jupyterlab
+  721  pip install pandas
+  722  pip install seqlogo
+  723  pip install logomaker
+  724  shutdown -h now
+  725  cd ..
+  726  sudo mount /dev/sda5 /mnt
+  727  cd /mnt
+  728  cd home/pcuser/Downloads/
+  729  vlc Condor.S01E05
+  730  vlc Condor.S01E05.A.Diamond.With.a.Flaw.480p.WEB-HD.x264\ \(1\).mkv 
+  731  vlc Condor.S01E06.No.Such.Thing.480p.WEB-HD.x264\ \(1\).mkv 
+  732  vlc Condor.S01E07.Within.a.Dark.Wood.480p.WEB-HD.x264\ \(1\).mkv 
+  733  vlc Condor.S01E08.A.Question.of.Compromise.480p.WEB-HD.x264\ \(1\).mkv 
+  734  xdg-open .
+  735  cd Documents/django-uniauth/
+  736  ls
+  737  cd demo_app/
+  738  ls
+  739  cd demo_app/
+  740  ls
+  741  gedit views.py &
+  742  gedit templates/demo-app/index.html 
+  743  cd ..
+  744  python3 manage.py migrate
+  745  python3 manage.py runserver
+  746  pip remove django-uniauth
+  747  pip uninstall django-uniauth
+  748  python3 manage.py runserver
+  749  python3 manage.py migrate
+  750  cd ../uniauth/
+  751  ls
+  752  cd ../demo_app/
+  753  ls
+  754  python3 manage.py migrate
+  755  lsls
+  756  ls
+  757  cd ..
+  758  ls
+  759  cp -r  uniauth/ demo_app/
+  760  ls
+  761  cd demo_app/
+  762  ls
+  763  python3 manage.py migrate
+  764  python3 manage.py runserver
+  765  cd ~/Downloads/
+  766  ls
+  767  sudo dpkg -i zoom_amd64.deb 
+  768  sudo apt --fix-broken install
+  769  sudo apt isntall apache2-utils ssl-cert
+  770  sudo apt ins\tall apache2-utils ssl-cert
+  771  sudo apt install apache2-utils ssl-cert
+  772  sudo apt install libapache2-mod-wsgi
+  773  sudo apt install libapache2-mod-wsgisudo apt-get update
+  774  sudo apt-get update
+  775  sudo apt install libapache2-mod-wsgi
+  776  sudo apt-get install libapache2-mod-wsgi
+  777  sudo dpkg -i libapache2-mod-wsgi-py3_4.5.17-1_amd64.deb --no-install-recommends
+  778  sudo apt-get install libpython3.6
+  779  sudo apt-get install libpython3.6-dev
+  780  sudo dpkg -i thinlinc-client_4.12.1-6733_amd64.deb 
+  781  shutdown -r now
+  782  cd ~/Downloads/
+  783  ls -la 300*
+  784  sudo mount /dev/sda5 /mnt
+  785  cd /mnt
+  786  ls
+  787  cd home/
+  788  ls
+  789  cd pcuser/Documents/
+  790  ls
+  791  cd django-uniauth/
+  792  ls
+  793  cat requirements.txt 
+  794  cd ~/Downloads/
+  795  chmod +x JD2Setup_x64.sh 
+  796  ./JD2Setup_x64.sh 
+  797  top
+  798  sudo fdisk -l
+  799  dd of=/dev/zero if=/dev/sdc
+  800  sudo dd of=/dev/zero if=/dev/sdc
+  801  sudo dd if=/dev/zero of=/dev/sdc
+  802  cd /media/pcuser/usb
+  803  ls
+  804  ls -la
+  805  ls -la --block-size=G
+  806  ls -la
+  807  top
+  808  sudo nano /etc/apt/apt.conf.d/20auto-upgrades
+  809  sudo dpkg-reconfigure unattended-upgrades
+  810  sudo nano /etc/apt/apt.conf.d/20auto-upgrades
+  811  top
+  812  sudo su
+  813  systemctl status mariadb
+  814  sud systemctl stop mariadb
+  815  sudo systemctl stop mariadb
+  816  sudo systemctl status mysql
+  817  sudo systemctl start mariadb
+  818  sudo systemctl restart mariadb
+  819  cd Documents/django-uniauth/
+  820  ls
+  821  cd soic_employment/
+  822  ls
+  823  cd soic_employment/
+  824  ls
+  825  gedit settings.py &
+  826  pip install django-cors-headers
+  827  pip install mysqlclient
+  828  sudo apt-get install mysql-server
+  829  sudo apt --fix-broken install
+  830  pip install mysqlclient
+  831  mysql
+  832  sudo apt install mysql-client-core-8.0
+  833  mysql
+  834  pip install mysqlclient
+  835  sudo apt-get install libmysqlclient-dev
+  836  pip install mysqlclient
+  837  pip install mysql-connector-python
+  838  python
+  839  pip install protobuf pytz six sqlparse
+  840  pip install djangorestframework
+  841  ls
+  842  cd ..
+  843  ls
+  844  python manage.py migrate
+  845  python3 manage.py migrate
+  846  mysql
+  847  mysql -u root -p
+  848  sudo su
+  849  systemctl service mysqld
+  850  systemctl status mysqld
+  851  systemctl status mysql-server
+  852  sudo apt-get install mariadb-server
+  853  mysql
+  854  mysql -u root -p
+  855  mysql -u pcuser -p
+  856  sudo su
+  857  python3 manage.py migrate
+  858  python3 manage.py runserver
+  859  ls
+  860  cd ..
+  861  ls
+  862  cd ..
+  863  ls
+  864  cd cservicesProj/
+  865  ls
+  866  cd middle-tier/
+  867  ls
+  868  cp requirements.txt ../../django-uniauth/soic_employment/
+  869  cd ../../django-uniauth/soic_employment/
+  870  ls
+  871  gedit requirements.txt 
+  872  ls
+  873  cd ..
+  874  ls
+  875  zip -r soic_employment.zip soic_employment/
+  876  mv soic_employment.zip proj.zip
+  877  tar -czvf proj.tar.gz soic_employment/
+  878  cd Documents/
+  879  ls
+  880  cd django-uniauth/
+  881  ls
+  882  cd demo_app/
+  883  ls
+  884  cd demo_app/
+  885  ls
+  886  gedit settings.py &
+  887  top 
+  888  sudo su
+  889  top
+  890  sudo apt install gnome-tweak-tool
+  891  sudo apt install R
+  892  sudo apt install rstudio
+  893  sudo apt install r
+  894  cd Downloads/
+  895  nano paperurl.txt
+  896  shutdown -h now
+  897  cd ~/Downloads/
+  898  ls *.sql
+  899  mysql -u username -p cservices < Dump20210410.sql 
+  900  mysql -u root -p cservices < Dump20210410.sql 
+  901  mysql -u root -p 
+  902  mysql -u root -p cservices < Dump20210410.sql 
+  903  mysql -u root -p 
+  904  cd ..
+  905  ls
+  906  cd demo_app/
+  907  ls
+  908  python3 manage.py runserver
+  909  ls
+  910  cd soic_employment/
+  911  ls
+  912  cd ../uniauth/
+  913  ls
+  914  cd templates/
+  915  ls
+  916  cd uniauth/
+  917  ls
+  918  cd ..
+  919  clear
+  920  ls
+  921  cd ..
+  922  cd soic_employment/
+  923  ls
+  924  cd templates/
+  925  ls
+  926  cd soic_employment/
+  927  ls
+  928  sudo systemctl service mariadb status
+  929  systemctl status mariadb.service 
+  930  cd /etc/
+  931  ls
+  932  cd mysql/
+  933  ls
+  934  cat mariadb.cnf
+  935  ls
+  936  cat my.cnf
+  937  ls
+  938  cat mariadb.conf.d/50-server.cnf 
+  939  nano  my.cnf
+  940  sudo nano  my.cnf
+  941  systemctl status mariadb
+  942  systemctl restart mariadb
+  943  systemctl status mariadb
+  944  mysql -u root -p
+  945  systemctl 
+  946  mysql -u root -p
+  947  systemctl status mariadb
+  948  cd Documents/
+  949  ls
+  950  cd django-
+  951  cd django-uniauth/
+  952  ls
+  953  cd soic_employment/
+  954  ls
+  955  sudo mount /dev/sda5 /mnt
+  956  ls
+  957  cd soic_employment/
+  958  ls
+  959  gedit views.py &
+  960  gedit settings.py
+  961  systemctl mysql status
+  962  systemctl service mysql status
+  963  systemctl status mysql 
+  964  mysql -u root -p
+  965  ls
+  966  cd ..
+  967  python 
+  968  python3 manage.py migrate
+  969  python3 manage.py runserver
+  970  python3 manage.py migrate
+  971  python3 manage.py makemigrations
+  972  python3 manage.py migrate
+  973  python3 manage.py runserver
+  974  python3 manage.py migrate
+  975  python3 manage.py runserver
+  976  shutdown -h now
+  977  cd /mnt
+  978  ls
+  979  cd /home/pcuser/Downloads/
+  980  cd /mnt/home/pcuser/Downloads/
+  981  ls *.mkv
+  982  rm -rf *.mkv
+  983  sudo fdisk -l
+  984  sudo dd if=/dev/sdc of=/dev/sda status=progress
+  985  shutdown -h now
+  986  sudo docker container ls
+  987  cd ..
+  988  ls
+  989  cd ..
+  990  ls
+  991  history >histout.txt

@@ -1,1 +1,1 @@
-# Django Portal for RegSnp
+# Immune Portal with Django

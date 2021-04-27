@@ -4,8 +4,8 @@ from django.http import JsonResponse
 
 
 @login_required
-def hello_world(request):
-    return render(request, "immuneportal_django_app/hello.html")
+def expviz(request):
+    return render(request, "immuneportal_django_app/expviz.html")
     
 @login_required
 def splice_res(request):

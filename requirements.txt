@@ -2,7 +2,6 @@ cclib
 numpy
 matplotlib
 pandas
-psycopg2
 scipy
 periodictable
 dash

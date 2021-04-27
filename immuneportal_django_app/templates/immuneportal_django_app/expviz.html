@@ -6,7 +6,42 @@
 <div class="main-content-wrapper">
     <main class="main-content">
         <div class="container-fluid">
-            <h1>Hello World</h1>
+            <h1>Immune Portal Experiment Output</h1>
+            <div class="card">
+                <div class="card-header">
+                    Vizualization
+                </div>
+                <div class="card-body">
+		    <select id="urlVal" style="visibility:hidden;">
+	    		<option value={{outputFilePath}} selected>Select genome </option>
+		  </select>
+		<table id="resultTable" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+		  <thead>
+		      <tr>
+		           <th>chr</th>
+			    <th>pos</th>
+			    <th>ref</th>
+			    <th>alt</th>
+			    <th>disease prob</th>
+			    <th>FDR</th>
+			    <th>transcript</th>
+			    <th>ON/OFF splicing site</th>
+			    <th>upstream intron length</th>
+			    <th>exon length</th>
+			    <th>downstream intron length</th>
+			    <th>proximity acceptor site</th>
+			    <th>proximity donor site</th>
+			    <th>conservation</th>
+			    <th>acceptor_site strength</th>
+			    <th>donor_site strength</th>
+			    <th>junction score change</th>
+			    <th>PTM</th>
+			    <th>Pfam</th>
+		      </tr>
+		  </thead>
+		</table>
+		<div id="svgHolder" ></div>
+        </div>
             
             <!-- Adding a list of "Hello" greetings
             <div class="card">
@@ -20,7 +55,7 @@
             </div>
             -->
 
-            <!-- Displaying a list of recent experiments
+            
             <div class="card">
                 <div class="card-header">
                     Experiments
@@ -42,18 +77,32 @@
                     </table>
                 </div>
             </div>
-            -->
+            
         </div>
     </main>
 </div>
 {% endblock content %}
 
+{% block css %}
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+  {% endblock %}
+  
 {% block scripts %}
 <script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
+
+
+  <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+  <script src="https://www.biodalliance.org/release-0.13/dalliance-compiled.js" defer></script>
+  <!--for IRNEO-->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js" ></script>
+  <script src="../../static/js/datatable.js"></script>
+  
+  
 <script>
+    
     const { models, services, session, utils } = AiravataAPI;
     
-    utils.FetchUtils.get("/immuneportal_django_app/languages/")
+    utils.FetchUtils.get("/regsnp_django_app/languages/")
         .then(data => {
             data.languages.forEach(language => {
                 $("#greeting-select").append(

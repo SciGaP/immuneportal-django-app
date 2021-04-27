@@ -10,12 +10,10 @@ setuptools.setup(
 		'cclib',
 		'numpy',
 		'matplotlib',
-		'psycopg2',
 		'periodictable',
 		'scipy',
 		'dash',
 		'pandas',
-		'cclib',
 		'logomaker'
 
 	],

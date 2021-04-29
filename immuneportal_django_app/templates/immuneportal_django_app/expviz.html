@@ -102,16 +102,7 @@
     
     const { models, services, session, utils } = AiravataAPI;
     
-    utils.FetchUtils.get("/regsnp_django_app/languages/")
-        .then(data => {
-            data.languages.forEach(language => {
-                $("#greeting-select").append(
-                    `<option value="${language.greeting}">
-                        ${language.lang} - "${language.greeting}"
-                     </option>`
-                )
-            })
-        });
+    
 
     const appInterfaceId = "Echo_23d67491-1bef-47bd-a0f5-faf069e09773";
 

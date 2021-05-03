@@ -115,7 +115,7 @@ class irneoSeq:
 		#link = urls.get_download_url(experiment_output.value)
 		#print("FILE URL",link)
 		#print('directory',os.getcwd())
-		dfTest=pandas.read_json(output_file.read().decode())
+		dfTest=pandas.read_csv(output_file.read().decode())
 		#print(dfTest.head())
 		#print('contents',os.listdir('django_airavata/static'))
 		

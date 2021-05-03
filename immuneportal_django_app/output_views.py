@@ -63,22 +63,23 @@ class SplicePredTable:
 			'js':"/static/js/datatable.js"
 			}
 			
-class irneoOut:
-	display_type = 'html'
-	name = 'irneoOut'
-	# Optionally provide path to a file to test with when data isn't available
-	# locally
-	# fixture_output_file = ""
+class IrneoPredLink:
 
+	display_type = "link"
+	immediate = True
+	name = "ImmunePortal Output"
+	
+	#print("FILE URL",link)
 	def generate_data(self, request, experiment_output, experiment, output_file=None):
+	
+			
 		link = urls.get_download_url(experiment_output.value)
-		print("FILE URL",link)
 		return {
-			'output': render_to_string(
-				
-				'immuneportal_django_app/irneoView.html'),
-			'js':"/static/js/irneo.js"
-			}
+			"label": "Output Visualization",
+			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?=https://immuneportal.ccbb.iupui.edu"+link,
+		}
+		
+	
 			
 			
 class SplicePlot:
@@ -107,20 +108,20 @@ class SplicePlot:
 		
 class irneoSeq:
 	display_type = 'image'
-	name = "irneoSeq"
+	name = "SeqLogo"
 	def generate_data(self, request, experiment_output, experiment,output_file=None):
-		print('output_file type',type(output_file))
-		print('value',experiment_output.value)
-		link = urls.get_download_url(experiment_output.value)
-		print("FILE URL",link)
-		print('directory',os.getcwd())
+		#print('output_file type',type(output_file))
+		#print('value',experiment_output.value)
+		#link = urls.get_download_url(experiment_output.value)
+		#print("FILE URL",link)
+		#print('directory',os.getcwd())
 		dfTest=pandas.read_json(output_file.read().decode())
-		print(dfTest.head())
-		print('contents',os.listdir('django_airavata/static'))
+		#print(dfTest.head())
+		#print('contents',os.listdir('django_airavata/static'))
 		
 		#os.system('wget localhost:8000/api/download?data-product-uri=airavata-dp%3A%2F%2Fa4d1e8cf-3879-469e-b391-bac0d953f72e')
 		
-		df=pandas.read_csv('/code/django_airavata/static/files/test_Aligned.sortedByCoord.out_intron_candidates_weak_bind_peptide_predict_result.txt',delimiter='\t')
+		#df=pandas.read_csv('/code/django_airavata/static/files/test_Aligned.sortedByCoord.out_intron_candidates_weak_bind_peptide_predict_result.txt',delimiter='\t')
 
 
 

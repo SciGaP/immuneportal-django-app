@@ -233,6 +233,100 @@ b=a.split("?=")[1].split("&")[0];
 console.log(b);
 var data_file=b;
 
+$(document).ready(function() {
+	$.ajax({
+	    url: data_file,
+	    method: 'GET',
+	    //datatype: 'json',
+	    
+	    
+       	    //console.log(data_file);
+            //console.log(data_file);
+	    success: function (data) {
+	//console.log('hello');
+	//console.log(data_file);
+	    console.log(data);
+	    var output=CSV2JSON(data);
+	    console.log('postfunc',output);
+	    $.fn.dataTable.ext.errMode = 'throw';
+	    $('#resultTable').DataTable( {
+		    "processing": true,
+		"scrollX": true,
+		"data":output,
+		"columns": [
+		    { "data": "id" },
+		    { "data": "hla" },
+		    { "data": "mut_pep" },
+		    { "data": "wt_pep" },
+		    { "data": "pep_hydro" },
+		    { "data": "pep_polar"},
+		    { "data": "pep_charge"},
+		    { "data": "pep_entropy"},
+		    { "data": "pep_molsize" },
+		    { "data": "pep_TAP" },
+		    { "data": "pep_Cle" },
+		    { "data": "pep_Comb"},
+		    { "data": "neo_aff"},
+		    { "data": "neo_rank"},
+		    { "data": "iedb_immunescore"},
+		    { "data": "pep_DAI"},
+		    { "data": "pep_Rscore"},
+		    { "data": "pep_NRP"},
+		    { "data": "pep_pTuneos"},
+		    { "data": "rf_predict"}
+		]
+	    } );
+	    var table = $('#resultTable').DataTable();
+	    }
+	});
+	$('#resultTable tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('info') ) {
+            $(this).removeClass('info');
+        }
+        else {
+            table.$('tr.info').removeClass('info');
+            $(this).addClass('info');
+		}
+		var record = table.row(this).data();
+        console.log(record['chr'].substring(3));
+        browser.setLocation(record['chr'].substring(3), parseInt(record['pos']) - 50, parseInt(record['pos']) + 50);
+    } );
+    var browser =  new Browser({
+      chr:          '22',
+      viewStart:    30700000,
+      viewEnd:      30900000,
+
+      coordSystem: {
+        speciesName: 'Human',
+        taxon: 9606,
+        auth: 'GRCh',
+        version: '37',
+        ucscName: 'hg19'
+      },
+
+      sources:     [{name:                 'Genome',
+                     twoBitURI:            '//www.biodalliance.org/datasets/hg19.2bit',
+                     tier_type:            'sequence'},
+                    {name:                 'Genes',
+                     desc:                 'Gene structures from GENCODE 19',
+                     bwgURI:               '//www.biodalliance.org/datasets/gencode.bb',
+                     stylesheet_uri:       '//www.biodalliance.org/stylesheets/gencode.xml',
+                     collapseSuperGroups:  true,
+                     trixURI:              '//www.biodalliance.org/datasets/geneIndex.ix'},
+                    {name:                 'Repeats',
+                     desc:                 'Repeat annotation from Ensembl',
+                     bwgURI:               '//www.biodalliance.org/datasets/repeats.bb',
+                     stylesheet_uri:       '//www.biodalliance.org/stylesheets/bb-repeats.xml'},
+                    {name:                 'Conservation',
+                     desc:                 'Conservation', 
+                     bwgURI:               'app/regsnp-intron/annotation/hg19.100way.phyloP100way.bw',
+                     noDownsample:         true}],
+
+    });
+	
+    
+} );
+
 $.ajax({
 	    url: data_file,
 	    method: 'GET',
@@ -246,79 +340,7 @@ $.ajax({
 	    	var output=CSV2JSON(data);
 	    	console.log('postfunc',output);
 	    	//$.fn.dataTable.ext.errMode = 'throw';
-		    $('#resultTable').DataTable( {
-			    "processing": true,
-			"scrollX": true,
-			"data":output,
-			"columns": [
-			    { "data": "id" },
-			    { "data": "hla" },
-			    { "data": "mut_pep" },
-			    { "data": "wt_pep" },
-			    { "data": "pep_hydro" },
-			    { "data": "pep_polar"},
-			    { "data": "pep_charge"},
-			    { "data": "pep_entropy"},
-			    { "data": "pep_molsize" },
-			    { "data": "pep_TAP" },
-			    { "data": "pep_Cle" },
-			    { "data": "pep_Comb"},
-			    { "data": "neo_aff"},
-			    { "data": "neo_rank"},
-			    { "data": "iedb_immunescore"},
-			    { "data": "pep_DAI"},
-			    { "data": "pep_Rscore"},
-			    { "data": "pep_NRP"},
-			    { "data": "pep_pTuneos"},
-			    { "data": "rf_predict"}
-			]
-		    } );
-		    var table = $('#resultTable').DataTable();
 		    
-		   $('#resultTable tbody').on( 'click', 'tr', function () {
-			if ( $(this).hasClass('info') ) {
-			    $(this).removeClass('info');
-			}
-			else {
-			    table.$('tr.info').removeClass('info');
-			    $(this).addClass('info');
-				}
-				var record = table.row(this).data();
-			console.log(record['chr'].substring(3));
-			browser.setLocation(record['chr'].substring(3), parseInt(record['pos']) - 50, parseInt(record['pos']) + 50);
-		    } );
-		    var browser =  new Browser({
-		      chr:          '22',
-		      viewStart:    30700000,
-		      viewEnd:      30900000,
-
-		      coordSystem: {
-			speciesName: 'Human',
-			taxon: 9606,
-			auth: 'GRCh',
-			version: '37',
-			ucscName: 'hg19'
-		      },
-
-		      sources:     [{name:                 'Genome',
-				     twoBitURI:            '//www.biodalliance.org/datasets/hg19.2bit',
-				     tier_type:            'sequence'},
-				    {name:                 'Genes',
-				     desc:                 'Gene structures from GENCODE 19',
-				     bwgURI:               '//www.biodalliance.org/datasets/gencode.bb',
-				     stylesheet_uri:       '//www.biodalliance.org/stylesheets/gencode.xml',
-				     collapseSuperGroups:  true,
-				     trixURI:              '//www.biodalliance.org/datasets/geneIndex.ix'},
-				    {name:                 'Repeats',
-				     desc:                 'Repeat annotation from Ensembl',
-				     bwgURI:               '//www.biodalliance.org/datasets/repeats.bb',
-				     stylesheet_uri:       '//www.biodalliance.org/stylesheets/bb-repeats.xml'},
-				    {name:                 'Conservation',
-				     desc:                 'Conservation', 
-				     bwgURI:               'app/regsnp-intron/annotation/hg19.100way.phyloP100way.bw',
-				     noDownsample:         true}],
-
-		    });
 	   
 		function makeTrace(i) {
 		    //console.log('exists',numInstance(transpose(output.slice(1,output.length))[output[0].indexOf('hla')]));

@@ -325,18 +325,7 @@ $(document).ready(function() {
 
     });
 	
-    
-} );
-
-$.ajax({
-	    url: data_file,
-	    method: 'GET',
-	    //datatype: 'json',
-	    
-	    
-       	    //console.log(data_file);
-            //console.log(data_file);
-	    success: function (data) {
+   
 	    	console.log('rawout',data);
 	    	var output=CSV2JSON(data);
 	    	console.log('postfunc',output);

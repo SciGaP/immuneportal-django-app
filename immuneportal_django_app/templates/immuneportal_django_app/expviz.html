@@ -92,19 +92,17 @@
 {% endblock content %}
 
 {% block css %}
-        <link rel="stylesheet" href="/static/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
   {% endblock %}
   
 {% block scripts %}
 <script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
 
 
-  
-<script src = "/static/js/jquery.dataTables.min.js" defer ></script>
-  <script src="/static/js/dalliance-compiled.js" defer></script>
+  <script src = "../../static/js/jquery.dataTables.min.js" defer ></script>
+  <script src="../../static/js/dalliance-compiled.js" defer></script>
   <!--for IRNEO-->
-  <script src="/static/js/plotly-latest.min.js" ></script>
-  
+  <script src="../../static/js/plotly-latest.min.js" ></script>
 <script>
 function CSVToArray(strData, strDelimiter) {
     // Check to see if the delimiter is defined. If not,

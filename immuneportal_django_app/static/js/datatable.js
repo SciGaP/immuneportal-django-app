@@ -1,3 +1,11 @@
+var this_js_script = $('script[src*=datatable]');
+
+
+var my_var_1 = this_js_script.attr('data-my_var_1');   
+
+console.log('injs');
+console.log(my_var_1); 
+
 var data_file = "http://localhost:8000"+$('#urlVal').val(); 
 $(document).ready(function() {
 	$.ajax({

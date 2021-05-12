@@ -262,7 +262,7 @@ $(document).ready(function() {
 	    console.log(data);
 	    var output=CSV2JSON(data);
 	    console.log('postfunc',output);
-	    console.log('json',JSON.parse(JSON.stringify(output)));
+	    console.log('firstOnly',output[0]);
 	    $.fn.dataTable.ext.errMode = 'throw';
 	    $('#resultTable').DataTable( {
 		    "processing": true,

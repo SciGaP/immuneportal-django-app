@@ -162,6 +162,8 @@ function CSVToArray(strData, strDelimiter) {
 function CSV2JSON(csv) {
     var array = CSVToArray(csv);
     var objArray = [];
+    
+    
     for (var i = 1; i < array.length; i++) {
         objArray[i - 1] = {};
         for (var k = 0; k < array[0].length && k < array[i].length; k++) {
@@ -169,22 +171,11 @@ function CSV2JSON(csv) {
             objArray[i - 1][key] = array[i][k]
         }
     }
-    return (array);
+    return (objArray);
 }
 
 
-function CSV2JSON2(csv) {
-    var array = CSVToArray(csv);
-    var objArray = [];
-    for (var i = 1; i < array.length; i++) {
-        objArray[i - 1] = {};
-        for (var k = 0; k < array[0].length && k < array[i].length; k++) {
-            var key = array[0][k];
-            objArray[i - 1][key] = array[i][k]
-        }
-    }
-    return (array);
-}
+
 
 
 function transpose(a) {
@@ -262,7 +253,7 @@ $(document).ready(function() {
 	    console.log(data);
 	    var output=CSV2JSON(data);
 	    console.log('postfunc',output);
-	    console.log('firstOnly',output[0]);
+	    //console.log('firstOnly',output[0]);
 	    $.fn.dataTable.ext.errMode = 'throw';
 	    $('#resultTable').DataTable( {
 		    "processing": true,

@@ -105,9 +105,11 @@ class IrneoPredLink:
 		pname=str(ts).replace('.','_')
 		plt.savefig('static/'+pname, format='png')
 		link = urls.get_download_url(experiment_output.value)
+		
+		#make as short as possible
 		return {
 			"label": "Output Visualization",
-			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?=https://immuneportal.ccbb.iupui.edu"+link+"&"+pname,
+			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?="+link+"&"+pname,
 		}
 		
 	

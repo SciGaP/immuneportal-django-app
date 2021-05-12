@@ -172,6 +172,21 @@ function CSV2JSON(csv) {
     return (array);
 }
 
+
+function CSV2JSON2(csv) {
+    var array = CSVToArray(csv);
+    var objArray = [];
+    for (var i = 1; i < array.length; i++) {
+        objArray[i - 1] = {};
+        for (var k = 0; k < array[0].length && k < array[i].length; k++) {
+            var key = array[0][k];
+            objArray[i - 1][key] = array[i][k]
+        }
+    }
+    return (array);
+}
+
+
 function transpose(a) {
 
   // Calculate the width and height of the Array
@@ -247,6 +262,7 @@ $(document).ready(function() {
 	    console.log(data);
 	    var output=CSV2JSON(data);
 	    console.log('postfunc',output);
+	    console.log('json',JSON.parse(JSON.stringify(output));
 	    $.fn.dataTable.ext.errMode = 'throw';
 	    $('#resultTable').DataTable( {
 		    "processing": true,

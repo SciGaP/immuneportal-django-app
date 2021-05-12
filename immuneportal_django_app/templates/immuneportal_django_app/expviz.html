@@ -357,40 +357,13 @@ $(document).ready(function() {
 				labels:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')])[0],
 				values:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')])[1],
 				
-				visible: i === 1,
+				visible: i === 0,
 			       
 			      
 
 			    }
 			   }
-			  else if(i==dataout[0].indexOf('mut_pep')){
-			    return {
-				type: 'bar',
-				title: 'Mut Pep Distribution',
-				
-				x:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('mut_pep')])[0],
-				y:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('mut_pep')])[1],
-				
-				visible: i === 0,
-			      
-			      
-
-			    }
-			  }
-			  else{
-			    return {
-				type: 'bar',
-				title: 'Wt Pep Distribution',
-				
-				x:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('wt_pep')])[0],
-				y:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('wt_pep')])[1],
-				
-				visible: i === 0,
-				
-			      
-
-			    }
-			  }
+			  
 			}
 			console.log('json',dataout);         
 				    
@@ -399,24 +372,12 @@ $(document).ready(function() {
 			//Plotly.newPlot('myDiv', data, layout);
 
 
-			Plotly.newPlot('myDiv', [dataout[0].indexOf('hla'), dataout[0].indexOf('mut_pep'), dataout[0].indexOf('wt_pep')].map(makeTrace), {
+			Plotly.newPlot('myDiv', [dataout[0].indexOf('hla')].map(makeTrace), {
 			    updatemenus: [{
 				
 				
 				yanchor: 'top',
-				buttons: [{
-				    method: 'update',
-				    args: ['visible', [true, false, false]],
-				    label: 'HLA type'
-				}, {
-				    method: 'update',
-				    args: ['visible', [false, true, false]],
-				    label: 'Mut Pep'
-				}, {
-				    method: 'update',
-				    args: ['visible', [false, false, true]],
-				    label: 'totalTable'
-				}]
+				
 			    }],
 			});
 		}

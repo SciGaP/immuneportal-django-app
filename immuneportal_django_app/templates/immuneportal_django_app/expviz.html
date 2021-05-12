@@ -241,6 +241,7 @@ console.log(b);
 var data_file=b;
 
 $(document).ready(function() {
+	var dataout;
 	$.ajax({
 	    url: data_file,
 	    method: 'GET',
@@ -252,74 +253,77 @@ $(document).ready(function() {
 	    success: function (data) {
 	//console.log('hello');
 	//console.log(data_file);
-	    console.log(data);
-	    var data=CSV2JSON(data);
-	    console.log('postfunc',data);
-	    //console.log('firstOnly',output[0]);
-	    $.fn.dataTable.ext.errMode = 'throw';
+	    //console.log(data);
+	    dataout=CSV2JSON(data);
+	    });
 	    
-	    /*$.each(data, function(i, data) {
-		    var body = "<tr>";
-		    body    += "<td>" + data.id + "</td>";
-		    body    += "<td>" + data.hla + "</td>";
-		    body    += "<td>" + data.mut_pep + "</td>";
-		    body    += "<td>" + data.wt_pep + "</td>";
-		    body    += "<td>" + data.pep_hydro + "</td>";
-		    body    += "<td>" + data.pep_polar + "</td>";
-		    body    += "<td>" + data.pep_charge + "</td>";
-		    body    += "<td>" + data.pep_entropy + "</td>";
-		    body    += "<td>" + data.pep_molsize + "</td>";
-		    body    += "<td>" + data.pep_TAP + "</td>";
-		    body    += "<td>" + data.pep_Cle + "</td>";
-		    body    += "<td>" + data.pep_Comb + "</td>";
-		    body    += "<td>" + data.neo_aff + "</td>";
-		    body    += "<td>" + data.neo_rank + "</td>";
-		    body    += "<td>" + data.iedb_immunescore + "</td>";
-		    body    += "<td>" + data.pep_DAI + "</td>";
-		    body    += "<td>" + data.pep_Rscore + "</td>";
-		    body    += "<td>" + data.pep_NRP + "</td>";
-		    body    += "<td>" + data.pep_pTuneos + "</td>";
-		    body    += "<td>" + data.rf_predict + "</td>";
-		    
-		    body    += "</tr>";
-		    $( '#resultTable').append(body);
-            });*/
-	    $('#resultTable').DataTable( {
-		    "processing": true,
-		"scrollX": true,
-		"data":data,
-		"columns": [
-		    { "data": "id" },
-		    { "data": "hla" },
-		    { "data": "mut_pep" },
-		    { "data": "wt_pep" },
-		    { "data": "pep_hydro" },
-		    { "data": "pep_polar"},
-		    { "data": "pep_charge"},
-		    { "data": "pep_entropy"},
-		    { "data": "pep_molsize" },
-		    { "data": "pep_TAP" },
-		    { "data": "pep_Cle" },
-		    { "data": "pep_Comb"},
-		    { "data": "neo_aff"},
-		    { "data": "neo_rank"},
-		    { "data": "iedb_immunescore"},
-		    { "data": "pep_DAI"},
-		    { "data": "pep_Rscore"},
-		    { "data": "pep_NRP"},
-		    { "data": "pep_pTuneos"},
-		    { "data": "rf_predict"}
-		]
-	    } );
-	    var table = $('#resultTable').DataTable();
-	    }
-	});
+    console.log('postfunc',dataout);
+    //console.log('firstOnly',output[0]);
+    //$.fn.dataTable.ext.errMode = 'throw';
+    
+    /*$.each(data, function(i, data) {
+	    var body = "<tr>";
+	    body    += "<td>" + data.id + "</td>";
+	    body    += "<td>" + data.hla + "</td>";
+	    body    += "<td>" + data.mut_pep + "</td>";
+	    body    += "<td>" + data.wt_pep + "</td>";
+	    body    += "<td>" + data.pep_hydro + "</td>";
+	    body    += "<td>" + data.pep_polar + "</td>";
+	    body    += "<td>" + data.pep_charge + "</td>";
+	    body    += "<td>" + data.pep_entropy + "</td>";
+	    body    += "<td>" + data.pep_molsize + "</td>";
+	    body    += "<td>" + data.pep_TAP + "</td>";
+	    body    += "<td>" + data.pep_Cle + "</td>";
+	    body    += "<td>" + data.pep_Comb + "</td>";
+	    body    += "<td>" + data.neo_aff + "</td>";
+	    body    += "<td>" + data.neo_rank + "</td>";
+	    body    += "<td>" + data.iedb_immunescore + "</td>";
+	    body    += "<td>" + data.pep_DAI + "</td>";
+	    body    += "<td>" + data.pep_Rscore + "</td>";
+	    body    += "<td>" + data.pep_NRP + "</td>";
+	    body    += "<td>" + data.pep_pTuneos + "</td>";
+	    body    += "<td>" + data.rf_predict + "</td>";
+	    
+	    body    += "</tr>";
+	    $( '#resultTable').append(body);
+    });*/
+    $('#resultTable').DataTable( {
+	    "processing": true,
+	"scrollX": true,
+	,
+	"data":dataout,
+	"columns": [
+	    { "data": "id" },
+	    { "data": "hla" },
+	    { "data": "mut_pep" },
+	    { "data": "wt_pep" },
+	    { "data": "pep_hydro" },
+	    { "data": "pep_polar"},
+	    { "data": "pep_charge"},
+	    { "data": "pep_entropy"},
+	    { "data": "pep_molsize" },
+	    { "data": "pep_TAP" },
+	    { "data": "pep_Cle" },
+	    { "data": "pep_Comb"},
+	    { "data": "neo_aff"},
+	    { "data": "neo_rank"},
+	    { "data": "iedb_immunescore"},
+	    { "data": "pep_DAI"},
+	    { "data": "pep_Rscore"},
+	    { "data": "pep_NRP"},
+	    { "data": "pep_pTuneos"},
+	    { "data": "rf_predict"}
+	]
+    } );
+    var table = $('#resultTable').DataTable();
+    }
+});
 	
     
 	
    
 	    	
-	    });
+	    
 /*
 
 	    $.fn.dataTable.ext.errMode = 'throw';

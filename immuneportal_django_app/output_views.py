@@ -5,6 +5,7 @@ from collections import Counter
 import numpy
 import matplotlib.pyplot as plt
 import logomaker
+import datetime;
 import io
 
 
@@ -71,12 +72,42 @@ class IrneoPredLink:
 	
 	#print("FILE URL",link)
 	def generate_data(self, request, experiment_output, experiment, output_file=None):
-	
-			
+		df=pandas.read_csv(output_file, delimiter='\t')
+		mut_pep=df['mut_pep']
+		maxlen=max([len(pep) for pep in mut_pep])
+		listOfPosLists=[]
+		for pos in range(maxlen):
+			posList=[]
+			for pep in mut_pep:
+				if pos<=len(pep)-1:
+					posList.append(pep[pos])
+			#else:
+			#	posList.append('')
+			listOfPosLists.append(posList)
+
+		#TAKES INTO ACCOUNT OVERHANG ON RIGHT with '', so must consider '' for all positions 
+		aminos=['A','R','N','D','C','Q','E','G','H','I','L','K','M','F','P','S','T','W','Y','V']
+		freqLists=[]
+		for l in listOfPosLists:
+			countDict=dict(Counter(l))
+			#print(countDict)
+			for a in aminos:
+				if a not in countDict:
+					countDict[a]=0
+			freqLists.append([x[1]/len(l) for x in sorted(countDict.items())])
+		pwm=numpy.asarray(freqLists)
+		renderDf = pandas.DataFrame(pwm, columns = sorted(aminos))
+		logomaker.Logo(renderDf)
+		#buffer = io.BytesIO()
+		
+		ts = datetime.datetime.now().timestamp()
+		
+		pname=str(ts).replace('.','_')
+		plt.savefig('static/'+pname, format='png')
 		link = urls.get_download_url(experiment_output.value)
 		return {
 			"label": "Output Visualization",
-			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?=https://immuneportal.ccbb.iupui.edu"+link,
+			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?=https://immuneportal.ccbb.iupui.edu"+link+"&"+pname,
 		}
 		
 	

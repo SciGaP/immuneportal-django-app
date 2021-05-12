@@ -257,6 +257,7 @@ $(document).ready(function() {
 	    var dataout=CSVToArray(data);
 	    dataout = dataout.slice(1, dataout.length);
 	    console.log('postfunc',dataout);
+	    $.fn.dataTableExt.sErrMode = 'throw';
 	    $('#resultTable').DataTable( {
 	    		"data":dataout,
             		"deferRender": true,

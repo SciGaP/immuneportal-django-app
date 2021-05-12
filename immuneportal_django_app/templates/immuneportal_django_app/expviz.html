@@ -255,6 +255,7 @@ $(document).ready(function() {
 	//console.log(data_file);
 	    //console.log(data);
 	    var dataout=CSVToArray(data);
+	    dataout = dataout.slice(1, dataout.length);
 	    console.log('postfunc',dataout);
 	    $('#resultTable').DataTable( {
 	    		"data":dataout,

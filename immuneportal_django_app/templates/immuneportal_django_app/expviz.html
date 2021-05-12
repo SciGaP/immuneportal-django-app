@@ -171,7 +171,9 @@ function CSV2JSON(csv) {
             objArray[i - 1][key] = array[i][k]
         }
     }
-    return (objArray);
+    var addData={}
+    addData["data:"]=objArray;
+    return (addData);
 }
 
 

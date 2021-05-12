@@ -377,7 +377,11 @@ $(document).ready(function() {
 				
 				
 				yanchor: 'top',
-				
+				buttons: [{
+				    method: 'update',
+				    args: ['visible', [true, false, false]],
+				    label: 'HLA type'
+				}]
 			    }],
 			});
 		}

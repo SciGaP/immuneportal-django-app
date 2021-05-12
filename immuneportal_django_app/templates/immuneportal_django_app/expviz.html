@@ -253,14 +253,41 @@ $(document).ready(function() {
 	//console.log('hello');
 	//console.log(data_file);
 	    console.log(data);
-	    var output=CSV2JSON(data);
-	    //console.log('postfunc',output);
+	    var data=CSV2JSON(data);
+	    console.log('postfunc',data);
 	    //console.log('firstOnly',output[0]);
 	    $.fn.dataTable.ext.errMode = 'throw';
-	    $('#resultTable').DataTable( {
+	    
+	    $.each(data, function(i, data) {
+		    var body = "<tr>";
+		    body    += "<td>" + data.id + "</td>";
+		    body    += "<td>" + data.hla + "</td>";
+		    body    += "<td>" + data.mut_pep + "</td>";
+		    body    += "<td>" + data.wt_pep + "</td>";
+		    body    += "<td>" + data.pep_hydro + "</td>";
+		    body    += "<td>" + data.pep_polar + "</td>";
+		    body    += "<td>" + data.pep_charge + "</td>";
+		    body    += "<td>" + data.pep_entropy + "</td>";
+		    body    += "<td>" + data.pep_molsize + "</td>";
+		    body    += "<td>" + data.pep_TAP + "</td>";
+		    body    += "<td>" + data.pep_Cle + "</td>";
+		    body    += "<td>" + data.pep_Comb + "</td>";
+		    body    += "<td>" + data.neo_aff + "</td>";
+		    body    += "<td>" + data.neo_rank + "</td>";
+		    body    += "<td>" + data.iedb_immunescore + "</td>";
+		    body    += "<td>" + data.pep_DAI + "</td>";
+		    body    += "<td>" + data.pep_Rscore + "</td>";
+		    body    += "<td>" + data.pep_NRP + "</td>";
+		    body    += "<td>" + data.pep_pTuneos + "</td>";
+		    body    += "<td>" + data.rf_predict + "</td>";
+		    
+		    body    += "</tr>";
+		    $( '#resultTable').append(body);
+            });
+	    /*$('#resultTable').DataTable( {
 		    "processing": true,
 		"scrollX": true,
-		"data":output,
+		"data":data,
 		"columns": [
 		    { "data": "id" },
 		    { "data": "hla" },
@@ -283,22 +310,11 @@ $(document).ready(function() {
 		    { "data": "pep_pTuneos"},
 		    { "data": "rf_predict"}
 		]
-	    } );
+	    } );*/
 	    var table = $('#resultTable').DataTable();
 	    }
 	});
-	$('#resultTable tbody').on( 'click', 'tr', function () {
-        if ( $(this).hasClass('info') ) {
-            $(this).removeClass('info');
-        }
-        else {
-            table.$('tr.info').removeClass('info');
-            $(this).addClass('info');
-		}
-		var record = table.row(this).data();
-        console.log(record['chr'].substring(3));
-        browser.setLocation(record['chr'].substring(3), parseInt(record['pos']) - 50, parseInt(record['pos']) + 50);
-    } );
+	
     
 	
    

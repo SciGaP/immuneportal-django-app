@@ -254,15 +254,15 @@ $(document).ready(function() {
 	//console.log('hello');
 	//console.log(data_file);
 	    //console.log(data);
-	    var dataout=CSV2JSON(data);
+	    var dataout=CSVToArray(data);
 	    console.log('postfunc',dataout);
 	    $('#resultTable').DataTable( {
-			    "processing": true,
-			"scrollX": true,
-			//,
-			"data":dataout,
-			"deferRender": true,
-			"columns": [
+	    		"data":dataout,
+            		"deferRender": true,
+            		"scrollY":  200,
+            		"scrollCollapse": true,
+            		"scroller": true
+			/*"columns": [
 			    { "data": "id" },
 			    { "data": "hla" },
 			    { "data": "mut_pep" },
@@ -283,7 +283,7 @@ $(document).ready(function() {
 			    { "data": "pep_NRP"},
 			    { "data": "pep_pTuneos"},
 			    { "data": "rf_predict"}
-			]
+			]*/
 		    } );
 		    var table = $('#resultTable').DataTable();
 			    }

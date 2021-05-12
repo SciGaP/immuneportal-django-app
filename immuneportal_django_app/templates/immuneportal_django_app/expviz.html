@@ -9,7 +9,7 @@
             <h1>Immune Portal Experiment Output</h1>
             <div class="card">
                 <div class="card-header">
-                    Vizualization
+                    Visualization
                 </div>
                 <div class="card-body">
 		    <select id="urlVal" style="visibility:hidden;">
@@ -61,6 +61,16 @@
                 </div>
                 <div class="card-body">
                     <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="card-header">
+                    SeqLogo of Mutpep
+                </div>
+                <div class="card-body">
+                    <img src="" id="seqlogo"></img>
                 </div>
             </div>
             
@@ -296,7 +306,10 @@ b=a.split("?=")[1].split("&")[0];
 console.log(b);
 var data_file=b;
 
+
+
 $(document).ready(function() {
+	document.getElementById("seqlogo").src="";
 	var dataout;
 	$.ajax({
 	    url: data_file,
@@ -312,7 +325,7 @@ $(document).ready(function() {
 	    //console.log(data);
 	    var dataout=CSVToArray(data);
 	    dataoutTable = dataout.slice(1, dataout.length);
-	    console.log('postfunc',dataout);
+	    //console.log('postfunc',dataout);
 	    //$.fn.dataTableExt.sErrMode = 'throw';
 	    $('#resultTable').DataTable( {
 	    		"data":dataoutTable,
@@ -365,7 +378,7 @@ $(document).ready(function() {
 			   }
 			  
 			}
-			console.log('json',dataout);         
+			//console.log('json',dataout);         
 				    
 			var myPlot= document.getElementById('myDiv');
 

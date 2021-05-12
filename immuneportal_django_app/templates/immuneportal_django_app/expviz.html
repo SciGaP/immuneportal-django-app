@@ -254,8 +254,8 @@ $(document).ready(function() {
 	//console.log('hello');
 	//console.log(data_file);
 	    //console.log(data);
-	    var dataout=CSV2JSON(data);
-	    //dataout = dataout.slice(1, dataout.length);
+	    var dataout=CSVToArray(data);
+	    dataout = dataout.slice(1, dataout.length);
 	    console.log('postfunc',dataout);
 	    //$.fn.dataTableExt.sErrMode = 'throw';
 	    $('#resultTable').DataTable( {
@@ -264,7 +264,7 @@ $(document).ready(function() {
             		"scrollY":  200,
             		"scrollCollapse": true,
             		"scroller": true,
-			"columns": [
+			/*"columns": [
 			    { "data": "id" },
 			    { "data": "hla" },
 			    { "data": "mut_pep" },
@@ -285,7 +285,7 @@ $(document).ready(function() {
 			    { "data": "pep_NRP"},
 			    { "data": "pep_pTuneos"},
 			    { "data": "rf_predict"}
-			]
+			]*/
 		    } );
 		    var table = $('#resultTable').DataTable();
 			    }

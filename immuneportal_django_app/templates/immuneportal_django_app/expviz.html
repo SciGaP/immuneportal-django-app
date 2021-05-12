@@ -258,7 +258,7 @@ $(document).ready(function() {
 	    //console.log('firstOnly',output[0]);
 	    $.fn.dataTable.ext.errMode = 'throw';
 	    
-	    $.each(data, function(i, data) {
+	    /*$.each(data, function(i, data) {
 		    var body = "<tr>";
 		    body    += "<td>" + data.id + "</td>";
 		    body    += "<td>" + data.hla + "</td>";
@@ -283,8 +283,8 @@ $(document).ready(function() {
 		    
 		    body    += "</tr>";
 		    $( '#resultTable').append(body);
-            });
-	    /*$('#resultTable').DataTable( {
+            });*/
+	    $('#resultTable').DataTable( {
 		    "processing": true,
 		"scrollX": true,
 		"data":data,
@@ -310,7 +310,7 @@ $(document).ready(function() {
 		    { "data": "pep_pTuneos"},
 		    { "data": "rf_predict"}
 		]
-	    } );*/
+	    } );
 	    var table = $('#resultTable').DataTable();
 	    }
 	});

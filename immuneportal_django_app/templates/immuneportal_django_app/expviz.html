@@ -357,7 +357,7 @@ $(document).ready(function() {
 				labels:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')])[0],
 				values:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')])[1],
 				
-				visible: i === 0,
+				visible: i === 1,
 			       
 			      
 
@@ -405,15 +405,15 @@ $(document).ready(function() {
 				
 				yanchor: 'top',
 				buttons: [{
-				    method: 'restyle',
+				    method: 'update',
 				    args: ['visible', [true, false, false]],
 				    label: 'HLA type'
 				}, {
-				    method: 'restyle',
+				    method: 'update',
 				    args: ['visible', [false, true, false]],
 				    label: 'Mut Pep'
 				}, {
-				    method: 'restyle',
+				    method: 'update',
 				    args: ['visible', [false, false, true]],
 				    label: 'totalTable'
 				}]

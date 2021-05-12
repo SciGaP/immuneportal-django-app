@@ -233,6 +233,62 @@ function numInstance(arr) {
   return [a, b];
 }
 
+
+function transpose(a) {
+
+  // Calculate the width and height of the Array
+  var w = a.length || 0;
+  var h = a[0] instanceof Array ? a[0].length : 0;
+
+  // In case it is a zero matrix, no transpose routine needed.
+  if(h === 0 || w === 0) { return []; }
+
+  /**
+   * @var {Number} i Counter
+   * @var {Number} j Counter
+   * @var {Array} t Transposed data is stored in this array.
+   */
+  var i, j, t = [];
+
+  // Loop through every item in the outer array (height)
+  for(i=0; i<h; i++) {
+
+    // Insert a new row (array)
+    t[i] = [];
+
+    // Loop through every item per item in outer array (width)
+    for(j=0; j<w; j++) {
+
+      // Save transposed data.
+      t[i][j] = a[j][i];
+    }
+  }
+
+  return t;
+}
+
+
+function numInstance(arr) {
+  var a = [],
+    b = [],
+    prev;
+
+  arr.sort();
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] !== prev) {
+      a.push(arr[i]);
+      b.push(1);
+    } else {
+      b[b.length - 1]++;
+    }
+    prev = arr[i];
+  }
+
+  return [a, b];
+}
+
+
+
 var a="{{request}}";
 console.log('a');
 console.log(a);
@@ -255,11 +311,11 @@ $(document).ready(function() {
 	//console.log(data_file);
 	    //console.log(data);
 	    var dataout=CSVToArray(data);
-	    dataout = dataout.slice(1, dataout.length);
+	    dataoutTable = dataout.slice(1, dataout.length);
 	    console.log('postfunc',dataout);
 	    //$.fn.dataTableExt.sErrMode = 'throw';
 	    $('#resultTable').DataTable( {
-	    		"data":dataout,
+	    		"data":dataoutTable,
             		"deferRender": true,
             		"scrollX":  200,
             		"scrollY":  200,
@@ -289,8 +345,82 @@ $(document).ready(function() {
 			]*/
 		    } );
 		    var table = $('#resultTable').DataTable();
+		    
+		    
+		    
+		  	function makeTrace(i) {
+    //console.log('exists',numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')]));
+			    if (i==dataout[0].indexOf('hla')){
+			    return {
+			    	type: 'pie',
+			    	title: 'HLA Type Distribution',
+				labels:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')])[0],
+				values:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('hla')])[1],
+				
+				visible: i === 0,
+			       
+			      
+
 			    }
-			 });
+			   }
+			  else if(i==dataout[0].indexOf('mut_pep')){
+			    return {
+				type: 'bar',
+				title: 'Mut Pep Distribution',
+				
+				x:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('mut_pep')])[0],
+				y:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('mut_pep')])[1],
+				
+				visible: i === 0,
+			      
+			      
+
+			    }
+			  }
+			  else{
+			    return {
+				type: 'bar',
+				title: 'Wt Pep Distribution',
+				
+				x:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('wt_pep')])[0],
+				y:numInstance(transpose(dataout.slice(1,dataout.length))[dataout[0].indexOf('wt_pep')])[1],
+				
+				visible: i === 0,
+				
+			      
+
+			    }
+			  }
+			}
+			console.log('json',dataout);         
+				    
+			var myPlot= document.getElementById('myDiv');
+
+			//Plotly.newPlot('myDiv', data, layout);
+
+
+			Plotly.newPlot('myDiv', [dataout[0].indexOf('hla'), dataout[0].indexOf('mut_pep'), dataout[0].indexOf('wt_pep')].map(makeTrace), {
+			    updatemenus: [{
+				
+				
+				yanchor: 'top',
+				buttons: [{
+				    method: 'restyle',
+				    args: ['visible', [true, false, false]],
+				    label: 'HLA type'
+				}, {
+				    method: 'restyle',
+				    args: ['visible', [false, true, false]],
+				    label: 'Mut Pep'
+				}, {
+				    method: 'restyle',
+				    args: ['visible', [false, false, true]],
+				    label: 'totalTable'
+				}]
+			    }],
+			});
+		}
+	});
 	    
     
     //console.log('firstOnly',output[0]);
@@ -322,6 +452,10 @@ $(document).ready(function() {
 	    body    += "</tr>";
 	    $( '#resultTable').append(body);
     });*/
+    
+    
+    
+    
     
     });
 

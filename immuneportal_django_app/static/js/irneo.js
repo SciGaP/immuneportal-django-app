@@ -132,7 +132,7 @@ $.ajax({
             //console.log(data_file);
 	    success: function (data) {
 	    	console.log('rawout',data);
-	    	var output=CSV2JSON(data);
+	    	var output=CSVToArray(data);
 	    	console.log('postfunc',output);
 	   
 function makeTrace(i) {

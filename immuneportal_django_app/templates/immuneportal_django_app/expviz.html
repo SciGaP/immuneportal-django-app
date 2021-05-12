@@ -254,11 +254,41 @@ $(document).ready(function() {
 	//console.log('hello');
 	//console.log(data_file);
 	    //console.log(data);
-	    dataout=CSV2JSON(data);
-	    }
-	    });
+	    var dataout=CSV2JSON(data);
+	    console.log('postfunc',dataout);
+	    $('#resultTable').DataTable( {
+			    "processing": true,
+			"scrollX": true,
+			//,
+			"data":dataout,
+			"columns": [
+			    { "data": "id" },
+			    { "data": "hla" },
+			    { "data": "mut_pep" },
+			    { "data": "wt_pep" },
+			    { "data": "pep_hydro" },
+			    { "data": "pep_polar"},
+			    { "data": "pep_charge"},
+			    { "data": "pep_entropy"},
+			    { "data": "pep_molsize" },
+			    { "data": "pep_TAP" },
+			    { "data": "pep_Cle" },
+			    { "data": "pep_Comb"},
+			    { "data": "neo_aff"},
+			    { "data": "neo_rank"},
+			    { "data": "iedb_immunescore"},
+			    { "data": "pep_DAI"},
+			    { "data": "pep_Rscore"},
+			    { "data": "pep_NRP"},
+			    { "data": "pep_pTuneos"},
+			    { "data": "rf_predict"}
+			]
+		    } );
+		    var table = $('#resultTable').DataTable();
+			    }
+			 });
 	    
-    console.log('postfunc',dataout);
+    
     //console.log('firstOnly',output[0]);
     //$.fn.dataTable.ext.errMode = 'throw';
     
@@ -288,35 +318,7 @@ $(document).ready(function() {
 	    body    += "</tr>";
 	    $( '#resultTable').append(body);
     });*/
-    $('#resultTable').DataTable( {
-	    "processing": true,
-	"scrollX": true,
-	//,
-	"data":dataout,
-	"columns": [
-	    { "data": "id" },
-	    { "data": "hla" },
-	    { "data": "mut_pep" },
-	    { "data": "wt_pep" },
-	    { "data": "pep_hydro" },
-	    { "data": "pep_polar"},
-	    { "data": "pep_charge"},
-	    { "data": "pep_entropy"},
-	    { "data": "pep_molsize" },
-	    { "data": "pep_TAP" },
-	    { "data": "pep_Cle" },
-	    { "data": "pep_Comb"},
-	    { "data": "neo_aff"},
-	    { "data": "neo_rank"},
-	    { "data": "iedb_immunescore"},
-	    { "data": "pep_DAI"},
-	    { "data": "pep_Rscore"},
-	    { "data": "pep_NRP"},
-	    { "data": "pep_pTuneos"},
-	    { "data": "rf_predict"}
-	]
-    } );
-    var table = $('#resultTable').DataTable();
+    
     });
 
 	

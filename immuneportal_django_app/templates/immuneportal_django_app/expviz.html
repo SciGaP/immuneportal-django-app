@@ -114,6 +114,10 @@
   <!--for IRNEO-->
   <script src="../../static/js/plotly-latest.min.js" ></script>
 <script>
+
+
+
+
 function CSVToArray(strData, strDelimiter) {
     // Check to see if the delimiter is defined. If not,
     // then default to comma.
@@ -307,13 +311,25 @@ console.log('datafile',b);
 var data_file=b;
 
 
-var imgName=a.split("?=")[1].split("&")[1];
-console.log('pname',imgName);
+var data_file2=data_file.split("?")[1];
+//var imgName=a.split("?=")[1].split("&")[1];
+//console.log('pname',imgName);
 
 
 $(document).ready(function() {
 	document.getElementById("seqlogo").src="";
 	var dataout;
+	$.ajax({
+	   type: "GET",
+	    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/image_view/?"+data_file2,
+	    contentType: "image/jpg",
+
+	    success: function (data) {
+		//console.log('json',data);
+		console.log('made it');
+		document.getElementById('seqlogo').src = 'data:image/jpg;base64,' + data;
+	    }
+	});
 	$.ajax({
 	    url: data_file,
 	    method: 'GET',

@@ -15,7 +15,8 @@ setuptools.setup(
 		'dash',
 		'pandas',
 		'logomaker',
-		'UpSetPlot'
+		'UpSetPlot',
+		'django-cors-headers'
 
 	],
 	entry_points="""

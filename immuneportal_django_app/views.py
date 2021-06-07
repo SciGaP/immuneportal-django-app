@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.http import HttpResponse
 import pandas
 import numpy
+from upsetplot import generate_counts
+from upsetplot import plot
 import matplotlib.pyplot as plt
 import logomaker
 import requests
@@ -12,6 +14,7 @@ from io import StringIO
 from airavata_django_portal_sdk import user_storage
 import base64
 from collections import Counter
+
 
 
 
@@ -69,6 +72,42 @@ def image_view(request):
 	pwm=numpy.asarray(freqLists)
 	renderDf = pandas.DataFrame(pwm, columns = sorted(aminos))
 	logomaker.Logo(renderDf)
+	buffer = io.BytesIO()
+	plt.savefig(buffer, format='png')
+	image_bytes = buffer.getvalue()
+	image_bytes=base64.b64encode(image_bytes)
+	buffer.close()
+	
+	return HttpResponse(image_bytes, content_type="image/png")
+	
+@login_required
+def upset_view(request):
+	requestStr=str(request)
+	print("THIS IS THE REQUEST",requestStr)
+	
+	data_product_uri=request.GET['data-product-uri']
+	#print(request)
+	#requestStr=requestStr.replace("<WSGIRequest: GET '","")
+	#requestStr=requestStr.replace("'>","")
+	#requestStr=requestStr.split('=')[2]
+	#print("THIS IS THE REQUEST",requestStr)
+	#request='/api'+request
+	#print("THIS IS THE REQUEST",requestStr)
+	#headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
+	#df=pandas.read_csv("http://localhost:8000"+request, delimiter='\t')
+
+	#url="http://localhost:8000"+request
+	
+	#data_product = request.airavata_client.getDataProduct(request.authz_token, data_product_uri)
+	data_product = user_storage.open_file(request, data_product_uri=data_product_uri)
+	
+	#data_product=request.airavata_client.getDataProduct(request.authz_token, data_product_uri)
+	#s=requests.get(url, headers= headers).text
+	
+	example = generate_counts()
+	plot(example)
+	
+	
 	buffer = io.BytesIO()
 	plt.savefig(buffer, format='png')
 	image_bytes = buffer.getvalue()

@@ -7,3 +7,4 @@ periodictable
 dash
 django_plotly_dash
 logomaker
+UpSetPlot

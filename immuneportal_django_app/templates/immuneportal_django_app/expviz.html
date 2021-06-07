@@ -9,19 +9,20 @@
             <h1>Immune Portal Experiment Output</h1>
             <div class="card">
                 <div class="card-header">
-                    Searchable Data
+                    Searchable Data (<b>Hover over columns to see description, click on rows to get further sample information</b>)
                 </div>
                 <div class="card-body">
 		    <select id="urlVal" style="visibility:hidden;">
 	    		<option value={{outputFilePath}} selected>Select genome </option>
 		  </select>
-		<table id="resultTable" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+		<table id="resultTable" class="table table-striped table-bordered table-hover" style="cursor:pointer;" cellspacing="0" width="100%">
 		  <thead>
 		      <tr>
 		           <th>id</th>
-			    <th>hla</th>
+			    <th class="HlaWithComment">hla <span class="HlaComment"  >HLA Subtype: </span> </th>
+			    
 			    <th>mut_pep</th>
-			    <th>wt_pep</th>
+			    <th class="WtWithComment">wt_pep <span class="WtComment">WildType Peptide: </span></th>
 			    <th>pep_hydro</th>
 			    <th>pep_polar</th>
 			    <th>pep_charge</th>
@@ -41,7 +42,11 @@
 		      </tr>
 		  </thead>
 		</table>
-		<div id="svgHolder" ></div>
+		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
+		<div id="additionalInfo" style="visibility:hidden;">
+			
+		</div>
+		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
         </div>
             
             <!-- Adding a list of "Hello" greetings
@@ -57,10 +62,10 @@
             -->
 	    <div class="card">
                 <div class="card-header">
-                    Distribution
+                    Upset Plot
                 </div>
                 <div class="card-body">
-                    <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+                    <img src="" id="upset"></img>
                 </div>
             </div>
             
@@ -74,7 +79,27 @@
                 </div>
             </div>
             
-            
+            <div class="card">
+                <div class="card-header">
+                    Experiments
+                </div>
+                <div class="card-body">
+                    <button id="refresh-button" class="btn btn-secondary">Refresh</button>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Application</th>
+                                <th scope="col">Creation Time</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Output</th>
+                            </tr>
+                        </thead>
+                        <tbody id="experiment-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             
         </div>
     </main>
@@ -83,6 +108,73 @@
 
 {% block css %}
         <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
+        <style>
+       
+        #resultTable th{
+	  position:relative;
+	  z-index:100;
+	  
+	}
+	#resultTable td{
+	  position:relative;
+	  z-index:100;
+
+	}
+
+	.HlaWithComment{
+	  position:relative;
+	  z-index:100;
+	}
+
+	.HlaComment {
+	  visibility: hidden;
+	  position:absolute; 
+	  z-index: 99999;
+	  border:1px;
+	  background-color:white;
+	  border-style:solid;
+	  border-color:black;
+	  width:220px;
+	  color:black; 
+	  top:2px; 
+	  left:40px;
+	}
+
+	.HlaWithComment:hover span.HlaComment{
+	  visibility: visible;
+	  opacity: 1;
+	  width:190px;
+	  position:absolute; 
+	  z-index:99999;
+	}
+	
+	.WtWithComment{
+	  position:relative;
+	  z-index:100;
+	}
+
+	.WtComment {
+	  visibility: hidden;
+	  position:absolute; 
+	  z-index: 99998;
+	  border:1px;
+	  background-color:white;
+	  border-style:solid;
+	  border-color:black;
+	  width:300px;
+	  color:black; 
+	  top:2px; 
+	  left:40px;
+	}
+
+	.WtWithComment:hover span.WtComment{
+	  visibility: visible;
+	  opacity: 1;
+	  width:300px;
+	  position:absolute; 
+	  z-index:99998;
+	}
+	</style>
   {% endblock %}
   
 {% block scripts %}
@@ -93,8 +185,8 @@
   <script src="../../static/js/dalliance-compiled.js" defer></script>
   <!--for IRNEO-->
   <script src="../../static/js/plotly-latest.min.js" ></script>
+  
 <script>
-
 
 
 
@@ -311,6 +403,17 @@ $(document).ready(function() {
 	    }
 	});
 	$.ajax({
+	   type: "GET",
+	    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view/?"+data_file2,
+	    contentType: "image/jpg",
+
+	    success: function (data) {
+		//console.log('json',data);
+		console.log('made it');
+		document.getElementById('upset').src = 'data:image/jpg;base64,' + data;
+	    }
+	});
+	$.ajax({
 	    url: data_file,
 	    method: 'GET',
 	    //datatype: 'json',
@@ -333,30 +436,50 @@ $(document).ready(function() {
             		"scrollY":  200,
             		"scrollCollapse": true,
             		"scroller": true,
-			/*"columns": [
-			    { "data": "id" },
-			    { "data": "hla" },
-			    { "data": "mut_pep" },
-			    { "data": "wt_pep" },
-			    { "data": "pep_hydro" },
-			    { "data": "pep_polar"},
-			    { "data": "pep_charge"},
-			    { "data": "pep_entropy"},
-			    { "data": "pep_molsize" },
-			    { "data": "pep_TAP" },
-			    { "data": "pep_Cle" },
-			    { "data": "pep_Comb"},
-			    { "data": "neo_aff"},
-			    { "data": "neo_rank"},
-			    { "data": "iedb_immunescore"},
-			    { "data": "pep_DAI"},
-			    { "data": "pep_Rscore"},
-			    { "data": "pep_NRP"},
-			    { "data": "pep_pTuneos"},
-			    { "data": "rf_predict"}
-			]*/
+			
 		    } );
 		    var table = $('#resultTable').DataTable();
+			$('#resultTable').on('click', 'tbody tr', function() {
+			  console.log('API row values : ', table.row(this).data());
+			  var clickdata=table.row(this).data();
+			  document.getElementById('additionalInfo').style.visibility="visible";
+			  document.getElementById('additionalInfo').innerHTML="<u><h6>Additional Info</h6></u><ul><li>pep_hydro:"+clickdata[4]+"</li><li>pep_polar:"+clickdata[5]+"</li><li>pep_charge:"+clickdata[6]+"</li></ul> <u><h6>Embedded Genome location</h6></u>";
+			  document.getElementById('svgHolder').style.display="block";
+			  
+			})
+			var browser =  new Browser({
+			      chr:          '22',
+			      viewStart:    30700000,
+			      viewEnd:      30900000,
+
+			      coordSystem: {
+				speciesName: 'Human',
+				taxon: 9606,
+				auth: 'GRCh',
+				version: '37',
+				ucscName: 'hg19'
+			      },
+
+			      sources:     [{name:                 'Genome',
+					     twoBitURI:            '//www.biodalliance.org/datasets/hg19.2bit',
+					     tier_type:            'sequence'},
+					    {name:                 'Genes',
+					     desc:                 'Gene structures from GENCODE 19',
+					     bwgURI:               '//www.biodalliance.org/datasets/gencode.bb',
+					     stylesheet_uri:       '//www.biodalliance.org/stylesheets/gencode.xml',
+					     collapseSuperGroups:  true,
+					     trixURI:              '//www.biodalliance.org/datasets/geneIndex.ix'},
+					    {name:                 'Repeats',
+					     desc:                 'Repeat annotation from Ensembl',
+					     bwgURI:               '//www.biodalliance.org/datasets/repeats.bb',
+					     stylesheet_uri:       '//www.biodalliance.org/stylesheets/bb-repeats.xml'},
+					    {name:                 'Conservation',
+					     desc:                 'Conservation', 
+					     bwgURI:               '//regsnps-intron.ccbb.iupui.edu/annotation/hg19.100way.phyloP100way.bw',
+					     noDownsample:         true}],
+
+			    });
+
 		    
 		    
 		    
@@ -540,88 +663,6 @@ myPlot.on('plotly_click', function(data){
     
 
     const appInterfaceId = "Echo_23d67491-1bef-47bd-a0f5-faf069e09773";
-
-    function loadExperiments() {
-        return services.ExperimentSearchService.list({
-            limit: 5,
-            [models.ExperimentSearchFields.USER_NAME.name]:
-                session.Session.username,
-            [models.ExperimentSearchFields.APPLICATION_ID.name]: appInterfaceId
-        }).then(data => {
-            $("#experiment-list").empty();
-            data.results.forEach((exp, index) => {
-                $("#experiment-list").append(
-                    `<tr>
-                            <td>${exp.name}</td>
-                            <td>${exp.executionId}</td>
-                            <td>${exp.creationTime}</td>
-                            <td>${exp.experimentStatus.name}</td>
-                            <td id="output_${index}"></td>
-                        </tr>`
-                );
-                // If experiment has finished, load full details, then parse the stdout file
-                /* Displaying the experiment output
-                if (exp.experimentStatus === models.ExperimentState.COMPLETED) {
-                    services.FullExperimentService.retrieve({
-                        lookup: exp.experimentId
-                    })
-                        .then(fullDetails => {
-                            const stdoutDataProductId = fullDetails.experiment.experimentOutputs.find(
-                                o => o.name === "Echo-STDOUT"
-                            ).value;
-                            const stdoutDataProduct = fullDetails.outputDataProducts.find(
-                                dp => dp.productUri === stdoutDataProductId
-                            );
-                            if (
-                                stdoutDataProduct &&
-                                stdoutDataProduct.downloadURL
-                            ) {
-                                return fetch(stdoutDataProduct.downloadURL, {
-                                    credentials: "same-origin"
-                                }).then(result => result.text());
-                            }
-                        })
-                        .then(text => {
-                            $(`#output_${index}`).text(text);
-                        });
-                }
-                */
-            });
-        });
-    }
-
-    loadExperiments();
-    $("#refresh-button").click(loadExperiments);
-
-    $("#run-button").click(e => {
-        const greeting = $("#greeting-select").val();
-        const loadAppInterface = services.ApplicationInterfaceService.retrieve({lookup: appInterfaceId});
-        const appDeploymentId = "example-vc.jetstream-cloud.org_Echo_37eb38ac-74c8-4aa4-a037-c656ab5bc6b8";
-        const loadQueues = services.ApplicationDeploymentService.getQueues({ lookup: appDeploymentId });
-        const resourceHostId = "example-vc.jetstream-cloud.org_794fd026-101a-46af-8868-5d7a86f813a1";
-        const queueName = "cloud";
-        const groupResourceProfileId = "fc245311-a7d1-41af-b8ae-a4142989c9a1";
-        const loadWorkspacePrefs = services.WorkspacePreferencesService.get();
-        Promise.all([loadAppInterface, loadWorkspacePrefs, loadQueues])
-        .then(([appInterface, workspacePrefs, queues]) => {
-            const experiment = appInterface.createExperiment();
-            experiment.experimentName = "Echo " + greeting;
-            experiment.projectId = workspacePrefs.most_recent_project_id;
-            const cloudQueue = queues.find(q => q.queueName === queueName);
-            experiment.userConfigurationData.groupResourceProfileId = groupResourceProfileId;
-            experiment.userConfigurationData.computationalResourceScheduling.resourceHostId = resourceHostId;
-            experiment.userConfigurationData.computationalResourceScheduling.totalCPUCount = cloudQueue.defaultCPUCount;
-            experiment.userConfigurationData.computationalResourceScheduling.nodeCount = cloudQueue.defaultNodeCount;
-            experiment.userConfigurationData.computationalResourceScheduling.wallTimeLimit = cloudQueue.defaultWalltime;
-            experiment.userConfigurationData.computationalResourceScheduling.queueName = queueName;
-            // Copy the selected greeting to the value of the first input
-            experiment.experimentInputs[0].value = greeting;
-
-            return services.ExperimentService.create({data: experiment});
-        }).then(exp => {
-            return services.ExperimentService.launch({lookup: exp.experimentId});
-        })
-    });
 
 </script>
 

@@ -391,7 +391,17 @@ var data_file2=data_file.split("?")[1];
 $(document).ready(function() {
 	document.getElementById("seqlogo").src="";
 	var dataout;
-	
+	$.ajax({
+	   type: "GET",
+	    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/image_view/?"+data_file2,
+	    contentType: "image/jpg",
+
+	    success: function (data) {
+		//console.log('json',data);
+		console.log('made it');
+		document.getElementById('seqlogo').src = 'data:image/jpg;base64,' + data;
+	    }
+	});
 	$.ajax({
 	   type: "GET",
 	    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view/?"+data_file2,

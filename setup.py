@@ -14,7 +14,8 @@ setuptools.setup(
 		'scipy',
 		'dash',
 		'pandas',
-		'logomaker'
+		'logomaker',
+		'UpSetPlot'
 
 	],
 	entry_points="""

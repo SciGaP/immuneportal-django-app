@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.http import HttpResponse
+import pandas as pd
+from collections import Counter
 import pandas
 import numpy
 from upsetplot import generate_counts
@@ -79,34 +81,54 @@ def image_view(request):
 	buffer.close()
 	
 	return HttpResponse(image_bytes, content_type="image/png")
-	
+'''
 @login_required
 def upset_view(request):
-	requestStr=str(request)
-	print("THIS IS THE REQUEST",requestStr)
-	
-	data_product_uri=request.GET['data-product-uri']
-	#print(request)
-	#requestStr=requestStr.replace("<WSGIRequest: GET '","")
-	#requestStr=requestStr.replace("'>","")
-	#requestStr=requestStr.split('=')[2]
-	#print("THIS IS THE REQUEST",requestStr)
-	#request='/api'+request
-	#print("THIS IS THE REQUEST",requestStr)
-	#headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
-	#df=pandas.read_csv("http://localhost:8000"+request, delimiter='\t')
+	d1= pd.read_csv("Immunoportal_data.txt", header=0,sep="\t")
 
-	#url="http://localhost:8000"+request
+	hla_cols = [col for col in d1.columns if 'HLA-' in col]
+	d2= d1[hla_cols]
+	dlist= d2.values.tolist()
+
+
+	upset_list=[]
+
+	for item in dlist:
+	    indexs= [ n for n,i in enumerate(item) if i<2 ]
+	    hlagroups= ','.join([ hla_cols[j] for j in indexs])
+	    upset_list.append(hlagroups)
+
+	sumList= [ hla_cols + ['count'] ]
+	cc= Counter(upset_list)
+	for key, value in cc.items():
+	    hlaS= key.split(',')
+	    ToF=[]
+	    for m in hla_cols:
+		if m in hlaS:
+		    ToF.append('TRUE')
+		else:
+		    ToF.append('FALSE')
+	    
+	    sumList.append(ToF + [value])
+
+	upSet= pd.DataFrame(sumList[1:],columns=sumList[0]);
+	print(upSet) #### here for the right panel data
+
+	counts=upSet['count']
+	upSet = upSet.drop(labels='count', axis=1)
 	
-	#data_product = request.airavata_client.getDataProduct(request.authz_token, data_product_uri)
-	data_product = user_storage.open_file(request, data_product_uri=data_product_uri)
+	tupList=[]
+	for idx, row in upset.iterrows():
+		tupList.append(tuple(row))
+		
+	index = pd.MultiIndex.from_tuples(tupList, names=list(upSet.columns()))
+	upsetData=pd.Series(numpy.array(list(counts)), index=index)
 	
-	#data_product=request.airavata_client.getDataProduct(request.authz_token, data_product_uri)
-	#s=requests.get(url, headers= headers).text
+	#data_product = user_storage.open_file(request, data_product_uri=data_product_uri)
 	
-	example = generate_counts()
-	plot(example)
-	
+	plot(upsetData)
+	#example = generate_counts()
+	#plot(example)
 	
 	buffer = io.BytesIO()
 	plt.savefig(buffer, format='png')
@@ -115,7 +137,7 @@ def upset_view(request):
 	buffer.close()
 	
 	return HttpResponse(image_bytes, content_type="image/png")
-
+'''
 
 @login_required
 def expviz(request):

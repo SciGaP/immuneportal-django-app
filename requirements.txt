@@ -8,3 +8,5 @@ dash
 django_plotly_dash
 logomaker
 UpSetPlot
+seaborn
+

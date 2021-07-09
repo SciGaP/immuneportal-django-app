@@ -72,18 +72,20 @@ class IrneoPredLink:
 	
 	#print("FILE URL",link)
 	def generate_data(self, request, experiment_output, experiment, output_file=None):
-		
+		print("HOPEFULLY EXPERIMENT ID",experiment.experimentId)
 		#plt.savefig('static/'+pname, format='png')
 		link = urls.get_download_url(experiment_output.value)
+		print('LINK FOR DOWNLOAD',link)
 		#link=link.split('?')[2]
 		#make as short as possible
 		return {
 			"label": "Output Visualization",
-			#"url": "http://localhost:8000/immuneportal_django_app/expviz/?="+link,
-			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?="+link,
+			"url": "http://localhost:8000/immuneportal_django_app/expviz/?="+experiment.experimentId,
+			#"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?="+link,
 		}
 		
 	
+		
 			
 			
 class SplicePlot:

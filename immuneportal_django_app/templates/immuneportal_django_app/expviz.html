@@ -466,7 +466,12 @@ var data_file2=data_file.split("?")[1];
 						    var base=document.getElementById('forResultTable');
 						    var tbl=document.createElement('table');
 						    tbl.id='resultTable'
-						    tbl.class="table table-striped table-bordered table-hover";
+						    tbl.classList.add('table');
+						    tbl.classList.add('table-striped');
+						    tbl.classList.add('table-bordered');
+						    tbl.classList.add('table-hover');
+						    
+						    //tbl.set="table table-striped table-bordered table-hover";
 						    tbl.style="cursor:pointer;"
 						    tbl.cellspacing="0";
 						    tbl.width="100%";

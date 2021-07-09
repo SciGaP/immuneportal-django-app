@@ -546,7 +546,7 @@ var data_file2=data_file.split("?")[1];
 								  var chr=temp.split(':')[0].substring(3)
 								  var start=parseInt(temp.split(':')[1].split('-')[0])
 								  var end=parseInt(temp.split(':')[1].split('-')[1])
-								   browser.setLocation(chr, clickdata[0], record['pos'] + 50);
+								   browser.setLocation(chr, start-50, end + 50);
 								  document.getElementById('svgHolder').style.display="block";
 								  
 								})

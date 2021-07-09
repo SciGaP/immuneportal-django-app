@@ -19,12 +19,25 @@
 		
 		</div>
 		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
-		<div id="additionalInfo" style="display:none;border:1px solid black;border-radius: 40px;">
-			<br></br>
-			<p style="margin-left:2px">Select additional row info with autocomplete or arrows:</p>
-			<input id="tags" style="display:none">
-			<br></br>
+		<div id="outer" style="display:none;border:1px solid black;border-radius: 40px;">
+			<div id="additionalInfo" style="display:none;float:left;">
+				<br></br>
+				<p style="margin-left:2px">Select additional row info with autocomplete or arrows:</p>
+				<input id="tags" style="display:none">
+				<br></br>
+				
+				
+			</div>
+			<div id="additionalInfo2" style="display:none;border:1px solid black;float:left;">
+				<br></br>
+				<p >fortable</p>
+				
+				<br></br>
+				
+				
+			</div>
 		</div>
+		
 		<p id='gblabel'  style="display:none">Embedded Genome Browser:<p>
 		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
         </div>
@@ -599,6 +612,8 @@ var data_file2=data_file.split("?")[1];
 								    
 								
 							document.getElementById('additionalInfo').style.display="block";
+							document.getElementById('additionalInfo2').style.display="block";
+							document.getElementById('outer').style.display="block";
 							document.getElementById('tags').style.display="block";
 		
 

@@ -19,9 +19,9 @@
 		
 		</div>
 		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
-		<div id="additionalInfo" style="visibility:hidden;border:1px solid black;">
+		<div id="additionalInfo" style="visibility:hidden;border:1px solid black;border-radius: 25px;">
 			<br></br>
-			<p>Select additional row info with autocomplete or arrows:</p>
+			<p style="margin-left:2px">Select additional row info with autocomplete or arrows:</p>
 			<input id="tags" style="display:none">
 			<br></br>
 		</div>
@@ -590,7 +590,7 @@ var data_file2=data_file.split("?")[1];
 												terms.push( ui.item.value );
 												// add placeholder to get the comma-and-space at the end
 												terms.push( "" );
-												this.value = terms.join( ", " );
+												this.value = terms.join( "" );
 												return false;
 											}
 										});

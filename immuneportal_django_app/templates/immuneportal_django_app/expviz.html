@@ -50,6 +50,7 @@
                     HLA Load (<b>Load Based on Individuals BRCA Sample</b>)
                 </div>
                 <div class="card-body">
+                    <p>The red line indicates how the individual compares to 1000 genomes samples</p>
                     <div id="my_dataviz"></div>
                     <!--<img  id="hlaload"></img>-->
                 </div>
@@ -540,10 +541,10 @@ var data_file2=data_file.split("?")[1];
 								  document.getElementById('additionalInfo').innerHTML="<u><h6>Additional Info</h6></u><ul><li class='WtWithComment'>pep_hydro:"+clickdata[4]+"<span class='WtComment'>sum of amino acids hydrophobicity for peptide</span></li><li>pep_polar:"+clickdata[5]+"</li><li>pep_charge:"+clickdata[6]+"</li><li class='WtWithComment' >pep_entropy:"+clickdata[7]+"<span class='WtComment'>sum of amino acids residues entropy for peptide </span></li><li class='WtWithComment' >pep_molsize:"+clickdata[8]+"<span class='WtComment'>sum of amino acids residues molecular weight for peptide</span></li><li class='WtWithComment' >pep_TAP:"+clickdata[9]+"<span class='WtComment'>TAP transport efficiency, predicted by NetCTL1.2 </span></li><li class='WtWithComment' >pep_Cle:"+clickdata[10]+"<span class='WtComment'>C terminal cleavage affinity, predicted by NetCTL1.2 </span></li><li class='WtWithComment' >pep_Comb:"+clickdata[11]+"<span class='WtComment'>Overall prediction score, predicted by NetCTL1.2</span></li><li class='WtWithComment' >neo_aff:"+clickdata[12]+"<span class='WtComment'>NetMHCpan 4.1 predicted IC50 values (Aff, nM unit) </span></li><li class='WtWithComment' >neo_rank:"+clickdata[13]+"<span class='WtComment'>NetMHCpan 4.1 predicted percentile rank binding affinity value </span></li><li class='WtWithComment' >iedb_immunescore:"+clickdata[14]+"<span class='WtComment'>Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity;</span></li><li class='WtWithComment' >pep_DAI:"+clickdata[15]+"<span class='WtComment'>differential agretopicity index, from Ghorani et al’s study (PMID:29361136); </span></li><li class='WtWithComment' >pep_Rscore:"+clickdata[16]+"<span class='WtComment'>neoantigen fitness score from Łuksza et al’s study (PMID:29132144); </span></li><li class='WtWithComment' >pep_NRP:"+clickdata[17]+"<span class='WtComment'>Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146); </span></li><li class='WtWithComment' >pep_pTuneos:"+clickdata[18]+"<span class='WtComment'>pTuneos prediction score, Zhou et al’s study (PMID:31666118); </span></li></ul> <u><h6>Embedded Genome location</h6></u>";
 								  
 								  
-								  temp=clickdata[0].split('@')[1]
-								  chr=temp.split(':')[0].substring(3)
-								  start=parseInt(temp.split(':')[1].split('-')[0])
-								  end=parseInt(temp.split(':')[1].split('-')[1])
+								  var temp=clickdata[0].split('@')[1]
+								  var chr=temp.split(':')[0].substring(3)
+								  var start=parseInt(temp.split(':')[1].split('-')[0])
+								  var end=parseInt(temp.split(':')[1].split('-')[1])
 								   browser.setLocation(chr, clickdata[0], record['pos'] + 50);
 								  document.getElementById('svgHolder').style.display="block";
 								  
@@ -664,6 +665,23 @@ var data_file2=data_file.split("?")[1];
 								.style("stroke-width", 2)
 								.style("stroke", "red")
 								.style("fill", "none");
+								
+								    svg.append("text")
+								    .attr("class", "x label")
+								    .attr("text-anchor", "end")
+								    .attr("x", width)
+								    .attr("y", height - 6)
+								    .text("NeoAntigen Load");
+								    
+								    
+								    svg.append("text")
+								    .attr("class", "y label")
+								    .attr("text-anchor", "end")
+								    .attr("y", 6)
+								    .attr("dy", ".75em")
+								    .attr("transform", "rotate(-90)")
+								    .text("frequency");
+								    
 
 
 

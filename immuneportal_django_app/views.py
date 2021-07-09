@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import logomaker
 import requests
 import io
-import seaborn as sns
+#import seaborn as sns
 from subprocess import check_output
 from io import StringIO
 from airavata_django_portal_sdk import user_storage

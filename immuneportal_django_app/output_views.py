@@ -80,7 +80,7 @@ class IrneoPredLink:
 		#make as short as possible
 		return {
 			"label": "Output Visualization",
-			"url": "http://localhost:8000/immuneportal_django_app/expviz/?="+experiment.experimentId,
+			"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?="+experiment.experimentId,
 			#"url": "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/expviz/?="+link,
 		}
 		

@@ -22,7 +22,7 @@
 		<div id="additionalInfo" style="visibility:hidden;border:1px solid black;">
 			<br></br>
 			<p>Select additional row info with autocomplete or arrows:</p>
-			
+			<input id="tags" style="display:none">
 		</div>
 		<p id='gblabel'  style="display:none">Embedded Genome Browser:<p>
 		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
@@ -554,15 +554,16 @@ var data_file2=data_file.split("?")[1];
 								  console.log(dataout[0]);
 								  var availableTags=dataout[0];
 								  
-								  	var ai=document.getElementById('additionalInfo');
 								
-								    	  var input = document.createElement("input");
-									   input.type = "text";
-									   input.id="thisInp";
-									   input.className = "css-class-name";
-									   
 								    	  
-									    $( "#thisInp" )// don't navigate away from the field on tab when selecting an item
+									   
+								    	      function split( val ) {
+										      return val.split( /,\s*/ );
+										    }
+										    function extractLast( term ) {
+										      return split( term ).pop();
+										    }
+									    $( "#tags" )// don't navigate away from the field on tab when selecting an item
 										.on( "keydown", function( event ) {
 											if ( event.keyCode === $.ui.keyCode.TAB &&
 													$( this ).autocomplete( "instance" ).menu.active ) {
@@ -594,11 +595,10 @@ var data_file2=data_file.split("?")[1];
 										});
 										//document.getElementById('secondStage').appendChild(element);  
 								    
-								    ai.appendChild(input);
-								    var br = document.createElement("br");
-								    ai.appendChild(br);
+								    
 								
 							document.getElementById('additionalInfo').style.visibility="visible";
+							document.getElementById('tags').style.visibility="visible";
 		
 
 								  /*

@@ -24,6 +24,7 @@
 			<p>Select additional row info with autocomplete or arrows:</p>
 			
 		</div>
+		<p id='gblabel'  style="display:none">Embedded Genome Browser:<p>
 		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
         </div>
             
@@ -560,7 +561,7 @@ var data_file2=data_file.split("?")[1];
 									   input.className = "css-class-name";
 									   
 								    	  var availableTags = data;
-									    $( "#thisInp"+i.toString() )// don't navigate away from the field on tab when selecting an item
+									    $( "#thisInp" )// don't navigate away from the field on tab when selecting an item
 										.on( "keydown", function( event ) {
 											if ( event.keyCode === $.ui.keyCode.TAB &&
 													$( this ).autocomplete( "instance" ).menu.active ) {
@@ -608,6 +609,7 @@ var data_file2=data_file.split("?")[1];
 								  var start=parseInt(temp.split(':')[1].split('-')[0])
 								  var end=parseInt(temp.split(':')[1].split('-')[1])
 								   browser.setLocation(chr, start-50, end + 50);
+								   document.getElementById('gblabel').style.display="block";
 								  document.getElementById('svgHolder').style.display="block";
 								  
 								})

@@ -474,7 +474,7 @@ var data_file2=data_file.split("?")[1];
 				    url: geneFreq,
 				    method: 'GET',
 				    success: function (geneFreqData) {
-	    				     console.log(geneFreqData)
+	    				     console.log(CSVToArray(geneFreqData))
 
 						$.ajax({
 							    async: false,

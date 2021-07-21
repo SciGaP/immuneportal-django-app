@@ -474,8 +474,16 @@ var data_file2=data_file.split("?")[1];
 				    url: geneFreq,
 				    method: 'GET',
 				    success: function (geneFreqData) {
-	    				     console.log(CSVToArray(geneFreqData))
-
+	    				     //console.log(CSVToArray(geneFreqData))
+					      
+					      //TITLES OF CSV COLUMNS
+						console.log(CSVToArray(geneFreqData)[0]);
+						var temp=CSVToArray(geneFreqData);
+						var geneFreqDataTitles=temp[0];
+						var geneFreqDataArr=temp.slice(1, temp.length);
+						/*for(var i=0;i<geneFreqDataTitles.length;i++){
+							if(i==0 |i==geneFreqDataTitles.length-1)
+						}*/
 						$.ajax({
 							    async: false,
 							    url: 'https://immuneportal.ccbb.iupui.edu/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',
@@ -486,8 +494,48 @@ var data_file2=data_file.split("?")[1];
 						       	    //console.log(data_file);
 							    //console.log(data_file);
 							    success: function (tcgaGeneFreqs) {
-							    		var tcgaGeneFreqsArray=CSVToArray(tcgaGeneFreqs);
-							    		console.log(tcgaGeneFreqsArray);
+							    		var temp=CSVToArray(tcgaGeneFreqs);
+							    		//console.log(tcgaGeneFreqsArray);
+									var tcgaGeneFreqsTitles=temp[0];
+									var tcgaGeneFreqsArr=temp.slice(1, temp.length);
+									var currcantype='BRCA'
+									var titleArr=tcgaGeneFreqsTitles.split(',');
+									var geneDict={};
+									//INITIALIZING GENE DICT
+									for(var j=0;j<tcgaGeneFreqsTitles.length;j++){
+
+										if(j==0| j==tcgaGeneFreqsTitles.length-1){
+											continue;
+										}
+										else{
+											geneDict[titleArr[j]]=[];
+										}
+										
+									}
+									//FILLING GENE DICT
+									for(var i=0;i<tcgaGeneFreqsArr.length;i++){
+										var currLst=tcgaGeneFreqsArr[i].split(',');
+										if(currLst[tcgaGeneFreqsTitles.length-1]==currcantype){
+											
+											for(var j=0;j<tcgaGeneFreqsTitles.length;j++){
+
+												if(j==0| j==tcgaGeneFreqsTitles.length-1){
+													continue;
+												}
+												else{
+													geneDict[titleArr[j]].push(parseFloat(currLst[j]));
+												}
+												
+											}
+										}
+										else{
+											continue;
+										}
+									}
+									console.log('part of b2m',geneDict['B2M'].slice(0,5));
+									
+							    		//TITLES OF CSV COLUMNS
+							    		console.log(dataout[0]);
 						    			var trace1 = {
 									  x: [1, 2, 3, 4, 4, 4, 8, 9, 10],
 									  type: 'box',

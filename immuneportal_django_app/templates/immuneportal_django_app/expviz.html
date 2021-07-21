@@ -481,8 +481,15 @@ var data_file2=data_file.split("?")[1];
 						var temp=CSVToArray(geneFreqData);
 						var geneFreqDataTitles=temp[0];
 						var geneFreqDataArr=temp.slice(1, temp.length);
-						/*for(var i=0;i<geneFreqDataTitles.length;i++){
-							if(i==0 |i==geneFreqDataTitles.length-1)
+						var geneLst=[];
+						console.log(geneFreqDataArr);
+						/*for(var i=0;i<geneFreqDataTitles[0].length;i++){
+							if(i==0 |i==geneFreqDataTitles[0].length-1){
+								continue;
+							}
+							else{
+								genesLst.push(parseFloat(geneFreqDataArr[0]))
+							}
 						}*/
 						$.ajax({
 							    async: false,

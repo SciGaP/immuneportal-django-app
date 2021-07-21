@@ -88,6 +88,16 @@
             </div>
             <div class="card">
                 <div class="card-header">
+                    Gene Expression Relative to TCGA BRCA
+                </div>
+                <div class="card-body">
+                <p>The red line indicates how the individual compares to 1000 genomes samples:</p>
+                    <div id="boxes"></div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
                     Individual and 1000 Genome HLA statistics (<b>Use the Dropdown to switch between sets</b>)
                 </div>
                 <div class="card-body">
@@ -456,6 +466,30 @@ var data_file2=data_file.split("?")[1];
 	    			var geneFreq='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[1];
 	    			//var finalOutput='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[4];
 	    			var tableData='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[0];
+	    			
+	    			
+	    			//FOR GENEFREQ
+	    			var trace1 = {
+				  x: [1, 2, 3, 4, 4, 4, 8, 9, 10],
+				  type: 'box',
+				  name: 'Set 1'
+				};
+
+				var trace2 = {
+				  x: [2, 3, 3, 3, 3, 5, 6, 6, 7],
+				  type: 'box',
+				  name: 'Set 2'
+				};
+
+				var data = [trace1, trace2];
+
+				var layout = {
+				  title: 'Horizontal Box Plot'
+				};
+
+				Plotly.newPlot('boxes', data, layout);
+				
+				//FOR GENEFREQ ENDED
 	    			$.ajax({
 				    url: geneFreq,
 				    method: 'GET',

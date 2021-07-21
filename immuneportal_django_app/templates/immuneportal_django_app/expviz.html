@@ -481,16 +481,14 @@ var data_file2=data_file.split("?")[1];
 						var temp=CSVToArray(geneFreqData);
 						var geneFreqDataTitles=temp[0];
 						var geneFreqDataArr=temp.slice(1, temp.length);
-						var geneLst=[];
+						var personalGenesDict={};
 						console.log(geneFreqDataArr);
-						/*for(var i=0;i<geneFreqDataTitles[0].length;i++){
-							if(i==0 |i==geneFreqDataTitles[0].length-1){
-								continue;
-							}
-							else{
-								genesLst.push(parseFloat(geneFreqDataArr[0]))
-							}
-						}*/
+						for(var i=0;i<geneFreqDataArr.length;i++){
+							
+
+							personalGenesDict[geneFreqDataArr[i][0]]=parseFloat(geneFreqDataArr[i][1])
+						}
+						console.log('personGenes',personalGenesDict);
 						$.ajax({
 							    async: false,
 							    url: 'https://immuneportal.ccbb.iupui.edu/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',

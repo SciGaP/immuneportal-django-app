@@ -499,8 +499,9 @@ var data_file2=data_file.split("?")[1];
 									var tcgaGeneFreqsTitles=temp[0];
 									console.log(tcgaGeneFreqsTitles);
 									var tcgaGeneFreqsArr=temp.slice(1, temp.length);
+									console.log(tcgaGeneFreqsArr[0]);
 									var currcantype='BRCA'
-									var titleArr=tcgaGeneFreqsTitles.split(',');
+									var titleArr=tcgaGeneFreqsTitles[0].split(',');
 									var geneDict={};
 									//INITIALIZING GENE DICT
 									for(var j=0;j<tcgaGeneFreqsTitles.length;j++){

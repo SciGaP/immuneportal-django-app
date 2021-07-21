@@ -516,12 +516,12 @@ var data_file2=data_file.split("?")[1];
 									}
 									//FILLING GENE DICT
 									for(var i=0;i<tcgaGeneFreqsArr.length;i++){
-										var currLst=tcgaGeneFreqsArr[i].split(',');
-										if(currLst[tcgaGeneFreqsTitles.length-1]==currcantype){
+										var currLst=tcgaGeneFreqsArr[i][0].split(',');
+										if(currLst[titleArr.length-1]==currcantype){
 											
-											for(var j=0;j<tcgaGeneFreqsTitles.length;j++){
+											for(var j=0;j<titleArr.length;j++){
 
-												if(j==0| j==tcgaGeneFreqsTitles.length-1){
+												if(j==0| j==titleArr.length-1){
 													continue;
 												}
 												else{

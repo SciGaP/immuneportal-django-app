@@ -541,8 +541,18 @@ var data_file2=data_file.split("?")[1];
 									}
 									console.log('part of b2m',geneDict['B2M'].slice(0,5));
 									
+									var keysForIt=Object.keys(geneDict);
+									var traces=[];
+									for(var i=0;i<keysForIt.length;i++){
+										var temptrace={
+											x: geneDict[keysForIt[i]],
+									  		type: 'box',
+									  		name: keysForIt[i]
+										}
+										traces.push(temptrace);
+									}
 							    		//TITLES OF CSV COLUMNS
-							    		console.log(dataout[0]);
+							    		/*console.log(dataout[0]);
 						    			var trace1 = {
 									  x: [1, 2, 3, 4, 4, 4, 8, 9, 10],
 									  type: 'box',
@@ -553,12 +563,12 @@ var data_file2=data_file.split("?")[1];
 									  x: [2, 3, 3, 3, 3, 5, 6, 6, 7],
 									  type: 'box',
 									  name: 'Set 2'
-									};
+									};*/
 
-									var data = [trace1, trace2];
+									var data = traces;
 
 									var layout = {
-									  title: 'Horizontal Box Plot'
+									  title: 'Relative Gene Concentrations'
 									};
 
 									Plotly.newPlot('boxes', data, layout);

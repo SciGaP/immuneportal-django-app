@@ -23,7 +23,8 @@
 			<div id="additionalInfo" style="display:none;float:left;">
 				<br></br>
 				<p style="margin-left:2px">Select additional row info:</p>
-				<select name="cars" id="cars" style="display:none">
+				
+				<select name="colSelect" id="colSelect" style="display:none">
 				
 				</select>
 				
@@ -707,16 +708,16 @@ var data_file2=data_file.split("?")[1];
 							document.getElementById('additionalInfo2').style.display="block";
 							document.getElementById('outer').style.display="block";
 							
-							var select=document.getElementById('cars');
+							var select=document.getElementById('colSelect');
 							for(var i=0;i<availableTags.length;i++){
 								var tempOpt=document.createElement("option");
 								console.log(availableTags[i]);
 								tempOpt.value=availableTags[i];
 								tempOpt.text=availableTags[i];
-								select.appendChild;
+								select.appendChild(tempOpt);
 							}
 							
-							document.getElementById('cars').style.display="block";
+							document.getElementById('colSelect').style.display="block";
 		
 
 								  /*

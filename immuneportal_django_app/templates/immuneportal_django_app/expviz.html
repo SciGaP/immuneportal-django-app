@@ -202,6 +202,7 @@
 <script>
 
 function miniTable() {
+	console.log(document.getElementById('colSelect'));
 	var ai2=document.getElementById('additionalInfo2');
 	ai2.innerHTML="";
 	var table = document.createElement('table');
@@ -731,7 +732,7 @@ var data_file2=data_file.split("?")[1];
 							for(var i=0;i<availableTags.length;i++){
 								var tempOpt=document.createElement("option");
 								console.log(availableTags[i]);
-								tempOpt.value=availableTags[i];
+								tempOpt.value=clickdata[i];
 								tempOpt.text=availableTags[i];
 								select.appendChild(tempOpt);
 							}

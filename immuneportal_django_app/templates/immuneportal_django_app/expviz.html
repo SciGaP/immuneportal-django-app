@@ -207,12 +207,13 @@ function miniTable() {
 	ai2.innerHTML="";
 	var table = document.createElement('table');
 	table.border="1";
+	 var select=document.getElementById('colSelect');
 	for (var i = 1; i < 2; i++){
 	    var tr = document.createElement('tr');   
 
 	    var td1 = document.createElement('td');
 	    var td2 = document.createElement('td');
-	    var select=document.getElementById('colSelect');
+	    
 	    //var tempText=sel.options[sel.selectedIndex].text;
 	    var text1 = document.createTextNode(select.options[select.selectedIndex].text);
 	    var text2 = document.createTextNode(select.value.toString());
@@ -224,6 +225,9 @@ function miniTable() {
 
 	    table.appendChild(tr);
 	}
+	var p=document.createElement('p');
+	p.text='description:';
+	ai2.appendChild(p);
 	ai2.appendChild(table);
 	document.getElementById('additionalInfo2').style.display="block";
 }

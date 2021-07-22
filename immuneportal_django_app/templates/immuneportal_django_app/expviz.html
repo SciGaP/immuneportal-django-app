@@ -22,8 +22,9 @@
 		<div id="outer" style="display:none;">
 			<div id="additionalInfo" style="display:none;float:left;">
 				<br></br>
-				<p style="margin-left:2px">Select additional row info with autocomplete or arrows:</p>
-				<input id="tags" style="display:none">
+				<p style="margin-left:2px">Select additional row info:</p>
+				<select name="cars" id="cars" style="display:none"></select>
+				
 				<br></br>
 				
 				
@@ -699,51 +700,19 @@ var data_file2=data_file.split("?")[1];
 								  
 								
 								    	  
-									   
-								    	      function split( val ) {
-										      return val.split( /,\s*/ );
-										    }
-										    function extractLast( term ) {
-										      return split( term ).pop();
-										    }
-									    $( "#tags" )// don't navigate away from the field on tab when selecting an item
-										.on( "keydown", function( event ) {
-											if ( event.keyCode === $.ui.keyCode.TAB &&
-													$( this ).autocomplete( "instance" ).menu.active ) {
-												event.preventDefault();
-											}
-										})
-										.autocomplete({
-											minLength: 0,
-											source: function( request, response ) {
-												// delegate back to autocomplete, but extract the last term
-												response( $.ui.autocomplete.filter(
-													availableTags, extractLast( request.term ) ) );
-											},
-											focus: function() {
-												// prevent value inserted on focus
-												return false;
-											},
-											select: function( event, ui ) {
-												var terms = split( this.value );
-												// remove the current input
-												terms.pop();
-												// add the selected item
-												terms.push( ui.item.value );
-												// add placeholder to get the comma-and-space at the end
-												terms.push( "" );
-												this.value = terms.join( "" );
-												return false;
-											}
-										});
-										//document.getElementById('secondStage').appendChild(element);  
-								    
-								    
 								
 							document.getElementById('additionalInfo').style.display="block";
 							document.getElementById('additionalInfo2').style.display="block";
 							document.getElementById('outer').style.display="block";
-							document.getElementById('tags').style.display="block";
+							
+							var select=document.getElementById('cars');
+							for(var i=0;i<available.length;i++){
+								var tempOpt=document.createElement('option');
+								tempOpt.value=available[i];
+								tempOpt.text=available[i];
+								select.appendChild;
+							}
+							document.getElementById('cars').style.display="block";
 		
 
 								  /*

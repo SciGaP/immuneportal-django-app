@@ -541,7 +541,7 @@ var data_file2=data_file.split("?")[1];
 									}
 									console.log('part of b2m',geneDict['B2M'].slice(0,5));
 									
-									var keysForIt=Object.keys(geneDict);
+									var keysForIt=Object.keys(geneDict).reverse();
 									var traces=[];
 									for(var i=0;i<keysForIt.length;i++){
 										var temptrace={

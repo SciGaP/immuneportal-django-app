@@ -843,7 +843,7 @@ var data_file2=data_file.split("?")[1];
 
 								  // add the y Axis
 								  var y = d3.scaleLinear()
-								    .range([height, 0])
+								    .range([0, height])
 								    .domain([0, 0.0005]);
 								  svg.append("g")
 								    .call(d3.axisLeft(y));
@@ -871,7 +871,7 @@ var data_file2=data_file.split("?")[1];
 								    
 								svg.append("line")
 								.attr("x1", x(dataout.length-1))  //<<== change your code here
-								.attr("y1", -1000)
+								.attr("y1", 0)
 								.attr("x2", x(dataout.length-1))  //<<== and here
 								.attr("y2", height - margin.top - margin.bottom)
 								.style("stroke-width", 2)

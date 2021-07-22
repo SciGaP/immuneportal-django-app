@@ -24,7 +24,7 @@
 				<br></br>
 				<p style="margin-left:2px">Select additional row info:</p>
 				<select name="cars" id="cars" style="display:none">
-				<option value='volvo'>volvo</option>
+				
 				</select>
 				
 				<br></br>
@@ -706,15 +706,16 @@ var data_file2=data_file.split("?")[1];
 							document.getElementById('additionalInfo').style.display="block";
 							document.getElementById('additionalInfo2').style.display="block";
 							document.getElementById('outer').style.display="block";
-							/*
+							
 							var select=document.getElementById('cars');
 							for(var i=0;i<availableTags.length;i++){
-								var tempOpt=document.createElement('option');
+								var tempOpt=document.createElement("option");
+								console.log(availableTags[i]);
 								tempOpt.value=availableTags[i];
 								tempOpt.text=availableTags[i];
 								select.appendChild;
 							}
-							*/
+							
 							document.getElementById('cars').style.display="block";
 		
 

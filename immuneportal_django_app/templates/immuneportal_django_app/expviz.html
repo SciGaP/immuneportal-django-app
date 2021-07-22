@@ -552,7 +552,7 @@ var data_file2=data_file.split("?")[1];
 										}
 										traces.push(temptrace);
 										temptrace={
-											x: [2],
+											x: [personalGenesDict[keysForIt[i]]],
 											y: [keysForIt[i]],
 											marker: {
 												color: '#FF0000',
@@ -560,7 +560,7 @@ var data_file2=data_file.split("?")[1];
 													width:6
 												}*/
 											},
-									  		type: 'box',
+									  		type: 'scatter',
 									  		//text: 'Patient '+keysForIt[i],
 									  		name: 'Patient '+keysForIt[i]
 										}

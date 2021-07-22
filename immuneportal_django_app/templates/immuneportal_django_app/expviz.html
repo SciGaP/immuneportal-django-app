@@ -22,9 +22,9 @@
 		<div id="outer" style="display:none;">
 			<div id="additionalInfo" style="display:none;float:left;">
 				<br></br>
-				<p style="margin-left:2px">Select additional row info:</p>
+				<p style="margin-left:2px">Select info not shown in table:</p>
 				
-				<select name="colSelect" id="colSelect" style="display:none">
+				<select onchange="miniTable()" name="colSelect" id="colSelect" style="display:none">
 				
 				</select>
 				
@@ -33,10 +33,7 @@
 				
 			</div>
 			<div id="additionalInfo2" style="display:none;float:right;">
-				<br></br>
-				<p >fortable</p>
 				
-				<br></br>
 				
 				
 			</div>
@@ -204,7 +201,28 @@
   <script src="../../static/js/jquery-ui.js" ></script>
 <script>
 
+function miniTable() {
+	var ai2=document.getElementById('additionalInfo2');
+	var table = document.createElement('table');
+	for (var i = 1; i < 3; i++){
+	    var tr = document.createElement('tr');   
 
+	    var td1 = document.createElement('td');
+	    var td2 = document.createElement('td');
+
+	    var text1 = document.createTextNode('Text1');
+	    var text2 = document.createTextNode('Text2');
+
+	    td1.appendChild(text1);
+	    td2.appendChild(text2);
+	    tr.appendChild(td1);
+	    tr.appendChild(td2);
+
+	    table.appendChild(tr);
+	}
+	ai2.appendChild(table);
+	document.getElementById('additionalInfo2').style.display="block";
+}
 
 function CSVToArray(strData, strDelimiter) {
     // Check to see if the delimiter is defined. If not,
@@ -705,7 +723,7 @@ var data_file2=data_file.split("?")[1];
 								    	  
 								
 							document.getElementById('additionalInfo').style.display="block";
-							document.getElementById('additionalInfo2').style.display="block";
+							//document.getElementById('additionalInfo2').style.display="block";
 							document.getElementById('outer').style.display="block";
 							
 							var select=document.getElementById('colSelect');

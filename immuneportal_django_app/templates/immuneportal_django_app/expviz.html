@@ -67,8 +67,8 @@
             </div>
             
             <div class="card">
-                <div class="card-header">
-                    HLA Load (<b>Load Based on Individuals BRCA Sample</b>)
+                <div class="card-header" id="hlaLoadHeader">
+                    
                 </div>
                 <div class="card-body">
                     <p>The red line indicates how the individual compares to 1000 genomes samples:</p>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" id="relGenExpHeader">
                     Gene Expression Relative to TCGA BRCA
                 </div>
                 <div class="card-body">
@@ -475,7 +475,7 @@ var data_file2=data_file.split("?")[1];
 //$(document).ready(function() {
 	//document.getElementById("seqlogo").src="";
 	var dataout;
-	
+	var currcantype='';
 	$.ajax({
 	    url: 'https://immuneportal.ccbb.iupui.edu/api/experiments/'+data_file,
 	    method: 'GET',
@@ -488,15 +488,18 @@ var data_file2=data_file.split("?")[1];
 	    	//console.log('experiment info',data['experimentOutputs']);
 	    	console.log(data);
 	    	
-	    	var cancerType='';
+	    	
 	    	for(var i=0; i<data['experimentInputs'].length;i++){
 	    		//console.log(Object.keys(data['experimentInputs'][i]))
 	    		if(data['experimentInputs'][i]['name']=='Cancer Type'){
-	    			cancerType=data['experimentInputs'][i]['value']
-	    			console.log(cancerType);
+	    			currcantype=data['experimentInputs'][i]['value']
+	    			console.log(currcantype);
 	    		}
 	    	}
-	    	
+	    	//SET THE CANCER TITLES ACCORDINGLY 
+                document.getElementById('hlaLoadHeader').innerHTML="HLA Load (<b>Load Based on Individuals "+currcantype+" Sample</b>)"
+                document.getElementById('relGenExpHeader').innerHTML="Gene Expression Relative to TCGA for cancer type "+currcantype
+                
 	    	for(var i=0; i<data['experimentOutputs'].length;i++){
 	    		if(data['experimentOutputs'][i]['name']=='Associated Files'){
 	    			console.log('files',data['experimentOutputs'][i]['value']);
@@ -546,7 +549,7 @@ var data_file2=data_file.split("?")[1];
 									console.log(tcgaGeneFreqsTitles);
 									var tcgaGeneFreqsArr=temp.slice(1, temp.length);
 									console.log(tcgaGeneFreqsArr[0]);
-									var currcantype='BRCA'
+									
 									var titleArr=tcgaGeneFreqsTitles[0].split(',');
 									var geneDict={};
 									//INITIALIZING GENE DICT
@@ -821,7 +824,7 @@ var data_file2=data_file.split("?")[1];
 						    		//console.log('tcgajson',TCGAjson);
 						    		var currCanc=[];
 						    		for(var i=1;i<TCGAarray.length;i++){
-						    			if(TCGAarray[i][0].includes('BRCA')){
+						    			if(TCGAarray[i][0].includes(currcantype)){
 						    				currCanc.push(parseInt(TCGAarray[i][0].split(',')[1]));
 						    			}
 						    		}

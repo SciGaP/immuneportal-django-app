@@ -938,7 +938,15 @@ var data_file2=data_file.split("?")[1];
 
   
   
-  
+  let discipline = [
+  "triathlon",
+  "badminton",
+  "fencing",
+  "rowing",
+  "handball",
+  "cycling",
+  "gymnastics"
+];
 
 	    	console.log('dataJSON')
 		  
@@ -1015,7 +1023,7 @@ var data_file2=data_file.split("?")[1];
 
 		      yAxis: {
 			title: { text: null },
-			//categories: discipline,
+			categories: discipline,
 			max: data.results.length,
 			labels: {
 			  formatter: function () {

@@ -935,43 +935,18 @@ var data_file2=data_file.split("?")[1];
 								  
 								  
 								
-let discipline = [
-  "triathlon",
-  "badminton",
-  "fencing",
-  "rowing",
-  "handball",
-  "cycling",
-  "gymnastics"
-];
-  
-  
-  
-$.ajax({
-	async: false,
-	url: 'https://immuneportal.ccbb.iupui.edu/static/files/densityMaleData.json',
-	method: 'GET',
-	//datatype: 'json',
 
+  
+  
+  
 
-	    //console.log(data_file);
-	    //console.log(data_file);
-	    success: function (dataJson) {
 	    	console.log('dataJSON')
 		  
 		    redrawing = false;
 		    //Create the series data from the data source
 		    let dataArray = [];
-		    for (i = 0; i < discipline.length; i++) {
-		      dataArray.push([]);
-		    }
-		    dataJson.forEach((e) => {
-		      discipline.forEach((key, value) => {
-			if (e.sport == key) {
-			  dataArray[value].push(e.weight);
-			}
-		      });
-		    });
+		    
+		    dataArray=currCanc
 
 		    //Process density data
 		    let step = 1,
@@ -982,7 +957,7 @@ $.ajax({
 		      step,
 		      precision,
 		      width,
-		      dataArray[0], //triathlon,
+		      dataArray, //triathlon,
 		      
 		    );
 
@@ -999,7 +974,7 @@ $.ajax({
 		      dataSeries[i] = e;
 		      series.push({
 			data: dataSeries[i],
-			name: discipline[i],
+			name: Proportion,
 			zIndex: chartsNbr - i
 		      });
 		    });
@@ -1088,8 +1063,8 @@ $.ajax({
 		      },
 		      series: series
 		    });
-		  }
-});
+		  
+
 								  
 							}
 					    });

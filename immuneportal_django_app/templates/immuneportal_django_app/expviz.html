@@ -498,7 +498,7 @@ var data_file2=data_file.split("?")[1];
 	    	}
 	    	//SET THE CANCER TITLES ACCORDINGLY 
                 document.getElementById('hlaLoadHeader').innerHTML="HLA Load (Load Based on Individual's <b>"+currcantype+"</b> Sample)"
-                document.getElementById('relGenExpHeader').innerHTML="Gene Expression Relative to TCGA for cancer type "+currcantype
+                document.getElementById('relGenExpHeader').innerHTML="Gene Expression Relative to TCGA for cancer type <b>"+currcantype+"</b>"
                 
 	    	for(var i=0; i<data['experimentOutputs'].length;i++){
 	    		if(data['experimentOutputs'][i]['name']=='Associated Files'){

@@ -490,9 +490,9 @@ var data_file2=data_file.split("?")[1];
 	    	
 	    	var cancerType='';
 	    	for(var i=0; i<data['experimentInputs'].length;i++){
-	    		console.log(Object.keys(data['experimentInputs'][i]))
-	    		if(Object.keys(data['experimentInputs'][i])[0]=='Cancer Type'){
-	    			cancerType=data['experimentInputs'][i]['Cancer Type']
+	    		//console.log(Object.keys(data['experimentInputs'][i]))
+	    		if(data['experimentInputs'][i]['name']=='Cancer Type'){
+	    			cancerType=data['experimentInputs'][i]['value']
 	    			console.log(cancerType);
 	    		}
 	    	}

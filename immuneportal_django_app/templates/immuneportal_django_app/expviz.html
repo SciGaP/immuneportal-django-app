@@ -490,10 +490,12 @@ var data_file2=data_file.split("?")[1];
 	    	
 	    	var cancerType='';
 	    	for(var i=0; i<data['experimentInputs'].length;i++){
-	    		if(Object.keys(data['experimentInputs'][i])[0]=='Cancer Type')){
+	    		if(Object.keys(data['experimentInputs'][i])[0]=='Cancer Type'){
 	    			cancerType=data['experimentInputs'][i]['Cancer Type']
 	    			console.log(cancerType);
-	    	console.log(cancerType);
+	    		}
+	    	}
+	    	
 	    	for(var i=0; i<data['experimentOutputs'].length;i++){
 	    		if(data['experimentOutputs'][i]['name']=='Associated Files'){
 	    			console.log('files',data['experimentOutputs'][i]['value']);

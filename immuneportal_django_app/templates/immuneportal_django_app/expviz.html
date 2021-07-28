@@ -942,6 +942,7 @@ var data_file2=data_file.split("?")[1];
 Highcharts.getJSON(
   "https://immuneportal.ccbb.iupui.edu/static/files/densityMaleData.json",
   function (dataJson) {
+    console.log('dataJSON',dataJson);
     redrawing = false;
     //Create the series data from the data source
     let dataArray = [];

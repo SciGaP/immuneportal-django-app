@@ -22,7 +22,7 @@
 		<div id="outer" style="display:none;">
 			<div id="additionalInfo" style="display:none;float:left;">
 				<br></br>
-				<p style="margin-left:2px">Select info not shown in table:</p>
+				<p style="margin-left:2px">Hidden table info:</p>
 				
 				<select onchange="miniTable()" name="colSelect" id="colSelect" style="display:none">
 				
@@ -486,6 +486,7 @@ var data_file2=data_file.split("?")[1];
             //console.log(data_file);
 	    success: function (data) {
 	    	//console.log('experiment info',data['experimentOutputs']);
+	    	console.log('data')
 	    	for(var i=0; i<data['experimentOutputs'].length;i++){
 	    		if(data['experimentOutputs'][i]['name']=='Associated Files'){
 	    			console.log('files',data['experimentOutputs'][i]['value']);

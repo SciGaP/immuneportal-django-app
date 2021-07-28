@@ -934,8 +934,8 @@ var data_file2=data_file.split("?")[1];
 								let xiData = [];
 								let animationDuration = 0;
 								
-								let range = currCancRange,
-								  startPoint = currCanc[0];
+								let range = currCancRange*2,
+								  startPoint = Math.min.apply(Math,currCanc);
 								for (i = 0; i < range; i++) {
 								  xiData[i] = startPoint + i;
 								}
@@ -957,7 +957,7 @@ var data_file2=data_file.split("?")[1];
 
 								Highcharts.chart("hlaLoad", {
 								  chart: {
-								    type: "bar",
+								    type: "spline",
 								    animation: true
 								  },
 								  title: {

@@ -951,7 +951,7 @@ var data_file2=data_file.split("?")[1];
 		    //Process density data
 		    let step = 1,
 		      precision = 0.00000000001,
-		      width = 15;
+		      width = 10;
 
 		    let data = processDensity(
 		      step,
@@ -1007,7 +1007,7 @@ var data_file2=data_file.split("?")[1];
 			}
 		      },
 		      title: {
-			text: "The 2012 Olympic male athletes weight"
+			text: "HLA Proportion"
 		      },
 		      xAxis: {
 			labels: { format: "{value} kg" }
@@ -1036,7 +1036,7 @@ var data_file2=data_file.split("?")[1];
 			crosshairs: true,
 			valueDecimals: 3,
 			headerFormat: null,
-			pointFormat: "<b>{series.name}</b>: {point.x} kg <br/>",
+			pointFormat: "<b>{series.name}</b>: {point.x} <br/>",
 			footerFormat: null
 		      },
 		      plotOptions: {

@@ -832,6 +832,7 @@ var data_file2=data_file.split("?")[1];
 						    		console.log('currcanc',currCanc);
 						    		console.log('CURRCANCE Min:',Math.min.apply(Math,currCanc));
 						    		console.log('CURRCANCE RANGE:',Math.max.apply(Math,currCanc)-Math.min.apply(Math,currCanc));
+						    		var currCancRange=Math.max.apply(Math,currCanc)-Math.min.apply(Math,currCanc)
 						    		/*
 
 								  var margin = { top: 30, right: 30, bottom: 30, left: 50 },
@@ -933,7 +934,7 @@ var data_file2=data_file.split("?")[1];
 								let xiData = [];
 								let animationDuration = 0;
 								
-								let range = 1000,
+								let range = currCancRange,
 								  startPoint = currCanc[0];
 								for (i = 0; i < range; i++) {
 								  xiData[i] = startPoint + i;

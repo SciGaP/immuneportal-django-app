@@ -957,7 +957,7 @@ var data_file2=data_file.split("?")[1];
 
 								Highcharts.chart("hlaLoad", {
 								  chart: {
-								    type: "areasplinerange",
+								    type: "spline",
 								    animation: true
 								  },
 								  title: {
@@ -973,7 +973,7 @@ var data_file2=data_file.split("?")[1];
 								    valueDecimals: 6
 								  },
 								  plotOptions: {
-								    areasplinerange:: {
+								    series: {
 								      marker: {
 									enabled: false
 								      },

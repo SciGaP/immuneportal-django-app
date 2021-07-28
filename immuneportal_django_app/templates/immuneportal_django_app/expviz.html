@@ -1010,7 +1010,7 @@ var data_file2=data_file.split("?")[1];
 			text: "HLA Proportion"
 		      },
 		      xAxis: {
-			labels: { format: "{value} kg" }
+			labels: { format: "{value} " }
 		      },
 
 		      yAxis: {
@@ -1036,7 +1036,7 @@ var data_file2=data_file.split("?")[1];
 			crosshairs: true,
 			valueDecimals: 3,
 			headerFormat: null,
-			pointFormat: "<b>{series.name}</b>: {point.x} <br/>",
+			pointFormat: "<b>{series.name}</b>: {point.x} <br/> <b>proportion</b>: {point.y} <br/>",
 			footerFormat: null
 		      },
 		      plotOptions: {

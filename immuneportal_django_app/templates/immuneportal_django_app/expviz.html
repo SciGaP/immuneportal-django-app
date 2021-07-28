@@ -830,8 +830,8 @@ var data_file2=data_file.split("?")[1];
 						    			}
 						    		}
 						    		console.log('currcanc',currCanc);
-						    		console.log('CURRCANCE Min:',Math.min(currCanc));
-						    		console.log('CURRCANCE RANGE:',Math.max(currCanc)-Math.min(currCanc));
+						    		console.log('CURRCANCE Min:',Math.min.apply(Math,currCanc));
+						    		console.log('CURRCANCE RANGE:',Math.max.apply(Math,currCanc)-Math.min.apply(Math,currCanc));
 						    		/*
 
 								  var margin = { top: 30, right: 30, bottom: 30, left: 50 },

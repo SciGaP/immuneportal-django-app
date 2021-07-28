@@ -72,7 +72,7 @@
                 </div>
                 <div class="card-body">
                     <p>The red line indicates how the individual compares to 1000 genomes samples:</p>
-                    <div id="my_dataviz"></div>
+                    <div id="hlaLoad"></div>
                     <!--<img  id="hlaload"></img>-->
                 </div>
             </div>
@@ -951,7 +951,7 @@ var data_file2=data_file.split("?")[1];
 								  data.push([xiData[i], (1 / N) * temp]);
 								}
 
-								Highcharts.chart("container", {
+								Highcharts.chart("hlaLoad", {
 								  chart: {
 								    type: "spline",
 								    animation: true

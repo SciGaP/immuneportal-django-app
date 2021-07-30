@@ -66,17 +66,16 @@
                 </div>
             </div>
             
-            
-            
             <div class="card">
-                <div class="card-header" >
-                    Upset Plot 2(<b>Intersecting Selections of HLA by antigens</b>)
+                <div class="card-header" id="hlaLoadHeader">
+                    
                 </div>
-                <div class="card-body" style="overflow:hidden" data-role="imagemagnifier" data-magnifier-mode="glass">
-                    <img id="hlaLoad" width="1350" height="320" style="margin-left:-150px;" ></img>
+                <div class="card-body">
+                    <p>The red line indicates how the individual compares to 1000 genomes samples:</p>
+                    <div id="hlaLoad"></div>
+                    <!--<img  id="hlaload"></img>-->
                 </div>
             </div>
-            
             
             <div class="card" style='display:none'>
                 <div class="card-header">
@@ -503,7 +502,7 @@ var data_file2=data_file.split("?")[1];
 	    		}
 	    	}
 	    	//SET THE CANCER TITLES ACCORDINGLY 
-                //document.getElementById('hlaLoadHeader').innerHTML="HLA Load (Load Based on Individual's <b>"+currcantype+"</b> Sample)"
+                document.getElementById('hlaLoadHeader').innerHTML="HLA Load (Load Based on Individual's <b>"+currcantype+"</b> Sample)"
                 document.getElementById('relGenExpHeader').innerHTML="Gene Expression Relative to TCGA for cancer type <b>"+currcantype+"</b>"
                 
 	    	for(var i=0; i<data['experimentOutputs'].length;i++){
@@ -1027,22 +1026,7 @@ var data_file2=data_file.split("?")[1];
 			    }
 			});
 			
-			$.ajax({
-			   async: false,
-			   type: "GET",
-			   cache: false,
-			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
-			    contentType: "image/jpg",
-			    data:tableData.split('=')[1],
-			    success: function (data) {
-				//console.log('json',data);
-				console.log(data);
-				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
-				document.getElementById('hlaLoad').src = 'data:image/jpg;base64,' + data;
-			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
-
-			    }
-			});
+			
 			
 			
 			

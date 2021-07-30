@@ -173,7 +173,7 @@ def hlaload_view(request):
 	
 	
 	return HttpResponse(image_bytes, content_type="image/png")
-	'''
+'''
 '''
 @login_required
 def delete(request):

@@ -483,7 +483,7 @@ var data_file2=data_file.split("?")[1];
 	var dataout;
 	var currcantype='';
 	$.ajax({
-	    async: true,
+	    async: false,
 	    url: 'https://immuneportal.ccbb.iupui.edu/api/experiments/'+data_file,
 	    method: 'GET',
 	    cache: false,
@@ -523,7 +523,7 @@ var data_file2=data_file.split("?")[1];
 	    			//FOR GENEFREQ SECTION
 	    			
 	    			$.ajax({
-	    			    async: true,
+	    			    async: false,
 				    url: geneFreq,
 				    method: 'GET',
 				    cache: false,
@@ -544,7 +544,7 @@ var data_file2=data_file.split("?")[1];
 						}
 						console.log('personGenes',personalGenesDict);
 						$.ajax({
-							    async: true,
+							    async: false,
 							    url: 'https://immuneportal.ccbb.iupui.edu/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',
 							    method: 'GET',
 							    cache: false,
@@ -650,7 +650,7 @@ var data_file2=data_file.split("?")[1];
 	    			});
 	    			//FOR GENEFREQ Section ENDED
 	    			$.ajax({
-				    async: true,
+				    async: false,
 				    url: tableData,
 				    method: 'GET',
 				    cache: false,
@@ -864,7 +864,7 @@ var data_file2=data_file.split("?")[1];
 					    
 					    
 					    $.ajax({
-					   async: true,
+					   async: false,
 					   type: "GET",
 					    url: "https://immuneportal.ccbb.iupui.edu/static/files/1000genomes_HLA_freq_statistics.csv",
 					    
@@ -1013,7 +1013,7 @@ var data_file2=data_file.split("?")[1];
 			
 			
 			$.ajax({
-			   async: true,
+			   async: false,
 			   method: 'GET',
 			   cache: false,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view",
@@ -1034,7 +1034,7 @@ var data_file2=data_file.split("?")[1];
 			});
 			
 			$.ajax({
-			   async: true,
+			   async: false,
 			   method: 'GET',
 			   cache: false,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",

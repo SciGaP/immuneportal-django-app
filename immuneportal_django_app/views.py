@@ -158,7 +158,7 @@ def upset_view(request):
 	
 	return HttpResponse(image_bytes2, content_type="image/png")
 	
-	
+'''
 @login_required
 def hlaload_view(request):
 	plt.plot([1,2,3],[1,2,3])
@@ -173,6 +173,7 @@ def hlaload_view(request):
 	
 	
 	return HttpResponse(image_bytes, content_type="image/png")
+	'''
 '''
 @login_required
 def delete(request):

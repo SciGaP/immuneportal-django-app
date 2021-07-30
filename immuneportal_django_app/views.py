@@ -151,7 +151,7 @@ def upset_view(request):
 	image_bytes2 = buffer.getvalue()
 	#savedFile1=user_storage.save(request,'.',image_bytes2,name='upset', content_type=None, storage_resource_id=None)
 	#print("SAVED FILE",savedFile1)
-	image_bytes2=base64.b64encode(image_bytes2)
+	#image_bytes2=base64.b64encode(image_bytes2)
 	buffer.close()
 	#time.sleep(1)
 	
@@ -159,7 +159,7 @@ def upset_view(request):
 	return HttpResponse(image_bytes2, content_type="image/png")
 	
 	
-'''
+
 @login_required
 def hlaload_view(request):
 	print("THESE KEYS",request.GET.keys())
@@ -182,17 +182,17 @@ def hlaload_view(request):
 	d1=pd.read_csv(fdata,header=0,sep="\t")
 	individual=len(d1)
 	#individual=int(str(check_output(["wc","-l","django_airavata/static/files/Immunoportal_data.txt"]).decode("utf-8")).split(' ')[0])
-	tcga=pandas.read_csv('TCGA_IRneoAg_load_in_8cancers_summary.csv')
+	#tcga=pandas.read_csv('TCGA_IRneoAg_load_in_8cancers_summary.csv')
 
-	tcga=tcga[tcga['canType']=='BRCA']
-	print(tcga)
+	#tcga=tcga[tcga['canType']=='BRCA']
+	#print(tcga)
 
 	#alpha, loc , beta=5,100,22
 	#data=ss.gamma.rvs(alpha,loc=loc,scale=beta,size=5000)
 
 	plt.axvline(individual, color='red')
 
-	ax=sns.kdeplot(tcga['weakBinder'])
+	#ax=sns.kdeplot(tcga['weakBinder'])
 	plt.xlabel("Intron Neoantigen Load")
 
 	buffer = io.BytesIO()
@@ -201,13 +201,13 @@ def hlaload_view(request):
 	
 	plt.savefig(buffer, format='png')
 	image_bytes = buffer.getvalue()
-	savedFile2=user_storage.save(request,'.',image_bytes,name=None, content_type=None, storage_resource_id=None)
-	print("SAVED FILE",savedFile2)
+	#savedFile2=user_storage.save(request,'.',image_bytes,name=None, content_type=None, storage_resource_id=None)
+	#print("SAVED FILE",savedFile2)
 	#image_bytes=base64.b64encode(image_bytes)
 	buffer.close()
 	#time.sleep(1)
 	
-	return HttpResponse(savedFile.productUri, content_type="text/html")
+	return HttpResponse(image_bytes, content_type="image/png")
 	
 @login_required
 def delete(request):

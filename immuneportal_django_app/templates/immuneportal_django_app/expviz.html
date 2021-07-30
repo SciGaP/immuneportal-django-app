@@ -937,7 +937,7 @@ var data_file2=data_file.split("?")[1];
 								
 
   
-  
+  /*
   let discipline = [
   "triathlon",
   "badminton",
@@ -1072,7 +1072,7 @@ var data_file2=data_file.split("?")[1];
 		      series: series
 		    });
 		  
-
+*/
 								  
 							}
 					    });
@@ -1243,10 +1243,28 @@ var data_file2=data_file.split("?")[1];
 			    success: function (data) {
 				//console.log('json',data);
 				console.log(data);
-				console.log('made it');
-				dataUris=data.split(',')
 				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
-				document.getElementById('upset').src = 'data:image/jpg;base64,' + data;
+				document.getElementById('upset').src =  data;
+			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
+				   
+				
+			    
+				
+			    }
+			});
+			
+			$.ajax({
+			   async: false,
+			   type: "GET",
+			   
+			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
+			    contentType: "image/jpg",
+			    data:tableData.split('=')[1],
+			    success: function (data) {
+				//console.log('json',data);
+				console.log(data);
+				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
+				document.getElementById('hlaload').src =  data;
 			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
 				   
 				

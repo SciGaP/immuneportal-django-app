@@ -161,58 +161,8 @@ def upset_view(request):
 	
 @login_required
 def hlaload_view(request):
-	currkey=None
-	for key in list(request.GET.keys()):
-		print(key)
-		if 'airavata-dp' in key:
-			currkey=key
-			
-			#currkey=key.replace("thisuri,","");
-			print(currkey)
-	#if 'upset' in list(request.GET.keys()):
-	#print('UPSET VIEW CURRENT DIRECTORY',os.getcwd())
-	fdata=user_storage.open_file(request, data_product=None, data_product_uri=currkey)
-	d1=pd.read_csv(fdata,header=0,sep="\t")
-	print('SUPPOSED SUCCESS')
-	hla_cols = [col for col in d1.columns if 'HLA-' in col]
-	d2= d1[hla_cols]
-	dlist= d2.values.tolist()
-
-
-	upset_list=[]
-
-	for item in dlist:
-		indexs= [ n for n,i in enumerate(item) if i<2 ]
-		hlagroups= ','.join([ hla_cols[j] for j in indexs])
-		upset_list.append(hlagroups)
-
-	sumList= [ hla_cols + ['count'] ]
-	cc= Counter(upset_list)
-	for key, value in cc.items():
-		hlaS= key.split(',')
-		ToF=[]
-		for m in hla_cols:
-			if m in hlaS:
-				ToF.append(True)
-			else:
-				ToF.append(False)
-		
-		sumList.append(ToF + [value])
-
-	upSet= pd.DataFrame(sumList[1:],columns=sumList[0]);
-	print(upSet) #### here for the right panel data
-	counts=upSet['count']
-	upSet = upSet.drop(labels='count', axis=1)
-
-	#INITIALIZE TUPLE INDEX TO GET RID OF DUPLICATES
-	tupList=[]
-	for idx, row in upSet.iterrows():
-
-		tupList.append(tuple(row))
-	index = pd.MultiIndex.from_tuples(tupList, names=list(upSet.columns))
-	upsetData=pd.Series(numpy.array(list(counts)), index=index)
-	
-	plot(upsetData)
+	plt.plot([1,2,3],[1,2,3])	
+	#plot(upsetData)
 
 	
 	buffer = io.BytesIO()
@@ -220,7 +170,7 @@ def hlaload_view(request):
 	image_bytes = buffer.getvalue()
 	#savedFile1=user_storage.save(request,'.',image_bytes2,name='upset', content_type=None, storage_resource_id=None)
 	#print("SAVED FILE",savedFile1)
-	image_bytes=base64.b64encode(image_bytes2)
+	image_bytes=base64.b64encode(image_bytes)
 	buffer.close()
 	#time.sleep(1)
 	

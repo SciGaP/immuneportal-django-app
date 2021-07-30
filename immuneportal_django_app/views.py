@@ -190,24 +190,27 @@ def hlaload_view(request):
 	#alpha, loc , beta=5,100,22
 	#data=ss.gamma.rvs(alpha,loc=loc,scale=beta,size=5000)
 
-	plt.axvline(individual, color='red')
+	#plt.axvline(individual, color='red')
 
 	#ax=sns.kdeplot(tcga['weakBinder'])
-	plt.xlabel("Intron Neoantigen Load")
+	#plt.xlabel("Intron Neoantigen Load")
 
-	buffer = io.BytesIO()
+	#buffer = io.BytesIO()
 	
 	#savedFile=user_storage.save(request,'.',image_bytes,name=None, content_type=None, storage_resource_id=None)
 	
-	plt.savefig(buffer, format='png')
-	image_bytes = buffer.getvalue()
+	#plt.savefig(buffer, format='png')
+	#image_bytes = buffer.getvalue()
 	#savedFile2=user_storage.save(request,'.',image_bytes,name=None, content_type=None, storage_resource_id=None)
 	#print("SAVED FILE",savedFile2)
 	#image_bytes=base64.b64encode(image_bytes)
-	buffer.close()
+	#buffer.close()
 	#time.sleep(1)
 	
-	return HttpResponse(image_bytes, content_type="image/png")
+	
+	
+	return HttpResponse('testfunction', content_type="text/html")
+	#return HttpResponse(image_bytes, content_type="image/png")
 	
 @login_required
 def delete(request):

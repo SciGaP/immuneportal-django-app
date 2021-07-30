@@ -89,7 +89,7 @@ def image_view(request):
 	
 	return HttpResponse(image_bytes, content_type="image/png")
 	
-'''
+
 @login_required
 def upset_view(request):
 	currkey=None
@@ -151,7 +151,7 @@ def upset_view(request):
 	image_bytes2 = buffer.getvalue()
 	#savedFile1=user_storage.save(request,'.',image_bytes2,name='upset', content_type=None, storage_resource_id=None)
 	#print("SAVED FILE",savedFile1)
-	#image_bytes2=base64.b64encode(image_bytes2)
+	image_bytes2=base64.b64encode(image_bytes2)
 	buffer.close()
 	#time.sleep(1)
 	

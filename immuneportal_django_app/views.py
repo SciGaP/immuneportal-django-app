@@ -89,7 +89,7 @@ def image_view(request):
 	
 	return HttpResponse(image_bytes, content_type="image/png")
 	
-
+'''
 @login_required
 def upset_view(request):
 	currkey=None
@@ -159,7 +159,7 @@ def upset_view(request):
 	return HttpResponse(image_bytes2, content_type="image/png")
 	
 	
-
+'''
 @login_required
 def delete(request):
 	print("THESE KEYS",request.GET.keys())

@@ -162,6 +162,14 @@ def upset_view(request):
 
 @login_required
 def hlaload_view(request):
+	currkey=None
+	for key in list(request.GET.keys()):
+		print(key)
+		if 'airavata-dp' in key:
+			currkey=key
+			
+			#currkey=key.replace("thisuri,","");
+			print(currkey)
 	plt.plot([1,2,3],[1,2,3])
 
 	buffer = io.BytesIO()

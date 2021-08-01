@@ -180,7 +180,7 @@ def hlaload_view(request):
 	image_bytes = buffer.getvalue()
 	#savedFile2=user_storage.save(request,'.',image_bytes,name=None, content_type=None, storage_resource_id=None)
 	#print("SAVED FILE",savedFile2)
-	image_bytes=base64.b64encode(image_bytes)
+	#image_bytes=base64.b64encode(image_bytes)
 	buffer.close()
 	#time.sleep(1)
 	

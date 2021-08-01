@@ -1004,11 +1004,11 @@ var data_file2=data_file.split("?")[1];
 
 			
 			
-			/*
+			
 			$.ajax({
 			   async: false,
 			   type: "GET",
-			   //cache: false,
+			   cache: false,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view",
 			    contentType: "image/jpg",
 			    data:tableData.split('=')[1],
@@ -1017,19 +1017,10 @@ var data_file2=data_file.split("?")[1];
 				console.log(data);
 				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
 				document.getElementById('upset').src = 'data:image/jpg;base64,' + data;
-				
-			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
-				   
-				
-			    
-				
-			    }
-			});*/
-			
-			$.ajax({
+				$.ajax({
 			   async: false,
 			   type: "GET",
-			   //cache: false,
+			   cache: false,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
 			    contentType: "image/jpg",
 			    data:tableData.split('=')[1],
@@ -1042,6 +1033,15 @@ var data_file2=data_file.split("?")[1];
 
 			    }
 			});
+			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
+				   
+				
+			    
+				
+			    }
+			});
+			
+			
 			
 			
 			

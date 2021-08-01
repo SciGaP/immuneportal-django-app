@@ -1059,13 +1059,14 @@ var data_file2=data_file.split("?")[1];
 			   type: "GET",
 			   cache: true,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
-			    contentType: "image/jpg",
+			    mimeType: "text/plain; charset=x-user-defined"
+			    //contentType: "image/jpg",
 			    data:tableData.split('=')[1],
-			    success: function (data) {
+			    success: function (laterdata) {
 				//console.log('json',data);
-				console.log(data);
+				console.log(laterdata);
 				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
-				document.getElementById('hlaLoad').src = 'data:image/jpg;base64,' + base64Encode(data);
+				document.getElementById('hlaLoad').src = 'data:image/jpg;base64,' + base64Encode(laterdata);
 			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
 
 			    }

@@ -1032,9 +1032,9 @@ var data_file2=data_file.split("?")[1];
 			
 			
 			$.ajax({
-			   async: false,
+			   async: true,
 			   type: "GET",
-			   cache: false,
+			   cache: true ,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view",
 			    contentType: "image/jpg",
 			    data:tableData.split('=')[1],
@@ -1055,7 +1055,7 @@ var data_file2=data_file.split("?")[1];
 			
 			
 			$.ajax({
-			   async: false,
+			   async: true,
 			   type: "GET",
 			   cache: true,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",

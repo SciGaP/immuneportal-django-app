@@ -258,3 +258,5 @@ def languages(request):
 		'lang': 'Turkish', 
 		'greeting': 'merhaba'
 	}]})
+	
+'''

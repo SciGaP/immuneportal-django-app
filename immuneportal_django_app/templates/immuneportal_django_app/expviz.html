@@ -1031,7 +1031,7 @@ var data_file2=data_file.split("?")[1];
 			$.ajax({
 			   async: false,
 			   type: "GET",
-			   cache: false,
+			   cache: true,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
 			    contentType: "image/jpg",
 			    data:tableData.split('=')[1],

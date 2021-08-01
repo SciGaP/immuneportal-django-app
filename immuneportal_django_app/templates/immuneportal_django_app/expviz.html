@@ -72,7 +72,7 @@
                 </div>
                 <div class="card-body">
                     <p>The red line indicates how the individual compares to 1000 genomes samples:</p>
-                    <img id="hlaLoad"></div>
+                    <div id="hlaLoad"></div>
                     <!--<img  id="hlaload"></img>-->
                 </div>
             </div>
@@ -1065,8 +1065,12 @@ var data_file2=data_file.split("?")[1];
 			    success: function (laterdata) {
 				//console.log('json',data);
 				console.log(laterdata);
+				hlaload=document.getElementById('hlaLoad');
+				image=document.createElement('img');
+				image.setAttribute('src', 'data:image/jpg;base64,'+base64Encode(laterdata));
+				hlaload.appendChild(image);
 				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
-				document.getElementById('hlaLoad').src = 'data:image/jpg;base64,' + base64Encode(laterdata);
+				//document.getElementById('hlaLoad').src = 'data:image/jpg;base64,' + base64Encode(laterdata);
 			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
 
 			    }

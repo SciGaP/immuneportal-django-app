@@ -226,16 +226,16 @@ def delete(request):
 	
 	return HttpResponse('deleted', content_type="text/html")
 
-'''
+
 @login_required
 def expviz(request):
 	return render(request, "immuneportal_django_app/expviz.html")
-	
+
 @login_required
 def splice_res(request):
 	return render(request, "immuneportal_django_app/splicetable.html")
 
-
+'''
 
 @login_required
 def languages(request):

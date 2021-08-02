@@ -32,7 +32,7 @@
 				
 				
 			</div>
-			<div id="additionalInfo2" style="display:none;float:right;margin-right:350px;margin-top:40px">
+			<div id="additionalInfo2" style="display:none;float:right;margin-right:450px;margin-top:40px">
 				
 				
 				
@@ -239,7 +239,7 @@ function miniTable() {
 	    table.appendChild(tr);
 	}
 	var p=document.createElement('p');
-	p.innerHTML='Description:';
+	p.innerHTML='Description:'+descriptionDict[select.options[select.selectedIndex].text];
 	ai2.appendChild(p);
 	table.style="border:solid black 1px;border-radius:6px"
 	ai2.appendChild(table);

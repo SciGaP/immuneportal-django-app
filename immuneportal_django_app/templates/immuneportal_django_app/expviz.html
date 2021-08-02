@@ -15,9 +15,62 @@
 		    <select id="urlVal" style="visibility:hidden;">
 	    		<option value={{outputFilePath}} selected>Select genome </option>
 		  </select>
-		  <div id='forResultTable'>
+		  <!--<div id='forResultTable'></div>-->
 		
-		</div>
+
+		<table id="resultTable" class="table table-bordered table-hover" style="cursor:pointer;" cellspacing="0" width="100%">
+				  <thead>
+				      <tr>
+				      	    <th class="HlaWithComment">peptide <span class="HlaComment"  >peptide </span> </th>
+					    <th style="display:none">gene</th>
+					    
+					    <th style="display:none" >tpm</th>
+					    <th style="display:none" >HLA-A*24:02</th>
+						<th style="display:none" >HLA-A*25:01</th>
+						<th style="display:none" >HLA-B*07:02</th>
+						<th style="display:none" >HLA-B*18:01</th>
+						<th style="display:none" >HLA-C*07:02</th>
+						<th style="display:none" >HLA-C*12:03</th>
+						<th style="display:none" >hla</th>
+						<th style="display:none" >wt_pep</th>
+						<th style="display:none" >pep_hydro</th>
+						<th style="display:none" >pep_polar</th>
+						<th style="display:none" >pep_charge</th>
+						<th style="display:none" >pep_entropy</th>
+						<th style="display:none" >pep_molsize</th>
+						<th style="display:none" >pep_TAP</th>
+						<th style="display:none" >pep_Cle</th>
+						<th style="display:none" >pep_Comb</th>
+						<th style="display:none" >neo_aff</th>
+						<th style="display:none" >neo_rank</th>
+						<th style="display:none" >iedb_immunescore</th>
+						<th style="display:none" >pep_DAI</th>
+						<th style="display:none" >pep_Rscore</th>
+						<th style="display:none" >pep_NRP</th>
+						<th style="display:none" >pep_pTuneos</th>
+						<th style="display:none" >ensembl</th>
+						<th class="HlaWithComment">geneSymbol <span class="HlaComment"  >geneSymbol </span> </th>
+						<th class="HlaWithComment" >rf_predict<span class="HlaComment"  >rf_predict </span></th>
+				      </tr>
+				  </thead>
+				</table>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
 		<div id="outer" style="display:none;">
 			<div id="additionalInfo" style="display:none;float:left;">
@@ -122,12 +175,12 @@
          
         <style>
 	       
-        th{
+        #resultTable th{
 	  position:relative;
 	  z-index:100;
 	  
 	}
-	td{
+	#resultTable td{
 	  position:relative;
 	  z-index:100;
 
@@ -715,7 +768,7 @@ var data_file2=data_file.split("?")[1];
 						    dataoutTable = dataout.slice(1, dataout.length);
 						    //console.log('postfunc',dataout);
 						    //$.fn.dataTableExt.sErrMode = 'throw';
-						    var base=document.getElementById('forResultTable');
+						    /*var base=document.getElementById('forResultTable');
 						    var tbl=document.createElement('table');
 						    tbl.id='resultTable'
 						    tbl.classList.add('table');
@@ -729,57 +782,22 @@ var data_file2=data_file.split("?")[1];
 						    tbl.width="100%";
 						    var thd=document.createElement('thead');
 						    var tr=document.createElement('tr');
-						    
+						    */
 						    var columnDefs=[]
 						    console.log('DataOut',dataout[0]);
 						    for(var i=0;i<dataout[0].length;i++){
-						    	var th=document.createElement('th');
-						    	var tempspan;
+						    	//var th=document.createElement('th');
+						    	//var tempspan;
 						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='geneSymbol' & dataout[0][i]!='rf_predict'){
-						    		th.style="display:none";
+						    		//th.style="display:none";
 						    		columnDefs.push({"targets":[i],"visible":false,"searchable":false});
-						    		th.innerHTML=dataout[0][i];
-						    		//th.appendChild(tempspan);
-						    		tr.appendChild(th);
+
 						    	}
-						    	if(dataout[0][i]== 'peptide'){
-						    		th.class="WtWithComment";
-						    		//tempspan=document.createElement('span');
-						    		//tempspan.class="WtComment";
-						    		//tempspan.innerHTML="";
-						    		th.innerHTML=dataout[0][i];
-							    	//th.appendChild(tempspan);
-							    	tr.appendChild(th);
-						    	}
-						    	if(dataout[0][i]== 'geneSymbol'){
-						    		th.class="WtWithComment";
-						    		//tempspan=document.createElement('span');
-						    		//tempspan.class="WtComment";
-						    		//tempspan.innerHTML="";
-						    		th.innerHTML=dataout[0][i];
-						    		//th.appendChild(tempspan);
-						    		tr.appendChild(th);
-						    	}
-						    	if(dataout[0][i]== 'rf_predict'){
-						    		th.class="WtWithComment";
-						    		tempspan=document.createElement('span');
-						    		tempspan.class="WtComment";
-						    		tempspan.innerHTML="trial";
-						    		th.innerHTML=dataout[0][i];
-						    		th.appendChild(tempspan);
-						    		tr.appendChild(th);
-						    	}
-						    	
-						    	//th.placeholder=dataout[0][i];
-						    	//th.text=dataout[0][i];
-						    	//th.abbr=dataout[0][i];
-						    	
+
 						    	
 						    	
 						    }
-						    thd.appendChild(tr);
-						    tbl.appendChild(thd);
-						    base.appendChild(tbl);
+						    
 						    
 					/*	    
 						    <table id="resultTable" class="table table-striped table-bordered table-hover" style="cursor:pointer;" cellspacing="0" width="100%">

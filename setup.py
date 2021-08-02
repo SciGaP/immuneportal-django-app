@@ -16,7 +16,8 @@ setuptools.setup(
 		'pandas',
 		'logomaker',
 		'UpSetPlot',
-		'django-cors-headers'
+		'django-cors-headers',
+		'seaborn
 
 	],
 	entry_points="""

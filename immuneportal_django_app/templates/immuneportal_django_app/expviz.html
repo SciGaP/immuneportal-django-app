@@ -226,8 +226,10 @@ function miniTable() {
 	    td1.style="padding-left:5px;padding-right:5px";
 	    td2.style="padding-left:5px;padding-right:5px";
 
-	    td1.appendChild(text1);
-	    td2.appendChild(text2);
+	    td1.innerHTML='<b>'+select.options[select.selectedIndex].text+'</b>'
+	    td2.innerHTML='<b>'+select.value.toString()+'</b>'
+	    //td1.appendChild(text1);
+	    //td2.appendChild(text2);
 	    tr.appendChild(td1);
 	    tr.appendChild(td2);
 

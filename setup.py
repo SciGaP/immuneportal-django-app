@@ -17,7 +17,7 @@ setuptools.setup(
 		'logomaker',
 		'UpSetPlot',
 		'django-cors-headers',
-		'seaborn
+		'seaborn'
 
 	],
 	entry_points="""

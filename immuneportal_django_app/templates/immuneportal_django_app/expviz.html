@@ -216,11 +216,7 @@
 <script>
 
 
-$(document).ready(function () {
-	$("upset2").blowup({
-		background : "#FCEBB6"
-	});
-})
+
 
 
 function miniTable() {
@@ -695,6 +691,11 @@ var data_file2=data_file.split("?")[1];
 				
 	    				}
 	    			});
+	    			$(document).ready(function () {
+					$("img").blowup({
+						background : "#FCEBB6"
+					});
+				})
 	    			//FOR GENEFREQ Section ENDED
 	    			$.ajax({
 				    async: false,

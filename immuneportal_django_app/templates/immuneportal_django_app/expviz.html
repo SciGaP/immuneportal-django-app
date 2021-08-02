@@ -62,8 +62,10 @@
                 <div class="card-header" >
                     Upset Plot (<b>Intersecting Selections of HLA by antigens</b>)
                 </div>
-                <div class="card-body" style="overflow:hidden" data-role="imagemagnifier" data-magnifier-mode="glass">
-                    <img id="upset2" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
+                <div class="card-body" style="overflow:hidden" >
+		        <div class="img-magnifier-container" >
+		            <img id="upset2" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
+		        </div>
                 </div>
             </div>
             
@@ -118,6 +120,23 @@
         <link rel="stylesheet" href="../../static/css/jquery-ui.css">
         <style>
        
+       
+	* {box-sizing: border-box;}
+
+	.img-magnifier-container {
+	  position: relative;
+	}
+
+	.img-magnifier-glass {
+	  position: absolute;
+	  border: 3px solid #000;
+	  border-radius: 50%;
+	  cursor: none;
+	  /*Set the size of the magnifier glass:*/
+	  width: 100px;
+	  height: 100px;
+	}       
+	       
         #resultTable th{
 	  position:relative;
 	  z-index:100;
@@ -701,7 +720,7 @@ var data_file2=data_file.split("?")[1];
 						    var tbl=document.createElement('table');
 						    tbl.id='resultTable'
 						    tbl.classList.add('table');
-						    tbl.classList.add('table-striped');
+						    //tbl.classList.add('table-striped');
 						    tbl.classList.add('table-bordered');
 						    tbl.classList.add('table-hover');
 						    

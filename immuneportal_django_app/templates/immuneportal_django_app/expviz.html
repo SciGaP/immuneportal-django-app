@@ -32,7 +32,7 @@
 				
 				
 			</div>
-			<div id="additionalInfo2" style="display:none;float:right;margin-left:20px;margin-top:50px">
+			<div id="additionalInfo2" style="display:none;float:right;margin-right:400px;margin-top:50px">
 				
 				
 				
@@ -716,14 +716,34 @@ var data_file2=data_file.split("?")[1];
 						    console.log('DataOut',dataout[0]);
 						    for(var i=0;i<dataout[0].length;i++){
 						    	var th=document.createElement('th');
+						    	var tempspan;
 						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='geneSymbol' & dataout[0][i]!='rf_predict'){
 						    		th.style="display:none";
 						    		columnDefs.push({"targets":[i],"visible":false,"searchable":false});
+						    	}
+						    	if(dataout[0][i]== 'peptide'){
+						    		th.class="WtWithComment";
+						    		tempspan=document.createElement('span');
+						    		tempspan.class="WtComment";
+						    		tempspan.innerHTML=;
+						    	}
+						    	if(dataout[0][i]== 'geneSymbol'){
+						    		th.class="WtWithComment";
+						    		tempspan=document.createElement('span');
+						    		tempspan.class="WtComment";
+						    		tempspan.innerHTML=;
+						    	}
+						    	if(dataout[0][i]== 'rf_predict'){
+						    		th.class="WtWithComment";
+						    		tempspan=document.createElement('span');
+						    		tempspan.class="WtComment";
+						    		tempspan.innerHTML='intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells';
 						    	}
 						    	//th.placeholder=dataout[0][i];
 						    	//th.text=dataout[0][i];
 						    	//th.abbr=dataout[0][i];
 						    	th.innerHTML=dataout[0][i];
+						    	th.appendChild(tempspan);
 						    	tr.appendChild(th);
 						    	
 						    	

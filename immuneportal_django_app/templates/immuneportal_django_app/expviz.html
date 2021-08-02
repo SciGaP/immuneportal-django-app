@@ -716,7 +716,7 @@ var data_file2=data_file.split("?")[1];
 						    console.log('DataOut',dataout[0]);
 						    for(var i=0;i<dataout[0].length;i++){
 						    	var th=document.createElement('th');
-						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='rf_predict' & dataout[0][i]!='gene'){
+						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='geneSymbol' & dataout[0][i]!='rf_predict'){
 						    		th.style="display:none";
 						    		columnDefs.push({"targets":[i],"visible":false,"searchable":false});
 						    	}

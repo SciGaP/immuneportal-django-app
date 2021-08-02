@@ -63,7 +63,7 @@
                     Upset Plot (<b>Intersecting Selections of HLA by antigens</b>)
                 </div>
                 <div class="card-body" style="overflow:hidden" data-role="imagemagnifier" data-magnifier-mode="glass">
-                    <img id="upset" width="1350" height="320" style="margin-left:-150px;" ></img>
+                    <img id="upset2" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
                 </div>
             </div>
             
@@ -72,7 +72,7 @@
                 </div>
                 <div class="card-body">
                     <p>The red line indicates how the individual compares to 1000 genomes samples:</p>
-                    <div id="hlaLoad"></div>
+                    <img id="hlaLoad2" src='https://immuneportal.ccbb.iupui.edu/static/files/HLALoad.png'></img>
                     <!--<img  id="hlaload"></img>-->
                 </div>
             </div>
@@ -681,7 +681,7 @@ var data_file2=data_file.split("?")[1];
 	    			//FOR GENEFREQ Section ENDED
 	    			$.ajax({
 				    async: false,
-				    url: tableData,
+				    url: 'https://immuneportal.ccbb.iupui.edu/static/files/both.txt',
 				    method: 'GET',
 				    //datatype: 'json',
 				    

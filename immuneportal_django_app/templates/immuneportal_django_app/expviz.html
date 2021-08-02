@@ -691,11 +691,11 @@ var data_file2=data_file.split("?")[1];
 				
 	    				}
 	    			});
-	    			$(document).ready(function () {
+	    			/*$(document).ready(function () {
 					$(".upset2").blowup({
 						background : "#FCEBB6"
 					});
-				})
+				})*/
 	    			//FOR GENEFREQ Section ENDED
 	    			$.ajax({
 				    async: false,
@@ -738,31 +738,42 @@ var data_file2=data_file.split("?")[1];
 						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='geneSymbol' & dataout[0][i]!='rf_predict'){
 						    		th.style="display:none";
 						    		columnDefs.push({"targets":[i],"visible":false,"searchable":false});
+						    		th.innerHTML=dataout[0][i];
+						    		//th.appendChild(tempspan);
+						    		tr.appendChild(th);
 						    	}
 						    	if(dataout[0][i]== 'peptide'){
 						    		th.class="WtWithComment";
-						    		tempspan=document.createElement('span');
-						    		tempspan.class="WtComment";
-						    		tempspan.innerHTML="";
+						    		//tempspan=document.createElement('span');
+						    		//tempspan.class="WtComment";
+						    		//tempspan.innerHTML="";
+						    		th.innerHTML=dataout[0][i];
+							    	//th.appendChild(tempspan);
+							    	tr.appendChild(th);
 						    	}
 						    	if(dataout[0][i]== 'geneSymbol'){
 						    		th.class="WtWithComment";
-						    		tempspan=document.createElement('span');
-						    		tempspan.class="WtComment";
-						    		tempspan.innerHTML="";
+						    		//tempspan=document.createElement('span');
+						    		//tempspan.class="WtComment";
+						    		//tempspan.innerHTML="";
+						    		th.innerHTML=dataout[0][i];
+						    		//th.appendChild(tempspan);
+						    		tr.appendChild(th);
 						    	}
 						    	if(dataout[0][i]== 'rf_predict'){
 						    		th.class="WtWithComment";
-						    		tempspan=document.createElement('span');
-						    		tempspan.class="WtComment";
-						    		tempspan.innerHTML="";
+						    		//tempspan=document.createElement('span');
+						    		//tempspan.class="WtComment";
+						    		//tempspan.innerHTML="";
+						    		th.innerHTML=dataout[0][i]+"<span class='WtComment"'>peptide derived from retained intron regions </span>";
+						    		//th.appendChild(tempspan);
+						    		tr.appendChild(th);
 						    	}
+						    	
 						    	//th.placeholder=dataout[0][i];
 						    	//th.text=dataout[0][i];
 						    	//th.abbr=dataout[0][i];
-						    	th.innerHTML=dataout[0][i];
-						    	th.appendChild(tempspan);
-						    	tr.appendChild(th);
+						    	
 						    	
 						    	
 						    }

@@ -691,8 +691,9 @@ var data_file2=data_file.split("?")[1];
 				    //console.log(data_file);
 				    success: function (data) {
 	    			 	
-	    			 	console.log('firstData',data);
+	    			 	//console.log('firstData',data);
 	    			 	var dataout=CSVToArray(data);
+	    			 	console.log('firstData',data);
 						    dataoutTable = dataout.slice(1, dataout.length);
 						    //console.log('postfunc',dataout);
 						    //$.fn.dataTableExt.sErrMode = 'throw';

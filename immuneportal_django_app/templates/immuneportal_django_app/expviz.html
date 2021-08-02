@@ -678,11 +678,11 @@ var data_file2=data_file.split("?")[1];
 				
 	    				}
 	    			});
-	    			
-	    			
+	    			//FOR GENEFREQ Section ENDED
 	    			$.ajax({
 				    async: false,
 				    url: 'https://immuneportal.ccbb.iupui.edu/static/files/both.txt',
+				    //url: tableData,
 				    method: 'GET',
 				    //datatype: 'json',
 				    
@@ -690,10 +690,10 @@ var data_file2=data_file.split("?")[1];
 			       	    //console.log(data_file);
 				    //console.log(data_file);
 				    success: function (data) {
-	    			 	
-	    			 	//console.log('firstData',data);
-	    			 	var dataout=CSVToArray(data);
-	    			 	console.log('firstData',dataout[0]);
+				//console.log('hello');
+						//console.log(data_file);
+						    //console.log(data);
+						    var dataout=CSVToArray(data);
 						    dataoutTable = dataout.slice(1, dataout.length);
 						    //console.log('postfunc',dataout);
 						    //$.fn.dataTableExt.sErrMode = 'throw';
@@ -716,7 +716,7 @@ var data_file2=data_file.split("?")[1];
 						    console.log('DataOut',dataout[0]);
 						    for(var i=0;i<dataout[0].length;i++){
 						    	var th=document.createElement('th');
-						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='geneSymbol' & dataout[0][i]!='gene'){
+						    	if(dataout[0][i]!= 'peptide' & dataout[0][i]!='rf_predict' & dataout[0][i]!='gene'){
 						    		th.style="display:none";
 						    		columnDefs.push({"targets":[i],"visible":false,"searchable":false});
 						    	}
@@ -847,29 +847,6 @@ var data_file2=data_file.split("?")[1];
 										     noDownsample:         true}],
 
 								    });
-	    			
-	    			}
-	    			});
-	    			
-	    			//FOR GENEFREQ Section ENDED
-	    			$.ajax({
-				    async: false,
-				    url: tableData,
-				    method: 'GET',
-				    //datatype: 'json',
-				    
-				    
-			       	    //console.log(data_file);
-				    //console.log(data_file);
-				    success: function (data) {
-				//console.log('hello');
-						//console.log(data_file);
-						    //console.log(data);
-						    var dataout=CSVToArray(data);
-						    dataoutTable = dataout.slice(1, dataout.length);
-						    //console.log('postfunc',dataout);
-						    //$.fn.dataTableExt.sErrMode = 'throw';
-						    
 
 					    /*
 					    //HLALOAD SECTION

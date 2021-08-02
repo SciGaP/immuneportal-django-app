@@ -63,8 +63,10 @@
                     Upset Plot (<b>Intersecting Selections of HLA by antigens</b>)
                 </div>
                 <div class="card-body" style="overflow:hidden" >
-		        <div class="img-magnifier-container" >
-		            <img id="upset2" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
+		        <div class="magnifier" >
+		        	<div class="maglens">
+		            		<img id="upset2" class="maglarge" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
+		            	</div>
 		        </div>
                 </div>
             </div>
@@ -118,24 +120,8 @@
 {% block css %}
         <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="../../static/css/jquery-ui.css">
+         <link href="../../static/css/magnifier.css" rel="stylesheet">
         <style>
-       
-       
-	* {box-sizing: border-box;}
-
-	.img-magnifier-container {
-	  position: relative;
-	}
-
-	.img-magnifier-glass {
-	  position: absolute;
-	  border: 3px solid #000;
-	  border-radius: 50%;
-	  cursor: none;
-	  /*Set the size of the magnifier glass:*/
-	  width: 100px;
-	  height: 100px;
-	}       
 	       
         #resultTable th{
 	  position:relative;
@@ -223,6 +209,11 @@
   <script src="../../static/js/data.js" ></script>
   <script src="../../static/js/jstat.min.js" ></script>
   <script src="../../static/js/processDensity.js" ></script>
+  
+ 
+
+  <script src="../../static/js/magnifier.js"></script>
+
 <script>
 
 function miniTable() {
@@ -940,7 +931,7 @@ var data_file2=data_file.split("?")[1];
 
 					    success: function (data) {
 					    	var genomes=CSVToArray(data);
-					    	console.log('made it here');
+					    	//console.log('made it here');
 					    	
 						//console.log('json',data);
 							var userspecific=dataout;

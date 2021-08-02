@@ -227,7 +227,7 @@ function miniTable() {
 	    td2.style="padding-left:5px;padding-right:5px";
 
 	    td1.innerHTML='<b>'+select.options[select.selectedIndex].text+'</b>'
-	    td2.innerHTML='<b>'+select.value.toString()+'</b>'
+	    td2.innerHTML=select.value.toString()
 	    //td1.appendChild(text1);
 	    //td2.appendChild(text2);
 	    tr.appendChild(td1);
@@ -238,6 +238,7 @@ function miniTable() {
 	var p=document.createElement('p');
 	p.innerHTML='description:';
 	ai2.appendChild(p);
+	table.style="border-radius:3px"
 	ai2.appendChild(table);
 	document.getElementById('additionalInfo2').style.display="block";
 }

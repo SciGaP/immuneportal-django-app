@@ -762,11 +762,11 @@ var data_file2=data_file.split("?")[1];
 						    	}
 						    	if(dataout[0][i]== 'rf_predict'){
 						    		th.class="WtWithComment";
-						    		//tempspan=document.createElement('span');
-						    		//tempspan.class="WtComment";
-						    		//tempspan.innerHTML="trial";
-						    		th.innerHTML=dataout[0][i]+"<span class='WtComment'>peptide derived from retained intron regions </span>";
-						    		//th.appendChild(tempspan);
+						    		tempspan=document.createElement('span');
+						    		tempspan.class="WtComment";
+						    		tempspan.innerHTML="trial";
+						    		th.innerHTML=dataout[0][i];
+						    		th.appendChild(tempspan);
 						    		tr.appendChild(th);
 						    	}
 						    	

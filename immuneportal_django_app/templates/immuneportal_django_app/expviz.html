@@ -310,7 +310,10 @@ function miniTable() {
 	p.innerHTML='Description: '+descriptionDict[select.options[select.selectedIndex].text];
 	ai2.appendChild(p);
 	table.style="border:solid black 1px;border-radius:6px"
+	var br = document.createElement('br');
 	ai2.appendChild(table);
+	ai2.appendChild(br);
+	
 	
 	document.getElementById('additionalInfo2').style.display="block";
 }

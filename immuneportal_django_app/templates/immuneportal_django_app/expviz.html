@@ -181,7 +181,16 @@
          
         <style>
 	       
-        
+        #resultTable th{
+	  position:relative;
+	  z-index:100;
+	  
+	}
+	#resultTable td{
+	  position:relative;
+	  z-index:100;
+
+	}
 
 	.HlaWithComment{
 	  position:relative;
@@ -329,14 +338,14 @@
   {% endblock %}
   
 {% block scripts %}
-<script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
+
 
   <script src="../../static/js/jquery-3.5.1.js" ></script>
   <script src = "../../static/js/jquery.dataTables.min.js" defer ></script>
   <script src="../../static/js/dataTables.fixedHeader.min.js" ></script>-->
   <!--<script src="../../static/js/dataTables.buttons.min.js" ></script>
-  <script src="../../static/js/buttons.colVis.min.js" ></script>-->
-  <script src="../../static/js/jquery-ui.js" ></script>
+  <script src="../../static/js/buttons.colVis.min.js" ></script>
+  <script src="../../static/js/jquery-ui.js" ></script>-->
   
   <script src="../../static/js/dalliance-compiled.js" defer></script>
   <!--for IRNEO-->
@@ -955,16 +964,16 @@ var data_file2=data_file.split("?")[1];
 						    		"scrollY":  200,
 						    		"scrollCollapse": true,
 						    		"scroller": true,
-						    		"dom": "Bfrtip",
+						    		//"dom": "Bfrtip",
 						    		"columnDefs": columnDefs,
 						    		"orderCellsTop": true,
         							"fixedHeader": true,
-						    		"buttons": [
+						    		/*"buttons": [
 								    {
 									"extend": 'colvis',
 									"columns": ':not(.noVis)'
 								    }
-								]
+								]*/
 								
 							    } );
 							    //SEARCHABLE COLUMNS	  

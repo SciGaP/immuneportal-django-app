@@ -342,9 +342,9 @@
 
   <script src="../../static/js/jquery-3.5.1.js" ></script>
   <script src = "../../static/js/jquery.dataTables.min.js" defer ></script>
-  <!--<script src="../../static/js/dataTables.fixedHeader.min.js" ></script>-->
-  <script src="../../static/js/dataTables.buttons.min.js" ></script>
-  <script src="../../static/js/buttons.colVis.min.js" ></script>
+  <script src="../../static/js/dataTables.fixedHeader.min.js" ></script>-->
+  <!--<script src="../../static/js/dataTables.buttons.min.js" ></script>
+  <script src="../../static/js/buttons.colVis.min.js" ></script>-->
   <script src="../../static/js/jquery-ui.js" ></script>
   
   <script src="../../static/js/dalliance-compiled.js" defer></script>
@@ -976,17 +976,7 @@ var data_file2=data_file.split("?")[1];
 								]
 								
 							    } );
-							    var table = $('#resultTable').DataTable();
-								$('#resultTable').on('click', 'tbody tr', function() {
-								  console.log('API row values : ', table.row(this).data());
-								  var clickdata=table.row(this).data();
-								  
-								  
-								  console.log(clickdata);
-								  console.log(dataout[0]);
-								  var availableTags=dataout[0];
-							
-							//SEARCHABLE COLUMNS	  
+							    //SEARCHABLE COLUMNS	  
 							$('#resultTable thead tr').clone(true).appendTo( '#resultTable thead' );
 							    $('#resultTable thead tr:eq(1) th').each( function (i) {
 								var title = $(this).text();
@@ -1001,7 +991,18 @@ var data_file2=data_file.split("?")[1];
 								    }
 								} );
 							    } );
-							//END OF SEARCHABLE COLUMNS    	  
+							//END OF SEARCHABLE COLUMNS 
+							    var table = $('#resultTable').DataTable();
+								$('#resultTable').on('click', 'tbody tr', function() {
+								  console.log('API row values : ', table.row(this).data());
+								  var clickdata=table.row(this).data();
+								  
+								  
+								  console.log(clickdata);
+								  console.log(dataout[0]);
+								  var availableTags=dataout[0];
+							
+							   	  
 								
 							document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";

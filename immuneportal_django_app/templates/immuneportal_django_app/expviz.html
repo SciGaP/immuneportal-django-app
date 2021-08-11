@@ -1002,7 +1002,17 @@ var data_file2=data_file.split("?")[1];
 								} );
 							    } );
 							//END OF SEARCHABLE COLUMNS    	  
-								
+							    var table = $('#resultTable').DataTable();
+								$('#resultTable').on('click', 'tbody tr', function() {
+								  console.log('API row values : ', table.row(this).data());
+								  var clickdata=table.row(this).data();
+
+
+								  console.log(clickdata);
+								  console.log(dataout[0]);
+								  var availableTags=dataout[0];
+								  
+								  
 							document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";
 							document.getElementById('outer').style.display="block";

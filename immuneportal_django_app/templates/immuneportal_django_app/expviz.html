@@ -21,7 +21,7 @@
 		<table id="resultTable" class="table table-bordered table-hover" style="cursor:pointer;" cellspacing="0" width="100%">
 				  <thead>
 				      <tr>
-				      	    <th >peptide  </th>
+				      	    <th class="HlaWithComment">peptide <span class="HlaComment" style="font-size:15px" >peptide derived from retained intron regions </span> </th>
 					    <th style="display:none">gene</th>
 					    
 					    <th style="display:none" >tpm</th>
@@ -50,7 +50,7 @@
 						<th style="display:none" >pep_pTuneos</th>
 						<th style="display:none" >ensembl</th>
 						<th >geneSymbol  </th>
-						<th >rf_predict</th>
+						<th class="HlaWithComment" >rf_predict<span class="HlaComment" style="font-size:10px" >intronNeoantigen random forest prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells </span></th>
 				      </tr>
 				  </thead>
 				</table>
@@ -338,17 +338,30 @@
   {% endblock %}
   
 {% block scripts %}
+<script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
 
-
-  
+  <script src="../../static/js/jquery-3.5.1.js" ></script>
   <script src = "../../static/js/jquery.dataTables.min.js" defer ></script>
-  <script src="../../static/js/dataTables.fixedHeader.js" ></script>
-  
+  <script src="../../static/js/dataTables.fixedHeader.min.js" ></script>-->
   <!--<script src="../../static/js/dataTables.buttons.min.js" ></script>
-  <script src="../../static/js/buttons.colVis.min.js" ></script>
-  <script src="../../static/js/jquery-ui.js" ></script>-->
+  <script src="../../static/js/buttons.colVis.min.js" ></script>-->
+  <script src="../../static/js/jquery-ui.js" ></script>
+  
+  <script src="../../static/js/dalliance-compiled.js" defer></script>
+  <!--for IRNEO-->
+  <script src="../../static/js/plotly-latest.min.js" ></script>
+  <script src="../../static/js/d3.v4.js" ></script>
+  <script src="../../static/js/highcharts.js" ></script>
+  <script src="../../static/js/highcharts-more.js" ></script>
+  <script src="../../static/js/data.js" ></script>
+  <script src="../../static/js/jstat.min.js" ></script>
+  <script src="../../static/js/processDensity.js" ></script>
+  
+  
   
  
+
+  <script src="../../static/js/blowup.min.js"></script>
 
 <script>
 
@@ -951,19 +964,29 @@ var data_file2=data_file.split("?")[1];
 						    		"scrollY":  200,
 						    		"scrollCollapse": true,
 						    		"scroller": true,
-						    		//"dom": "Bfrtip",
+						    		"dom": "Bfrtip",
 						    		"columnDefs": columnDefs,
 						    		"orderCellsTop": true,
-        							//"fixedHeader": true,
-						    		/*"buttons": [
+        							"fixedHeader": true,
+						    		"buttons": [
 								    {
 									"extend": 'colvis',
 									"columns": ':not(.noVis)'
 								    }
-								]*/
+								]
 								
 							    } );
-							    //SEARCHABLE COLUMNS	  
+							    var table = $('#resultTable').DataTable();
+								$('#resultTable').on('click', 'tbody tr', function() {
+								  console.log('API row values : ', table.row(this).data());
+								  var clickdata=table.row(this).data();
+								  
+								  
+								  console.log(clickdata);
+								  console.log(dataout[0]);
+								  var availableTags=dataout[0];
+							
+							//SEARCHABLE COLUMNS	  
 							$('#resultTable thead tr').clone(true).appendTo( '#resultTable thead' );
 							    $('#resultTable thead tr:eq(1) th').each( function (i) {
 								var title = $(this).text();
@@ -978,18 +1001,7 @@ var data_file2=data_file.split("?")[1];
 								    }
 								} );
 							    } );
-							//END OF SEARCHABLE COLUMNS 
-							    var table = $('#resultTable').DataTable();
-								$('#resultTable').on('click', 'tbody tr', function() {
-								  console.log('API row values : ', table.row(this).data());
-								  var clickdata=table.row(this).data();
-								  
-								  
-								  console.log(clickdata);
-								  console.log(dataout[0]);
-								  var availableTags=dataout[0];
-							
-							   	  
+							//END OF SEARCHABLE COLUMNS    	  
 								
 							document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";

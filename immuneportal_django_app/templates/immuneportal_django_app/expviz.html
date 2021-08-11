@@ -353,6 +353,10 @@
   <script src="../../static/js/data.js" ></script>
   <script src="../../static/js/jstat.min.js" ></script>
   <script src="../../static/js/processDensity.js" ></script>
+  <script src="../../static/js/dataTables.fixedHeader.min.js" ></script>
+  <script src="../../static/js/dataTables.buttons.min.js" ></script>
+  <script src="../../static/js/buttons.colVis.min.js" ></script>
+  
   
  
 
@@ -907,6 +911,9 @@ var data_file2=data_file.split("?")[1];
 						    		columnDefs.push({"targets":[i],"visible":false,"searchable":false});
 
 						    	}
+						    	else{
+						    		columnDefs.push({"targets":[i],"visible":true,"searchable":true,"className":"noVis"})
+						    	}
 
 						    	
 						    	
@@ -942,6 +949,12 @@ var data_file2=data_file.split("?")[1];
 				  </thead>
 				</table>
 				*/
+				
+				
+				
+				
+				
+				
 						    
 						    $('#resultTable').DataTable( {
 						    		"data":dataoutTable,
@@ -950,8 +963,16 @@ var data_file2=data_file.split("?")[1];
 						    		"scrollY":  200,
 						    		"scrollCollapse": true,
 						    		"scroller": true,
-						    		
-						    		"columnDefs": columnDefs
+						    		"dom": "Bfrtip",
+						    		"columnDefs": columnDefs,
+						    		"orderCellsTop": true,
+        							"fixedHeader": true,
+						    		"buttons": [
+								    {
+									"extend": 'colvis',
+									"columns": ':not(.noVis)'
+								    }
+								]
 								
 							    } );
 							    var table = $('#resultTable').DataTable();
@@ -963,9 +984,23 @@ var data_file2=data_file.split("?")[1];
 								  console.log(clickdata);
 								  console.log(dataout[0]);
 								  var availableTags=dataout[0];
-								  
-								
-								    	  
+							
+							//SEARCHABLE COLUMNS	  
+							$('#resultTable thead tr').clone(true).appendTo( '#resultTable thead' );
+							    $('#resultTable thead tr:eq(1) th').each( function (i) {
+								var title = $(this).text();
+								$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+							 
+								$( 'input', this ).on( 'keyup change', function () {
+								    if ( table.column(i).search() !== this.value ) {
+									table
+									    .column(i)
+									    .search( this.value )
+									    .draw();
+								    }
+								} );
+							    } );
+							//END OF SEARCHABLE COLUMNS    	  
 								
 							document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";
@@ -1176,7 +1211,7 @@ var data_file2=data_file.split("?")[1];
 							  type: 'bar',
 							  name: 'SAS' 
 							};
-							
+							/*
 							var trace7 = {
 							  x: Object.keys(count),
 							  y: proportions,
@@ -1184,9 +1219,10 @@ var data_file2=data_file.split("?")[1];
 							  yaxis: 'Proportion',
 							  type: 'bar',
 							  name: 'User Sample' 
-							};
+							};*/
 
-							var data = [ trace2, trace3, trace4,trace5,trace6,trace7];
+							//var data = [ trace2, trace3, trace4,trace5,trace6,trace7];
+							var data = [ trace2, trace3, trace4,trace5,trace6];
 
 							var layout = {
 							  //grid: {rows: 1, columns: 2, pattern: 'independent'},

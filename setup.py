@@ -1,4 +1,28 @@
+import distutils
+import os
+import subprocess
+
 import setuptools
+from setuptools.command.develop import develop
+from setuptools.command.install import install
+
+
+def build_js():
+	subprocess.check_call(["npm", "install"], cwd=os.path.join(os.getcwd(), "immuneportal_django_app"))
+	subprocess.check_call(["npm", "run", "build"], cwd=os.path.join(os.getcwd(), "immuneportal_django_app"))
+
+
+class BuildJSDevelopCommand(develop):
+	def run(self):
+		self.announce("Building JS code", level=distutils.log.INFO)
+		build_js()
+		super().run()
+
+class BuildJSInstallCommand(install):
+	def run(self):
+		self.announce("Building JS code", level=distutils.log.INFO)
+		build_js()
+		super().run()
 
 setuptools.setup(
 	name="immuneportal_django_app",
@@ -27,4 +51,8 @@ irneo-seq = immuneportal_django_app.output_views:irneoSeq
 [airavata.djangoapp]
 immuneportal_django_app = immuneportal_django_app.apps:ImmunePortalAppConfig
 """,
+	cmdclass={
+		'develop': BuildJSDevelopCommand,
+		'install': BuildJSInstallCommand,
+	}
 )

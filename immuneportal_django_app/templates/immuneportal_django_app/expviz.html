@@ -177,9 +177,7 @@
 
 {% block css %}
         <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="../../static/css/fixedHeader.dataTables.min.css">
         <link rel="stylesheet" href="../../static/css/jquery-ui.css">
-        
          
         <style>
 	       
@@ -964,12 +962,11 @@ var data_file2=data_file.split("?")[1];
 						    		"deferRender": true,
 						    		"scrollX":  200,
 						    		"scrollY":  200,
-						    		"ordering": false,
-						    		//"scrollCollapse": true,
+						    		"scrollCollapse": true,
 						    		"scroller": true,
-						    		//"dom": "Bfrtip",
+						    		"dom": "Bfrtip",
 						    		"columnDefs": columnDefs,
-						    		//"orderCellsTop": true,
+						    		"orderCellsTop": true,
         							"fixedHeader": true,
 						    		"buttons": [
 								    {

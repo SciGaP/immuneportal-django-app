@@ -179,6 +179,7 @@
         <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="../../static/css/fixedHeader.dataTables.min.css">
         <link rel="stylesheet" href="../../static/css/jquery-ui.css">
+        <link rel="stylesheet" href="../../static/css/buttons.dataTables.min.css">
          
         <style>
 	       
@@ -341,12 +342,12 @@
 {% block scripts %}
 <script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
 
-  <script src="../../static/js/jquery-3.5.1.js" ></script>
+  <script src="../../static/js/jquery-3.5.1.js" defer ></script>
   <script src = "../../static/js/jquery.dataTables.min.js" defer ></script>
-  <script src="../../static/js/dataTables.fixedHeader.min.js" ></script>
-  <!--<script src="../../static/js/dataTables.buttons.min.js" ></script>
-  <script src="../../static/js/buttons.colVis.min.js" ></script>-->
-  <script src="../../static/js/jquery-ui.js" ></script>
+  <script src="../../static/js/dataTables.fixedHeader.min.js" defer ></script>
+  <script src="../../static/js/dataTables.buttons.min.js"defer ></script>
+  <script src="../../static/js/buttons.colVis.min.js"defer ></script>
+  <script src="../../static/js/jquery-ui.js" defer></script>
   
   <script src="../../static/js/dalliance-compiled.js" defer></script>
   <!--for IRNEO-->

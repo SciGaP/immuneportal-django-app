@@ -663,7 +663,7 @@ function tsvJSON(tsv){
   var lines=tsv.split("\n");
 
   var result = [];
-
+  console.log('FIRSTLINE',lines[0]);
   // NOTE: If your columns contain commas in their values, you'll need
   // to deal with those before doing the next step 
   // (you might convert them to &&& or something, then covert them back later)

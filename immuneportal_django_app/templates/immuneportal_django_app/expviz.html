@@ -56,7 +56,10 @@
 		</select>
 		<p style="visibility:hidden" ></p>
 <div id="example-table"></div>
-		
+		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
+  Showing <span id="search_count"></span> results in total <span id="total_count"></span> 
+</span>
+
 		
 		
 		
@@ -369,6 +372,10 @@
   height: 20px;
   background: #000000;
   cursor: pointer;
+}
+
+.tabulator-footer {
+    display: none;
 }
 	
 
@@ -1259,7 +1266,19 @@ var table2 = new Tabulator("#example-table", {
         {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input"},
         
         ],
+        dataFiltered: function(filters, rows) {
+        var el = document.getElementById("search_count");
+        el.innerHTML = rows.length;
+    },
+    dataLoaded: function(data) {
+        var el = document.getElementById("total_count");
+        el.innerHTML = data.length;
+    },
 });
+
+
+var total_count = $(".tabulator-footer").find('.tabulator-cell:first-child()').text();
+$("#total_count").text(total_count);
 
 $( "#colShow" ).change(function() {
   //alert( "Handler for .change() called." );

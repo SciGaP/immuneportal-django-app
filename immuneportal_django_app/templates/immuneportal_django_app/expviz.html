@@ -57,7 +57,7 @@
 		<p style="visibility:hidden" ></p>
 <div id="example-table"></div>
 		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
-  Showing <span id="search_count"></span> results in total <span id="total_count"></span> 
+  Showing <span id="search_count"></span> results total <span id="total_count"></span> 
 </span>
 
 		
@@ -77,28 +77,7 @@
 		
 		
 		
-		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
-		<div id="outer" style="display:none;border:1px">
-			<div id="additionalInfo" style="display:none;float:left;border:1px">
-				<br></br>
-				<p style="margin-left:2px">Further Information <b>(Select One):</b></p>
-				
-				<select onchange="miniTable()" name="colSelect" id="colSelect" style="display:none">
-				
-				</select>
-				
-				<br></br>
-				<div id="additionalInfo2" style="display:none;">
-				
-				
-			</div>
-			<!--<div id="additionalInfo2" style="display:none;float:right;margin-right:400px;margin-top:50px">-->
-				
-				
-				
-			</div>
-			
-		</div>
+		
 		<p>&nbsp;</p> 
 		<div>
 		
@@ -1269,11 +1248,10 @@ var table2 = new Tabulator("#example-table", {
         dataFiltered: function(filters, rows) {
         var el = document.getElementById("search_count");
         el.innerHTML = rows.length;
-    },
-    dataLoaded: function(data) {
         var el = document.getElementById("total_count");
         el.innerHTML = data.length;
     },
+   
 });
 
 

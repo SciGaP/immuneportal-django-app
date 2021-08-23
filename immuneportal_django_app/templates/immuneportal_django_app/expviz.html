@@ -1067,18 +1067,21 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     start.name='price-min';
     start.id='price-minid';
     start.value='0';
+    start.setAttribute("step","0.01");
     start.min='0';
-    start.max='100';
+    start.max='0.5';
     
     
     var end=document.createElement('input');
     end.setAttribute('class','slider');
+    start.setAttribute("oninput","document.getElementById('price-max-lbl').innerHTML = this.value");
     end.type='range';
     end.name='price-max';
     end.id='price-maxid';
-    end.value='100';
-    end.min='0';
-    end.max='100';
+    end.value='1';
+    end.setAttribute("step","0.01);
+    end.min='0.51';
+    end.max='1';
     
     
     var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label>100</label>";

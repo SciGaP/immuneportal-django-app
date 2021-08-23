@@ -1046,7 +1046,14 @@ var customTitleFormatter = function(cell){
 
     return cell.getValue(); // ensure the title is set on the cell
 }	
-				
+
+function changeMin(){
+ 	$( "#price-min-lbl" ).text=$( "#price-min" ).val();
+ }
+ function changeMax(){
+ 	$( "#price-min-lbl" ).text=$( "#price-min" ).val();
+ }
+			
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 
     
@@ -1071,12 +1078,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     return container;
  }
- function changeMin(){
- 	$( "#price-min-lbl" ).text=$( "#price-min" ).val();
- }
- function changeMax(){
- 	$( "#price-min-lbl" ).text=$( "#price-min" ).val();
- }
+ 
  
  /*
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){

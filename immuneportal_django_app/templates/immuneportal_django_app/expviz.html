@@ -1064,18 +1064,16 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //rowValue - the value of the column in this row
     //rowData - the data for the row being filtered
     //filterParams - params object passed to the headerFilterFuncParams property
-	rowValue=parseFloat(rowValue);
-	headerValue=parseFloat(headerValue);
         if(rowValue){
             if(headerValue.start != ""){
                 if(headerValue.end != ""){
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end;
+                    return parseFloat(rowValue) >= parseFloat(headerValue.start) && parseFloat(rowValue) <= parseFloat(headerValue.end);
                 }else{
-                    return rowValue >= headerValue.start;
+                    return parseFloat(rowValue) >= parseFloat(headerValue.start);
                 }
             }else{
                 if(headerValue.end != ""){
-                    return rowValue <= headerValue.end;
+                    return parseFloat(rowValue) <= parseFloat(headerValue.end);
                 }
             }
         }

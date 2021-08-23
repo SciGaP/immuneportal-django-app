@@ -3,6 +3,13 @@
 {% load static %}
 
 {% block content %}
+
+<script>
+function showColumns() {
+    var x = document.getElementById("colShow").value;
+    document.getElementById("example-table").showColumn(x);
+}
+</script>
 <div class="main-content-wrapper">
     <main class="main-content">
         <div class="container-fluid">

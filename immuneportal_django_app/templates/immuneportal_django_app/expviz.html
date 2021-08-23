@@ -1198,11 +1198,11 @@ $( "#colShow" ).change(function() {
   console.log(x);
   console.log(table2);
   //table2.showColumn(x);
-  
-  for(var i=0;i<table2.columnManager.columns.length;i++){
-  	var title=table2.columnManager.columns[i].fieldStructure[0];
+  var objkeys=Object.entries(table2);
+  for(var i=0;i<objkeys.length;i++){
+  	var title=objkeys[i];
   	if(title==x){
-  		var visible=table2.columnManager.columns[i].col-title-holder.visible;
+  		var visible=table2.columnManager.columnsByField[title].definition.visible;
   		if(visible){
   			table2.hideColumn(x);
   		}

@@ -1072,12 +1072,17 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     a.type="range";
     a.id="a";
     a.setAttribute('class','sliderinput');
-    
+    a.min='0.00';
+    a.max='1.00';
+    a.setAttribute("value",'1.00');
     
     var b=document.createElement('input');
     b.type="range";
     b.id="b";
     b.setAttribute('class','sliderinput');
+    b.min='0.00';
+    b.max='1.00';
+    b.setAttribute("value",'0.00');
 /*
     var start=document.createElement('input');
     start.setAttribute('class','slider');

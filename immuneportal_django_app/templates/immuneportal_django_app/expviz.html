@@ -1345,13 +1345,13 @@ $( "#a" ).mousemove(function(event) {
         {
             if (da < db) 
             {
-                $( "#a" ).setAttribute("zIndex", 2);
-                $( "#b" ).setAttribute("zIndex", 1);
+                $( "#a" ).z-index= 2;
+                $( "#b" ).z-index= 1;
             } 
             else 
             {
-                $( "#b" ).setAttribute("zIndex", 2);
-                $( "#a" ).setAttribute("zIndex", 1);
+                $( "#b" ).z-index= 2;
+                $( "#a" ).z-index= 1;
             }
         }
         document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
@@ -1374,13 +1374,13 @@ $( "#b" ).mousemove(function(event) {
         {
             if (da < db) 
             {
-                $( "#a" ).setAttribute("zIndex", 2);
-                $( "#b" ).setAttribute("zIndex", 1);
+                $( "#a" ).z-index= 2;
+                $( "#b" ).z-index= 1;
             } 
             else 
             {
-                $( "#b" ).setAttribute("zIndex", 2);
-                $( "#a" ).setAttribute("zIndex", 1);
+                $( "#b" ).z-index= 2;
+                $( "#a" ).z-index= 1;
             }
         }
         document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;

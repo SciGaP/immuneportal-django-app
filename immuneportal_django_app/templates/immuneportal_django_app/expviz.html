@@ -1078,6 +1078,10 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     return true; //must return a boolean, true if it passes the filter.
 }
 
+function showColumns() {
+    var x = document.getElementById("colShow").value;
+    document.getElementById("example-table").showColumn(x);
+}
 
 var table2 = new Tabulator("#example-table", {
     data:jsonout,
@@ -1121,10 +1125,7 @@ var table2 = new Tabulator("#example-table", {
 });
 
 
-function showColumns() {
-    var x = document.getElementById("colShow").value;
-    document.getElementById("example-table").showColumn(x);
-}
+
 				
 						   console.log('DATATOTABLE',dataoutTable);
 						    

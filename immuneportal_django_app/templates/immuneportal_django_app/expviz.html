@@ -1206,7 +1206,7 @@ $( "#colShow" ).change(function() {
   		console.log(table2.columnManager);
   		var visible=table2.columnManager.columnsByField[title].definition.visible;
   		console.log(visible);
-  		if(visible==true){
+  		if(visible==true | visible==null){
   			table2.hideColumn(x);
   			console.log('hiding');
   		}

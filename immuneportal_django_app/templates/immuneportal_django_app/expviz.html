@@ -1196,8 +1196,22 @@ $( "#colShow" ).change(function() {
   //alert( "Handler for .change() called." );
   var x=$("#colShow" ).val();
   console.log(x);
-  console.log(table2);
-  table2.showColumn(x);
+  //console.log(table2);
+  //table2.showColumn(x);
+  
+  for(var i=0;i<table2.columnManager.columns.length;i++){
+  	var title=table2.columnManager.columns[i].fieldStructure[0];
+  	if(title==x){
+  		var visible=table2.columnManager.columns[i].col-title-holder.visible;
+  		if(visible){
+  			table2.hideColumn(x);
+  		}
+  		else{
+  			table2.showColumn(x);
+  		}
+  	}
+  	
+  }
 });
 
 

@@ -1142,8 +1142,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
         var db = Math.abs(b.value - x100);
         
         // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
-        if (!eventArg.buttons) 
-        {
+        //if (!eventArg.buttons) 
+        //{
             if (da < db) 
             {
                 a.style.zIndex = 2;
@@ -1154,7 +1154,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
                 b.style.zIndex = 2;
                 a.style.zIndex = 1;
             }
-        }
+        //}
         //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
     }
     

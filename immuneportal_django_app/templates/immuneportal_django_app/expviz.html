@@ -1196,12 +1196,12 @@ $( "#colShow" ).change(function() {
   //alert( "Handler for .change() called." );
   var x=$("#colShow" ).val();
   console.log(x);
-  console.log(table2);
+  //console.log(table2);
   //table2.showColumn(x);
   var objkeys=Object.entries(table2);
   for(var i=0;i<objkeys.length;i++){
   	var title=objkeys[i];
-  	console.log(title,x);
+  	console.log('title',title,'x',x);
   	if(title==x){
   		var visible=table2.columnManager.columnsByField[title].definition.visible;
   		console.log('visible');

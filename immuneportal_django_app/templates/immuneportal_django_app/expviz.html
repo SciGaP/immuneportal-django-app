@@ -16,7 +16,41 @@
 	    		<option value={{outputFilePath}} selected>Select genome </option>
 		  </select>
 		  <!--<div id='forResultTable'></div>-->
-		
+		  <p>Show or hide column:</p>
+		  
+		<select id="colShow" onchange="showColumns()">
+		    <option value="peptide">peptide</option>
+<option value="gene">gene</option>
+<option value="tpm">tpm</option>
+<option value="rf_predict_prob">rf_predict_prob</option>
+<option value="ensembl">ensembl</option>
+<option value="geneSymbol">geneSymbol</option>
+<option value="HLA-A*24:02">HLA-A*24:02</option>
+<option value="HLA-A*25:01">HLA-A*25:01</option>
+<option value="HLA-B*07:02">HLA-B*07:02</option>
+<option value="HLA-B*18:01">HLA-B*18:01</option>
+<option value="HLA-C*07:02">HLA-C*07:02</option>
+<option value="HLA-C*12:03">HLA-C*12:03</option>
+<option value="hla">hla</option>
+<option value="wt_pep">wt_pep</option>
+<option value="pep_hydro">pep_hydro</option>
+<option value="pep_polar">pep_polar</option>
+<option value="pep_charge">pep_charge</option>
+<option value="pep_entropy">pep_entropy</option>
+<option value="pep_molsize">pep_molsize</option>
+<option value="pep_TAP">pep_TAP</option>
+<option value="pep_Cle">pep_Cle</option>
+<option value="pep_Comb">pep_Comb</option>
+<option value="neo_aff">neo_aff</option>
+<option value="neo_rank">neo_rank</option>
+<option value="iedb_immunescore">iedb_immunescore</option>
+<option value="pep_DAI">pep_DAI</option>
+<option value="pep_Rscore">pep_Rscore</option>
+<option value="pep_NRP">pep_NRP</option>
+<option value="pep_pTuneos">pep_pTuneos</option>
+<option value="rf_predict">rf_predict</option>
+<option value="pep_pTuneos">pep_pTuneos</option>>
+		</select>
 <div id="example-table"></div>
 		
 		
@@ -353,6 +387,15 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() { 
   modal.style.display = "none";
 }
+
+
+
+
+function showColumns() {
+    var x = document.getElementById("colShow").value;
+    document.getElementById("example-table").showColumn(x);
+}
+
 
 
 

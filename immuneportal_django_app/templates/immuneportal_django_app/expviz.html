@@ -1289,7 +1289,7 @@ var table2 = new Tabulator("#example-table", {
     //row - row component
     console.log(row);
     
-    var temp=row.cells[1].value.split('@')[1]
+    var temp=row._row.cells[1].value.split('@')[1]
   var chr=temp.split(':')[0].substring(3)
   var start=parseInt(temp.split(':')[1].split('-')[0])
   var end=parseInt(temp.split(':')[1].split('-')[1])

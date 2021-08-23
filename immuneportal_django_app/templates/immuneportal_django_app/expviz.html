@@ -1132,11 +1132,38 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     }
     
     
+    var MouseMove = function(eventArg) 
+    {
+        /* percentage position X of cursor  */
+        var x100 = eventArg.clientX * 100 / 160;
+
+        /* absolute distance from respective slider values */
+        var da = Math.abs(a.value - x100);
+        var db = Math.abs(b.value - x100);
+        
+        // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
+        if (!eventArg.buttons) 
+        {
+            if (da < db) 
+            {
+                a.style.zIndex = 2;
+                b.style.zIndex = 1;
+            } 
+            else 
+            {
+                b.style.zIndex = 2;
+                a.style.zIndex = 1;
+            }
+        }
+        //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
+    }
     
+    a.addEventListener("mousemove",MouseMove );
     a.addEventListener("change", buildValues);
     a.addEventListener("blur", buildValues);
     //start.addEventListener("keydown", keypress);
 
+    b.addEventListener('mousemove',MouseMove);
     b.addEventListener("change", buildValues);
     b.addEventListener("blur", buildValues);
     //end.addEventListener("keydown", keypress);
@@ -1331,60 +1358,6 @@ var table2 = new Tabulator("#example-table", {
 
 
 
-$( "#a" ).mousemove(function(event) {
-
-
-	var x100 = event.clientX * 100 / 160;
-
-        /* absolute distance from respective slider values */
-        var da = Math.abs($( "#a" ).val() - x100);
-        var db = Math.abs($( "#b" ).val() - x100);
-        
-        // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
-        if (!event.buttons) 
-        {
-            if (da < db) 
-            {
-                $( "#a" ).zIndex= 2;
-                $( "#b" ).zIndex= 1;
-            } 
-            else 
-            {
-                $( "#b" ).zIndex= 2;
-                $( "#a" ).zIndex= 1;
-            }
-        }
-        //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
-        
-        
-        
-});
-
-$( "#b" ).mousemove(function(event) {
-
-
-  	var x100 = event.clientX * 100 / 160;
-
-        /* absolute distance from respective slider values */
-        var da = Math.abs($( "#a" ).val() - x100);
-        var db = Math.abs($( "#b" ).val() - x100);
-        console.log(da,db);
-        // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
-        if (!event.buttons) 
-        {
-            if (da < db) 
-            {
-                $( "#a" ).zIndex= 2;
-                $( "#b" ).zIndex= 1;
-            } 
-            else 
-            {
-                $( "#b" ).zIndex= 2;
-                $( "#a" ).zIndex= 1;
-            }
-        }
-        //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
-});
 
 
 

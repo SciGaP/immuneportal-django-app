@@ -1124,19 +1124,19 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     function buildValues(){
         success({
-            start:start.value,
-            end:end.value,
+            a:a.value,
+            b:b.value,
         });
     }
     
     
     
-    start.addEventListener("change", buildValues);
-    start.addEventListener("blur", buildValues);
+    a.addEventListener("change", buildValues);
+    a.addEventListener("blur", buildValues);
     //start.addEventListener("keydown", keypress);
 
-    end.addEventListener("change", buildValues);
-    end.addEventListener("blur", buildValues);
+    b.addEventListener("change", buildValues);
+    b.addEventListener("blur", buildValues);
     //end.addEventListener("keydown", keypress);
     
     

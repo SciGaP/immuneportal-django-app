@@ -1368,7 +1368,7 @@ $( "#b" ).mousemove(function(event) {
         /* absolute distance from respective slider values */
         var da = Math.abs($( "#a" ).val() - x100);
         var db = Math.abs($( "#b" ).val() - x100);
-        
+        console.log(da,db);
         // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
         if (!event.buttons) 
         {

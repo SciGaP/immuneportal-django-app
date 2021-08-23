@@ -1117,44 +1117,26 @@ var data_file2=data_file.split("?")[1];
 				
 				
 				
-
-
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 
     
     
     
-   
+    
 
     var container = document.createElement("span");
     
     var subcontainer=document.createElement("div");
 
-    //create and style inputs
-    var start = document.createElement("input");
-    start.setAttribute("class", "min");
-    start.setAttribute("name", "range_1");
-    start.setAttribute("type", "range");
-    start.setAttribute("min", "1");
-    start.setAttribute("max", "100");
-    start.setAttribute("value", "10");
-    
-    
-    
-    var end = document.createElement("input");
-    end.setAttribute("class", "max");
-    end.setAttribute("name", "range_1");
-    end.setAttribute("type", "range");
-    end.setAttribute("min", "1");
-    end.setAttribute("max", "100");
-    end.setAttribute("value", "90");
-    
 
-   
+	
 
+    var fieldvalue = '<input type="range" name="loan_term" class="textbox" id="my_new_slider" min="12" max="36" step="12" value="24" />';
+    
+    subcontainer.innerHTML=fieldvalue;
+    
+  
 
-    subcontainer.appendChild(start);
-    subcontainer.appendChild(end);
     container.append(subcontainer);
 
     return container;

@@ -1140,6 +1140,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     var MouseMove = function(eventArg) 
     {
         /* percentage position X of cursor  */
+        console.log(eventArg.clientX);
         var x100 = eventArg.clientX * 100 / 160;
 
         /* absolute distance from respective slider values */

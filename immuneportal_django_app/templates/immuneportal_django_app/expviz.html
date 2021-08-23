@@ -369,12 +369,7 @@
   <script src="../../static/js/blowup.min.js"></script>
 
 <script>
-$( "#colShow" ).change(function() {
-  //alert( "Handler for .change() called." );
-  var x=$("#colShow" ).val();
-  console.log(x);
-  $("#example-table").showColumn(x);
-});
+
 
 var modal = document.getElementById("myModal");
 
@@ -1127,6 +1122,13 @@ var table2 = new Tabulator("#example-table", {
         {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false},
         
         ],
+});
+
+$( "#colShow" ).change(function() {
+  //alert( "Handler for .change() called." );
+  var x=$("#colShow" ).val();
+  console.log(x);
+  table2.showColumn(x);
 });
 
 

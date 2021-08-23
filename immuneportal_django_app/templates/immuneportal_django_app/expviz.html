@@ -1068,8 +1068,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     start.id='price-minid';
     start.setAttribute("value",'0');
     start.setAttribute("step","0.01");
-    start.min='0';
-    start.max='0.5';
+    start.min='0.00';
+    start.max='0.50';
     
     
     var end=document.createElement('input');
@@ -1078,10 +1078,10 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     end.type='range';
     end.name='price-max';
     end.id='price-maxid';
-    end.setAttribute("value",'0');
+    end.setAttribute("value",'1');
     end.setAttribute("step","0.01");
     end.min='0.51';
-    end.max='1';
+    end.max='1.00';
     
     
     var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label>100</label>";
@@ -1097,6 +1097,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     var lmax=document.createElement('label');
     lmax.setAttribute("for","price-max");
     lmax.id='price-max-lbl';
+    
+    lmax.innerHTML='1.00'
+    lmin.innerHTML='0.00'
     container.append(lmin);
     container.append(start);
     container.append(end);

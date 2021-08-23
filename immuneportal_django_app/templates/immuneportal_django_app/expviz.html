@@ -1201,10 +1201,10 @@ $( "#colShow" ).change(function() {
   var objkeys=Object.entries(table2.columnManager.columnsByField);
   for(var i=0;i<objkeys.length;i++){
   	var title=objkeys[i][1].definition['field'];
-  	console.log('title',title,'x',x);
+  	//console.log('title',title,'x',x);
   	if(title==x){
   		var visible=table2.columnManager.columnsByField[title].definition.visible;
-  		console.log('visible');
+  		//console.log('visible');
   		if(visible==true){
   			table2.hideColumn(x);
   			console.log('hiding');

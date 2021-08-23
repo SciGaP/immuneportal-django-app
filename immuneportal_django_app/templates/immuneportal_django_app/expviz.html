@@ -353,26 +353,6 @@
   cursor: pointer;
 }
 
-.sliderinput {
-    
-    margin: 0px;
-    position: absolute;
-    left: 0px;
-}
-
-.sliderlabel {
-    display: inline-block;
-    margin-top: 100px;
-}
-
-#a {
-    z-index: 2;
-}
-
-#b {
-    z-index: 2;
-}
-
 .tabulator-footer {
     display: none;
 }
@@ -1069,24 +1049,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     var subcontainer=document.createElement("div");
 
-    var a=document.createElement('input');
-    a.type="range";
-    a.id="a";
-    a.setAttribute('class','sliderinput');
-    a.min='0.00';
-    a.max='1.00';
-    a.setAttribute("step","0.01");
-    a.setAttribute("value",'1.00');
-    
-    var b=document.createElement('input');
-    b.type="range";
-    b.id="b";
-    b.setAttribute('class','sliderinput');
-    b.min='0.00';
-    b.max='1.00';
-    b.setAttribute("step","0.01");
-    b.setAttribute("value",'0.00');
-/*
+
+
     var start=document.createElement('input');
     start.setAttribute('class','slider');
     start.setAttribute("oninput","document.getElementById('price-min-lbl').innerHTML = 'Min:'+this.value");
@@ -1110,7 +1074,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     end.min='0.00';
     end.max='1.00';
     
-    */
+    
     var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label>100</label>";
     
     //subcontainer.innerHTML=fieldvalue;
@@ -1119,10 +1083,10 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
 
     var lmin=document.createElement('label');
-    lmin.setAttribute("for","a");
+    lmin.setAttribute("for","price-min");
     lmin.id='price-min-lbl';
     var lmax=document.createElement('label');
-    lmax.setAttribute("for","b");
+    lmax.setAttribute("for","price-max");
     lmax.id='price-max-lbl';
     
     lmax.innerHTML=' Max:1.00';
@@ -1134,58 +1098,27 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     function buildValues(){
         success({
-            a:a.value,
-            b:b.value,
+            start:start.value,
+            end:end.value,
         });
     }
     
     
-    var MouseMove = function(eventArg) 
-    {
-        /* percentage position X of cursor  */
-        console.log(eventArg.clientX);
-        var recta = a.getBoundingClientRect();
-        var x100 = Math.abs(eventArg.clientX-recta.right)/recta.right;
-
-
-        /* absolute distance from respective slider values */
-        var da = Math.abs(a.value-x100);
-        var db = Math.abs(b.value-x100);
-        console.log(x100,da,db);
-        // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
-        if (!eventArg.buttons) 
-        {
-            if (da > db) 
-            {
-                a.style.zIndex = 2;
-                b.style.zIndex = 2;
-            } 
-            else 
-            {
-                b.style.zIndex = 2;
-                a.style.zIndex = 2;
-            }
-        }
-        //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
-    }
     
-    a.addEventListener("mousemove",MouseMove );
-    a.addEventListener("change", buildValues);
-    a.addEventListener("blur", buildValues);
+    start.addEventListener("change", buildValues);
+    start.addEventListener("blur", buildValues);
     //start.addEventListener("keydown", keypress);
 
-    b.addEventListener('mousemove',MouseMove);
-    b.addEventListener("change", buildValues);
-    b.addEventListener("blur", buildValues);
+    end.addEventListener("change", buildValues);
+    end.addEventListener("blur", buildValues);
     //end.addEventListener("keydown", keypress);
     
     
     
     container.append(lmin);
-    container.append(a);
-    //container.append(lmax);
-    container.append(b);
+    container.append(start);
     container.append(lmax);
+    container.append(end);
     //container.append(lmax);
 
     return container;
@@ -1366,12 +1299,6 @@ var table2 = new Tabulator("#example-table", {
     },
    
 });
-
-
-
-
-
-
 
 
 //var total_count = $(".tabulator-footer").find('.tabulator-cell:first-child()').text();

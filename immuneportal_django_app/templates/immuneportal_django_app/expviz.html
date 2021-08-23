@@ -718,7 +718,12 @@ function tsvJSON(tsv){
       var currentline=lines[i].split("\t");
 
       for(var j=0;j<headers.length;j++){
+      	  if(headers[j]=='rf_predict_prob'){
+      	   obj[headers[j]] = parseFloat(currentline[j]);
+      	  }
+      	  else{
           obj[headers[j]] = currentline[j];
+          }
       }
 
       result.push(obj);

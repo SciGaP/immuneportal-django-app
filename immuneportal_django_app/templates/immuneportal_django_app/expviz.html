@@ -1157,10 +1157,10 @@ var table2 = new Tabulator("#example-table", {
     layout:"fitDataFill",
     movableColumns: true,
     columns:[
-        {title:"Peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"Gene", field:"gene", width:150,headerFilter:"input"},
-        {title:"TPM", field:"tpm", width:150,headerFilter:"input"},
-        {title:"RF Predict Prob.", field:"rf_predict_prob", width:150,headerFilter:minMaxFilterEditor},
+        {title:"peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+        {title:"gene", field:"gene", width:150,headerFilter:"input"},
+        {title:"tpm", field:"tpm", width:150,headerFilter:"input"},
+        {title:"rf_predict_prob", field:"rf_predict_prob", width:150,headerFilter:minMaxFilterEditor},
         {title:"ensembl", field:"ensembl", width:150,headerFilter:"input"},
         {title:"geneSymbol", field:"geneSymbol", width:150,headerFilter:"input"},
         {title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:false,headerFilter:"input"},
@@ -1170,7 +1170,7 @@ var table2 = new Tabulator("#example-table", {
         {title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:false,headerFilter:"input"},
         {title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:false,headerFilter:"input"},
         {title:"HLA", field:"hla", width:150,visible:false,headerFilter:"input"},
-        {title:"WT_Pep", field:"wt_pep", width:150,visible:false,headerFilter:"input"},
+        {title:"wt_pep", field:"wt_pep", width:150,visible:false,headerFilter:"input"},
         {title:"pep_hydro", field:"pep_hydro", width:150,visible:false,headerFilter:"input"},
         {title:"pep_polar", field:"pep_polar", width:150,visible:false,headerFilter:"input"},
         {title:"pep_charge", field:"pep_charge", width:150,visible:false,headerFilter:"input"},
@@ -1203,11 +1203,12 @@ $( "#colShow" ).change(function() {
   	var title=objkeys[i];
   	if(title==x){
   		var visible=table2.columnManager.columnsByField[title].definition.visible;
+  		console.log('visible');
   		if(visible){
-  			table2.hideColumn(x);
+  			table2.hideColumn(title);
   		}
   		else{
-  			table2.showColumn(x);
+  			table2.showColumn(title);
   		}
   	}
   	

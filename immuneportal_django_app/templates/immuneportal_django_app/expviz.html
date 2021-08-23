@@ -1127,6 +1127,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
    
 
     var container = document.createElement("span");
+    
+    var subcontainer=document.createElement("div");
 
     //create and style inputs
     var start = document.createElement("input");
@@ -1148,11 +1150,12 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     end.setAttribute("value", "90");
     
 
+   
 
 
-
-    container.appendChild(start);
-    container.appendChild(end);
+    subcontainer.appendChild(start);
+    subcontainer.appendChild(end);
+    container.append(subcontainer);
 
     return container;
  }

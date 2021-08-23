@@ -1144,11 +1144,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     {
         /* percentage position X of cursor  */
         console.log(eventArg.clientX);
-        var x100 = Math.abs(eventArg.clientX-rect.right)/rect.right;
+        var recta = a.getBoundingClientRect();
+        var x100 = Math.abs(eventArg.clientX-recta.right)/recta.right;
 
-        var rect = a.getBoundingClientRect();
-        console.log('aleft',rect.left);
-        console.log('bzleft',rect.right);
 
         /* absolute distance from respective slider values */
         var da = Math.abs(a.value-x100);

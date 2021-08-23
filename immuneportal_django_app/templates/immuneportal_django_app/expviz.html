@@ -353,13 +353,13 @@
   cursor: pointer;
 }
 
-input {
+.sliderinput {
     margin: 0px;
     position: absolute;
     left: 0px;
 }
 
-label {
+.sliderlabel {
     display: inline-block;
     margin-top: 100px;
 }
@@ -1071,11 +1071,13 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     var a=document.createElement('input');
     a.type="range";
     a.id="a";
+    a.setAttribute('sliderinput');
     
     
     var b=document.createElement('input');
     b.type="range";
     b.id="b";
+    b.setAttribute('sliderinput');
 /*
     var start=document.createElement('input');
     start.setAttribute('class','slider');

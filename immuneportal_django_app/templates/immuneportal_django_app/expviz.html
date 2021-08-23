@@ -1204,13 +1204,16 @@ $( "#colShow" ).change(function() {
   	//console.log('title',title,'x',x);
   	if(title==x){
   		console.log(table2.columnManager);
-  		var visible=table2.columnManager.columnsByField[title].col-title-holder.visible;
+  		var visible=table2.columnManager.columnsByField[title].definition.visible;
   		console.log(visible);
   		if(visible==true || visible==null){
+  			//table2.hideColumn(x);
+  			//console.log('hiding');
+  			table2.columnManager.columnsByField[title].definition.visible=false;
   			table2.hideColumn(x);
-  			console.log('hiding');
   		}
   		else{
+  		        table2.columnManager.columnsByField[title].definition.visible=true;
   			table2.showColumn(x);
   			console.log('showing');
   		}

@@ -1203,6 +1203,7 @@ $( "#colShow" ).change(function() {
   	var title=objkeys[i][1].definition['field'];
   	//console.log('title',title,'x',x);
   	if(title==x){
+  		console.log(table2.columnManager);
   		var visible=table2.columnManager.columnsByField[title].definition.visible;
   		console.log(visible);
   		if(visible==true){

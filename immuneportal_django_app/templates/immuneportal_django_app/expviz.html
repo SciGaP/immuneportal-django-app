@@ -354,6 +354,7 @@
 }
 
 .sliderinput {
+    
     margin: 0px;
     position: absolute;
     left: 0px;
@@ -1144,6 +1145,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
         /* percentage position X of cursor  */
         console.log(eventArg.clientX);
         var x100 = eventArg.clientX * 1;
+        
+        console.log('aleft',a.left);
 
         /* absolute distance from respective slider values */
         var da = Math.abs(a.value);

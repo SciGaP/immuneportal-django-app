@@ -57,7 +57,7 @@
 		<p style="visibility:hidden" ></p>
 <div id="example-table"></div>
 		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
-  Showing <span id="search_count"></span> results total <span id="total_count"></span> 
+  Showing <span id="search_count"></span> results from (<span id="total_count"></span>) total 
 </span>
 
 		
@@ -1248,8 +1248,8 @@ var table2 = new Tabulator("#example-table", {
         dataFiltered: function(filters, rows) {
         var el = document.getElementById("search_count");
         el.innerHTML = rows.length;
-        var el = document.getElementById("total_count");
-        el.innerHTML = data.length;
+        var el2 = document.getElementById("total_count");
+        el2.innerHTML = data.length;
     },
    
 });

@@ -4,349 +4,7 @@
 
 {% block content %}
 
-<script>
-function showColumns() {
-    var x = document.getElementById("colShow").value;
-    document.getElementById("example-table").showColumn(x);
-}
-</script>
-<div class="main-content-wrapper">
-    <main class="main-content">
-        <div class="container-fluid">
-            <h1>Immune Portal Experiment Output</h1>
-            <div class="card">
-                <div class="card-header">
-                    Searchable Data (<b>Hover over columns to see description, click on rows to get further sample information/genome location</b>)
-                </div>
-                <div class="card-body">
-		    <select id="urlVal" style="visibility:hidden;">
-	    		<option value={{outputFilePath}} selected>Select genome </option>
-		  </select>
-		  <!--<div id='forResultTable'></div>-->
-		  <p>Show or hide column:</p>
-		  
-		<select id="colShow" onchange="showColumns">
-		    <option value="peptide">peptide</option>
-<option value="gene">gene</option>
-<option value="tpm">tpm</option>
-<option value="rf_predict_prob">rf_predict_prob</option>
-<option value="ensembl">ensembl</option>
-<option value="geneSymbol">geneSymbol</option>
-<option value="HLA-A*24:02">HLA-A*24:02</option>
-<option value="HLA-A*25:01">HLA-A*25:01</option>
-<option value="HLA-B*07:02">HLA-B*07:02</option>
-<option value="HLA-B*18:01">HLA-B*18:01</option>
-<option value="HLA-C*07:02">HLA-C*07:02</option>
-<option value="HLA-C*12:03">HLA-C*12:03</option>
-<option value="hla">hla</option>
-<option value="wt_pep">wt_pep</option>
-<option value="pep_hydro">pep_hydro</option>
-<option value="pep_polar">pep_polar</option>
-<option value="pep_charge">pep_charge</option>
-<option value="pep_entropy">pep_entropy</option>
-<option value="pep_molsize">pep_molsize</option>
-<option value="pep_TAP">pep_TAP</option>
-<option value="pep_Cle">pep_Cle</option>
-<option value="pep_Comb">pep_Comb</option>
-<option value="neo_aff">neo_aff</option>
-<option value="neo_rank">neo_rank</option>
-<option value="iedb_immunescore">iedb_immunescore</option>
-<option value="pep_DAI">pep_DAI</option>
-<option value="pep_Rscore">pep_Rscore</option>
-<option value="pep_NRP">pep_NRP</option>
-<option value="pep_pTuneos">pep_pTuneos</option>
-<option value="rf_predict">rf_predict</option>
-<option value="pep_pTuneos">pep_pTuneos</option>>
-		</select>
-<div id="example-table"></div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
-		<div id="outer" style="display:none;border:1px">
-			<div id="additionalInfo" style="display:none;float:left;border:1px">
-				<br></br>
-				<p style="margin-left:2px">Further Information <b>(Select One):</b></p>
-				
-				<select onchange="miniTable()" name="colSelect" id="colSelect" style="display:none">
-				
-				</select>
-				
-				<br></br>
-				<div id="additionalInfo2" style="display:none;">
-				
-				
-			</div>
-			<!--<div id="additionalInfo2" style="display:none;float:right;margin-right:400px;margin-top:50px">-->
-				
-				
-				
-			</div>
-			
-		</div>
-		<p>&nbsp;</p> 
-		<div>
-		
-		<p id='gblabel'  style="display:none"><p>
-		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
-		</div>
-        </div>
-            
-            <!-- Adding a list of "Hello" greetings
-            <div class="card">
-                <div class="card-header">
-                    Run "echo" for different languages
-                </div>
-                <div class="card-body">
-                    <select id="greeting-select"></select>
-                    <button id="run-button" class="btn btn-primary">Run</button>
-                </div>
-            </div>
-            -->
-            
-	    <div class="card">
-                <div class="card-header" >
-                    Upset Plot, Intersecting Selections of HLA by antigens (<b>click to see enlarged</b>):
-                </div>
-                <div class="card-body" style="overflow:hidden" >
-		        
-		            		<img id="myImg" class="maglarge" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
-		            	
-		        <div id="myModal" class="modal">
-				  <span class="close">&times;</span>
-				  <img class="modal-content" id="img01">
-				  <div id="caption"></div>
-				</div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header" id="hlaLoadHeader">
-                </div>
-                <div class="card-body">
-                    <p>The red line indicates how the individual compares to TCGA samples:</p>
-                    <img id="hlaLoad2" src='https://immuneportal.ccbb.iupui.edu/static/files/HLALoad.png'></img>
-                    <!--<img  id="hlaload"></img>-->
-                </div>
-            </div>
-            
-            <div class="card" style='display:none'>
-                <div class="card-header">
-                    Individual and 1000 Genome HLA statistics (<b>Use the Dropdown to switch between sets</b>)
-                </div>
-                <div class="card-body">
-                
-                    <div id="myDiv2"></div>
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="relGenExpHeader">
-                    Gene Expression Relative to TCGA BRCA
-                </div>
-                <div class="card-body">
-                <p>The red dot indicates how the individual's cancer sample compares to the TCGA gene expression for that cancer:</p>
-                    <div id="boxes"></div>
-
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    Individual and 1000 Genome HLA statistics (<b>Use squares to the right of graph to switch between sets</b>)
-                </div>
-                <div class="card-body">
-                <p>Relative proportion of population HLAs to those present in sample:</p>
-                    <div id="myDiv1"></div>
-
-                </div>
-            </div>
-            
-        </div>
-    </main>
-</div>
-{% endblock content %}
-
-{% block css %}
-        <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="../../static/css/fixedHeader.dataTables.min.css">
-        <link rel="stylesheet" href="../../static/css/jquery-ui.css">
-        <link rel="stylesheet" href="../../static/css/buttons.dataTables.min.css">
-        <link href="../../static/css/tabulator.min.css" rel="stylesheet">
-         
-        <style>
-	       
-        #resultTable th{
-	  position:relative;
-	  z-index:100;
-	  
-	}
-	#resultTable td{
-	  position:relative;
-	  z-index:100;
-
-	}
-
-	.HlaWithComment{
-	  position:relative;
-	  z-index:100;
-	}
-
-	.HlaComment {
-	  visibility: hidden;
-	  position:absolute; 
-	  z-index: 99999;
-	  border:1px;
-	  background-color:white;
-	  border-style:solid;
-	  border-color:black;
-	  width:220px;
-	  color:black; 
-	  top:2px; 
-	  left:40px;
-	}
-
-	.HlaWithComment:hover span.HlaComment{
-	  visibility: visible;
-	  opacity: 1;
-	  width:220px;
-	  position:absolute; 
-	  z-index:99999;
-	}
-	
-	.WtWithComment{
-	cursor: pointer;
-	  position:relative;
-	  z-index:100;
-	}
-
-	.WtComment {
-	cursor: pointer;
-	  visibility: hidden;
-	  position:absolute; 
-	  z-index: 99998;
-	  border:1px;
-	  background-color:white;
-	  border-style:solid;
-	  border-color:black;
-	  width:300px;
-	  color:black; 
-	  top:2px; 
-	  left:40px;
-	}
-
-	.WtWithComment:hover span.WtComment{
-	cursor: pointer;
-	  visibility: visible;
-	  opacity: 1;
-	  width:300px;
-	  position:absolute; 
-	  z-index:99998;
-	}
-	
-	#myImg {
-	  border-radius: 5px;
-	  cursor: pointer;
-	  transition: 0.3s;
-	}
-
-	#myImg:hover {opacity: 0.7;}
-
-	/* The Modal (background) */
-	.modal {
-	  display: none; /* Hidden by default */
-	  position: fixed; /* Stay in place */
-	  z-index: 1; /* Sit on top */
-	  padding-top: 100px; /* Location of the box */
-	  left: 0;
-	  top: 0;
-	  width: 100%; /* Full width */
-	  height: 100%; /* Full height */
-	  overflow: auto; /* Enable scroll if needed */
-	  background-color: rgb(0,0,0); /* Fallback color */
-	  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-	}
-
-	/* Modal Content (image) */
-	.modal-content {
-	  
-	  display: block;
-	  width: 200%;
-	  
-	}
-
-	/* Caption of Modal Image */
-	#caption {
-	  margin: auto;
-	  display: block;
-	  width: 80%;
-	  max-width: 700px;
-	  text-align: center;
-	  color: #ccc;
-	  padding: 10px 0;
-	  height: 150px;
-	}
-
-	/* Add Animation */
-	.modal-content, #caption {  
-	  -webkit-animation-name: zoom;
-	  -webkit-animation-duration: 0.6s;
-	  animation-name: zoom;
-	  animation-duration: 0.6s;
-	}
-
-	@-webkit-keyframes zoom {
-	  from {-webkit-transform:scale(0)} 
-	  to {-webkit-transform:scale(1)}
-	}
-
-	@keyframes zoom {
-	  from {transform:scale(0)} 
-	  to {transform:scale(1)}
-	}
-
-	/* The Close Button */
-	.close {
-	  position: absolute;
-	  top: 15px;
-	  right: 35px;
-	  color: #f1f1f1;
-	  font-size: 40px;
-	  font-weight: bold;
-	  transition: 0.3s;
-	}
-
-	.close:hover,
-	.close:focus {
-	  color: #bbb;
-	  text-decoration: none;
-	  cursor: pointer;
-	}
-
-	/* 100% Image Width on Smaller Screens */
-	@media only screen and (max-width: 700px){
-	  .modal-content {
-	    width: 100%;
-	  }
-	}
-	</style>
-  {% endblock %}
-  
-{% block scripts %}
 <script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
 
   <script src="../../static/js/jquery-3.5.1.js" defer ></script>
@@ -374,6 +32,7 @@ function showColumns() {
   <script src="../../static/js/blowup.min.js"></script>
 
 <script>
+
 
 var modal = document.getElementById("myModal");
 
@@ -1087,6 +746,7 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
 
 function showColumns() {
     var x = document.getElementById("colShow").value;
+    console.log(x);
     document.getElementById("example-table").showColumn(x);
 }
 
@@ -1622,6 +1282,344 @@ myPlot.on('plotly_click', function(data){
 
 
 </script>
+<div class="main-content-wrapper">
+    <main class="main-content">
+        <div class="container-fluid">
+            <h1>Immune Portal Experiment Output</h1>
+            <div class="card">
+                <div class="card-header">
+                    Searchable Data (<b>Hover over columns to see description, click on rows to get further sample information/genome location</b>)
+                </div>
+                <div class="card-body">
+		    <select id="urlVal" style="visibility:hidden;">
+	    		<option value={{outputFilePath}} selected>Select genome </option>
+		  </select>
+		  <!--<div id='forResultTable'></div>-->
+		  <p>Show or hide column:</p>
+		  
+		<select id="colShow" onchange="showColumns">
+		    <option value="peptide">peptide</option>
+<option value="gene">gene</option>
+<option value="tpm">tpm</option>
+<option value="rf_predict_prob">rf_predict_prob</option>
+<option value="ensembl">ensembl</option>
+<option value="geneSymbol">geneSymbol</option>
+<option value="HLA-A*24:02">HLA-A*24:02</option>
+<option value="HLA-A*25:01">HLA-A*25:01</option>
+<option value="HLA-B*07:02">HLA-B*07:02</option>
+<option value="HLA-B*18:01">HLA-B*18:01</option>
+<option value="HLA-C*07:02">HLA-C*07:02</option>
+<option value="HLA-C*12:03">HLA-C*12:03</option>
+<option value="hla">hla</option>
+<option value="wt_pep">wt_pep</option>
+<option value="pep_hydro">pep_hydro</option>
+<option value="pep_polar">pep_polar</option>
+<option value="pep_charge">pep_charge</option>
+<option value="pep_entropy">pep_entropy</option>
+<option value="pep_molsize">pep_molsize</option>
+<option value="pep_TAP">pep_TAP</option>
+<option value="pep_Cle">pep_Cle</option>
+<option value="pep_Comb">pep_Comb</option>
+<option value="neo_aff">neo_aff</option>
+<option value="neo_rank">neo_rank</option>
+<option value="iedb_immunescore">iedb_immunescore</option>
+<option value="pep_DAI">pep_DAI</option>
+<option value="pep_Rscore">pep_Rscore</option>
+<option value="pep_NRP">pep_NRP</option>
+<option value="pep_pTuneos">pep_pTuneos</option>
+<option value="rf_predict">rf_predict</option>
+<option value="pep_pTuneos">pep_pTuneos</option>>
+		</select>
+<div id="example-table"></div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--CREATING A POPUP SECTION AFTER USER CLICKS-->
+		<div id="outer" style="display:none;border:1px">
+			<div id="additionalInfo" style="display:none;float:left;border:1px">
+				<br></br>
+				<p style="margin-left:2px">Further Information <b>(Select One):</b></p>
+				
+				<select onchange="miniTable()" name="colSelect" id="colSelect" style="display:none">
+				
+				</select>
+				
+				<br></br>
+				<div id="additionalInfo2" style="display:none;">
+				
+				
+			</div>
+			<!--<div id="additionalInfo2" style="display:none;float:right;margin-right:400px;margin-top:50px">-->
+				
+				
+				
+			</div>
+			
+		</div>
+		<p>&nbsp;</p> 
+		<div>
+		
+		<p id='gblabel'  style="display:none"><p>
+		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
+		</div>
+        </div>
+            
+            <!-- Adding a list of "Hello" greetings
+            <div class="card">
+                <div class="card-header">
+                    Run "echo" for different languages
+                </div>
+                <div class="card-body">
+                    <select id="greeting-select"></select>
+                    <button id="run-button" class="btn btn-primary">Run</button>
+                </div>
+            </div>
+            -->
+            
+	    <div class="card">
+                <div class="card-header" >
+                    Upset Plot, Intersecting Selections of HLA by antigens (<b>click to see enlarged</b>):
+                </div>
+                <div class="card-body" style="overflow:hidden" >
+		        
+		            		<img id="myImg" class="maglarge" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
+		            	
+		        <div id="myModal" class="modal">
+				  <span class="close">&times;</span>
+				  <img class="modal-content" id="img01">
+				  <div id="caption"></div>
+				</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" id="hlaLoadHeader">
+                </div>
+                <div class="card-body">
+                    <p>The red line indicates how the individual compares to TCGA samples:</p>
+                    <img id="hlaLoad2" src='https://immuneportal.ccbb.iupui.edu/static/files/HLALoad.png'></img>
+                    <!--<img  id="hlaload"></img>-->
+                </div>
+            </div>
+            
+            <div class="card" style='display:none'>
+                <div class="card-header">
+                    Individual and 1000 Genome HLA statistics (<b>Use the Dropdown to switch between sets</b>)
+                </div>
+                <div class="card-body">
+                
+                    <div id="myDiv2"></div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="relGenExpHeader">
+                    Gene Expression Relative to TCGA BRCA
+                </div>
+                <div class="card-body">
+                <p>The red dot indicates how the individual's cancer sample compares to the TCGA gene expression for that cancer:</p>
+                    <div id="boxes"></div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Individual and 1000 Genome HLA statistics (<b>Use squares to the right of graph to switch between sets</b>)
+                </div>
+                <div class="card-body">
+                <p>Relative proportion of population HLAs to those present in sample:</p>
+                    <div id="myDiv1"></div>
+
+                </div>
+            </div>
+            
+        </div>
+    </main>
+</div>
+{% endblock content %}
+
+{% block css %}
+        <link rel="stylesheet" href="../../static/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../../static/css/fixedHeader.dataTables.min.css">
+        <link rel="stylesheet" href="../../static/css/jquery-ui.css">
+        <link rel="stylesheet" href="../../static/css/buttons.dataTables.min.css">
+        <link href="../../static/css/tabulator.min.css" rel="stylesheet">
+         
+        <style>
+	       
+        #resultTable th{
+	  position:relative;
+	  z-index:100;
+	  
+	}
+	#resultTable td{
+	  position:relative;
+	  z-index:100;
+
+	}
+
+	.HlaWithComment{
+	  position:relative;
+	  z-index:100;
+	}
+
+	.HlaComment {
+	  visibility: hidden;
+	  position:absolute; 
+	  z-index: 99999;
+	  border:1px;
+	  background-color:white;
+	  border-style:solid;
+	  border-color:black;
+	  width:220px;
+	  color:black; 
+	  top:2px; 
+	  left:40px;
+	}
+
+	.HlaWithComment:hover span.HlaComment{
+	  visibility: visible;
+	  opacity: 1;
+	  width:220px;
+	  position:absolute; 
+	  z-index:99999;
+	}
+	
+	.WtWithComment{
+	cursor: pointer;
+	  position:relative;
+	  z-index:100;
+	}
+
+	.WtComment {
+	cursor: pointer;
+	  visibility: hidden;
+	  position:absolute; 
+	  z-index: 99998;
+	  border:1px;
+	  background-color:white;
+	  border-style:solid;
+	  border-color:black;
+	  width:300px;
+	  color:black; 
+	  top:2px; 
+	  left:40px;
+	}
+
+	.WtWithComment:hover span.WtComment{
+	cursor: pointer;
+	  visibility: visible;
+	  opacity: 1;
+	  width:300px;
+	  position:absolute; 
+	  z-index:99998;
+	}
+	
+	#myImg {
+	  border-radius: 5px;
+	  cursor: pointer;
+	  transition: 0.3s;
+	}
+
+	#myImg:hover {opacity: 0.7;}
+
+	/* The Modal (background) */
+	.modal {
+	  display: none; /* Hidden by default */
+	  position: fixed; /* Stay in place */
+	  z-index: 1; /* Sit on top */
+	  padding-top: 100px; /* Location of the box */
+	  left: 0;
+	  top: 0;
+	  width: 100%; /* Full width */
+	  height: 100%; /* Full height */
+	  overflow: auto; /* Enable scroll if needed */
+	  background-color: rgb(0,0,0); /* Fallback color */
+	  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+
+	/* Modal Content (image) */
+	.modal-content {
+	  
+	  display: block;
+	  width: 200%;
+	  
+	}
+
+	/* Caption of Modal Image */
+	#caption {
+	  margin: auto;
+	  display: block;
+	  width: 80%;
+	  max-width: 700px;
+	  text-align: center;
+	  color: #ccc;
+	  padding: 10px 0;
+	  height: 150px;
+	}
+
+	/* Add Animation */
+	.modal-content, #caption {  
+	  -webkit-animation-name: zoom;
+	  -webkit-animation-duration: 0.6s;
+	  animation-name: zoom;
+	  animation-duration: 0.6s;
+	}
+
+	@-webkit-keyframes zoom {
+	  from {-webkit-transform:scale(0)} 
+	  to {-webkit-transform:scale(1)}
+	}
+
+	@keyframes zoom {
+	  from {transform:scale(0)} 
+	  to {transform:scale(1)}
+	}
+
+	/* The Close Button */
+	.close {
+	  position: absolute;
+	  top: 15px;
+	  right: 35px;
+	  color: #f1f1f1;
+	  font-size: 40px;
+	  font-weight: bold;
+	  transition: 0.3s;
+	}
+
+	.close:hover,
+	.close:focus {
+	  color: #bbb;
+	  text-decoration: none;
+	  cursor: pointer;
+	}
+
+	/* 100% Image Width on Smaller Screens */
+	@media only screen and (max-width: 700px){
+	  .modal-content {
+	    width: 100%;
+	  }
+	}
+	</style>
+  {% endblock %}
+  
+{% block scripts %}
+
 <script>
     
     const { models, services, session, utils } = AiravataAPI;

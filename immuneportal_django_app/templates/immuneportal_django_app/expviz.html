@@ -1064,7 +1064,8 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //rowValue - the value of the column in this row
     //rowData - the data for the row being filtered
     //filterParams - params object passed to the headerFilterFuncParams property
-
+	rowValue=parseFloat(rowValue);
+	headerValue=parseFloat(headerValue);
         if(rowValue){
             if(headerValue.start != ""){
                 if(headerValue.end != ""){

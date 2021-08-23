@@ -369,7 +369,10 @@
   <script src="../../static/js/blowup.min.js"></script>
 
 <script>
-
+function showColumns() {
+	    var x = document.getElementById("colShow").value;
+	    document.getElementById("example-table").showColumn(x);
+	};
 var modal = document.getElementById("myModal");
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
@@ -1123,12 +1126,7 @@ var table2 = new Tabulator("#example-table", {
         ],
 });
 
-$(document).ready(function(){
-        function showColumns() {
-	    var x = document.getElementById("colShow").value;
-	    document.getElementById("example-table").showColumn(x);
-	}
-    });
+
 
 
 

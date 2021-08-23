@@ -339,6 +339,121 @@
 	    width: 100%;
 	  }
 	}
+	
+	body{
+font-family: sans-serif;
+font-size:14px;
+}
+input[type='range'] {
+  width: 210px;
+  height: 30px;
+  overflow: hidden;
+  cursor: pointer;
+    outline: none;
+}
+input[type='range'],
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+    background: none;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  width: 200px;
+  height: 1px;
+  background: #003D7C;
+}
+
+input[type='range']:nth-child(2)::-webkit-slider-runnable-track{
+  background: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  margin-top: -7px;
+  background: #fff;
+  border: 1px solid #003D7C;
+  border-radius: 25px;
+  z-index: 1;
+}
+
+
+input[type='range']:nth-child(1)::-webkit-slider-thumb{
+  z-index: 2;
+}
+
+.rangeslider{
+    position: relative;
+    height: 60px;
+    width: 210px;
+    display: inline-block;
+    margin-top: -5px;
+    margin-left: 20px;
+}
+.rangeslider input{
+    position: absolute;
+}
+.rangeslider{
+    position: absolute;
+}
+
+.rangeslider span{
+    position: absolute;
+    margin-top: 30px;
+    left: 0;
+}
+
+.rangeslider .right{
+   position: relative;
+   float: right;
+   margin-right: -5px;
+}
+
+
+/* Proof of concept for Firefox */
+@-moz-document url-prefix() {
+  .rangeslider::before{
+    content:'';
+    width:100%;
+    height:2px;
+    background: #003D7C;
+    display:block;
+    position: relative;
+    top:16px;
+  }
+
+  input[type='range']:nth-child(1){
+    position:absolute;
+    top:35px !important;
+    overflow:visible !important;
+    height:0;
+  }
+
+  input[type='range']:nth-child(2){
+    position:absolute;
+    top:35px !important;
+    overflow:visible !important;
+    height:0;
+  }
+input[type='range']::-moz-range-thumb {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  margin-top: -7px;
+  background: #fff;
+  border: 1px solid #003D7C;
+  border-radius: 25px;
+  z-index: 1;
+}
+
+  input[type='range']:nth-child(1)::-moz-range-thumb {
+      transform: translateY(-20px);    
+  }
+  input[type='range']:nth-child(2)::-moz-range-thumb {
+      transform: translateY(-20px);    
+  }
+}
 	</style>
   {% endblock %}
   
@@ -1004,11 +1119,53 @@ var data_file2=data_file.split("?")[1];
 				
 
 
+var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 
+    
+    
+    
+    <input class="min" name="range_1" type="range" min="1" max="100" value="10" />
+                                <input class="max" name="range_1" type="range" min="1" max="100" value="90" />
+                                <span class="range_min light left">10.000 €</span>
+                                <span class="range_max light right">90.000 €</span>
+
+    var container = document.createElement("span");
+
+    //create and style inputs
+    var start = document.createElement("input");
+    start.setAttribute("class", "min");
+    start.setAttribute("name", "range_1");
+    start.setAttribute("type", "range");
+    start.setAttribute("min", "1");
+    start.setAttribute("max", "100");
+    start.setAttribute("value", "10");
+    
+    
+    
+    var end = document.createElement("input");
+    end.setAttribute("class", "max");
+    end.setAttribute("name", "range_1");
+    end.setAttribute("type", "range");
+    end.setAttribute("min", "1");
+    end.setAttribute("max", "100");
+    end.setAttribute("value", "90");
+    
+
+
+
+
+    container.appendChild(start);
+    container.appendChild(end);
+
+    return container;
+ }
+ 
+ /*
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 
     var end;
-
+    
+    
     var container = document.createElement("span");
 
     //create and style inputs
@@ -1056,7 +1213,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     container.appendChild(end);
 
     return container;
- }
+ }*/
 
 //custom max min filter function
 function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){

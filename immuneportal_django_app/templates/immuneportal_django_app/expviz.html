@@ -1034,7 +1034,7 @@ var data_file2=data_file.split("?")[1];
 				
 var customTitleFormatter = function(cell){
 
-    var headerEl = cell.getElement().parentNode.parentNode; //get the column header element from above the title element
+    var headerEl = cell.getElement(); //get the column header element from above the title element
 
     headerEl.addEventListener("mouseover", function(e){
         //do something

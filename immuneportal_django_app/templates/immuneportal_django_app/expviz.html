@@ -1374,13 +1374,13 @@ $( "#b" ).mousemove(function(event) {
         {
             if (da < db) 
             {
-                $( "#a" ).style.zIndex = 2;
-                $( "#b" ).style.zIndex = 1;
+                $( "#a" ).setAttribute('zIndex', 2);
+                $( "#b" ).setAttribute('zIndex', 1);
             } 
             else 
             {
-                $( "#b" ).style.zIndex = 2;
-                $( "#a" ).style.zIndex = 1;
+                $( "#b" ).setAttribute('zIndex', 2);
+                $( "#a" ).setAttribute('zIndex', 1);
             }
         }
         document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;

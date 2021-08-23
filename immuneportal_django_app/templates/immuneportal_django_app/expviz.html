@@ -1061,7 +1061,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
 	
 
-    var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label><input class='slider' type='range' name='price-min' id='price-min' value='0' min='0' max='100'><input class='slider' type='range' name='price-max' id='price-max' value='100' min='0' max='100'><label for='price-max' id='price-max-lbl'>100</label>";
+    var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label><input onchange='changMin()' class='slider' type='range' name='price-min' id='price-min' value='0' min='0' max='100'><input  onchange='changeMax()' class='slider' type='range' name='price-max' id='price-max' value='100' min='0' max='100'><label for='price-max' id='price-max-lbl'>100</label>";
     
     subcontainer.innerHTML=fieldvalue;
     
@@ -1071,16 +1071,13 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     return container;
  }
- $( "#price-min-lbl" ).change(function() {
- 	
+ function changeMin(){
  	$( "#price-min-lbl" ).text=$( "#price-min" ).val();
+ }
+ function changeMax(){
+ 	$( "#price-min-lbl" ).text=$( "#price-min" ).val();
+ }
  
- });
- $( "#price-max-lbl" ).change(function() {
- 	
- 	$( "#price-max-lbl" ).text=$( "#price-max" ).val();
- 
- });
  /*
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 

@@ -1144,17 +1144,15 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     {
         /* percentage position X of cursor  */
         console.log(eventArg.clientX);
-        var x100 = eventArg.clientX * 1;
+        var x100 = Math.abs(eventArg.clientX-rect.right)/rect.right;
 
         var rect = a.getBoundingClientRect();
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         console.log('aleft',rect.left);
         console.log('bzleft',rect.right);
 
         /* absolute distance from respective slider values */
-        var da = Math.abs(a.value);
-        var db = Math.abs(b.value);
+        var da = Math.abs(a.value-x100);
+        var db = Math.abs(b.value-x100);
         console.log(x100,da,db);
         // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
         if (!eventArg.buttons) 

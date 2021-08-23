@@ -341,7 +341,7 @@
 	}
 	.slider {
   -webkit-appearance: none;
-  width: 70px;
+  width: 60px;
   height: 1px;
   background: #000000;
   outline: none;
@@ -357,15 +357,15 @@
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 2px;
-  height: 25px;
+  width: 1px;
+  height: 20px;
   background: #000000;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 2px;
-  height: 25px;
+  width: 1px;
+  height: 20px;
   background: #000000;
   cursor: pointer;
 }
@@ -1032,7 +1032,17 @@ var data_file2=data_file.split("?")[1];
 				*/
 				
 				
-				
+var customTitleFormatter = function(cell){
+
+    var headerEl = cell.getElement().parentNode.parentNode; //get the column header element from above the title element
+
+    headerEl.addEventListener("mouseover", function(e){
+        //do something
+        console.log('mousover');
+    });
+
+    return cell.getValue(); // ensure the title is set on the cell
+}	
 				
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 
@@ -1145,7 +1155,7 @@ var table2 = new Tabulator("#example-table", {
     layout:"fitDataFill",
     movableColumns: true,
     columns:[
-        {title:"Peptide", field:"peptide", width:150,headerFilter:"input"},
+        {title:"Peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
         {title:"Gene", field:"gene", width:150,headerFilter:"input"},
         {title:"TPM", field:"tpm", width:150,headerFilter:"input"},
         {title:"RF Predict Prob.", field:"rf_predict_prob", width:150,headerFilter:minMaxFilterEditor},

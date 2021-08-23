@@ -391,10 +391,7 @@ span.onclick = function() {
 
 
 
-function showColumns() {
-    var x = document.getElementById("colShow").value;
-    document.getElementById("example-table").showColumn(x);
-}
+
 
 
 
@@ -1122,6 +1119,12 @@ var table2 = new Tabulator("#example-table", {
         
         ],
 });
+
+
+function showColumns() {
+    var x = document.getElementById("colShow").value;
+    document.getElementById("example-table").showColumn(x);
+}
 				
 						   console.log('DATATOTABLE',dataoutTable);
 						    

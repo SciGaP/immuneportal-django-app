@@ -1119,10 +1119,10 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
 
     var lmin=document.createElement('label');
-    lmin.setAttribute("for","price-min");
+    lmin.setAttribute("for","a");
     lmin.id='price-min-lbl';
     var lmax=document.createElement('label');
-    lmax.setAttribute("for","price-max");
+    lmax.setAttribute("for","b");
     lmax.id='price-max-lbl';
     
     lmax.innerHTML=' Max:1.00';
@@ -1181,10 +1181,11 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     
     
-    //container.append(lmin);
+    container.append(lmin);
     container.append(a);
     //container.append(lmax);
     container.append(b);
+    container.append(lmax);
     //container.append(lmax);
 
     return container;

@@ -1144,7 +1144,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
         // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
         if (!eventArg.buttons) 
         {
-            if (da < db) 
+            if (da > db) 
             {
                 a.style.zIndex = 2;
                 b.style.zIndex = 1;

@@ -1062,7 +1062,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     var start=document.createElement('input');
     start.setAttribute('class','slider');
-    start.setAttribute("oninput","document.getElementById('price-minid').innerHTML = this.value");
+    start.setAttribute("oninput","document.getElementById('price-min-lbl').innerHTML = this.value");
     start.type='range';
     start.name='price-min';
     start.id='price-minid';

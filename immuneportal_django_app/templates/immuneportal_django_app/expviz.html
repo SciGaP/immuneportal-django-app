@@ -20,7 +20,7 @@
 		  <!--<div id='forResultTable'></div>-->
 		  <p>Show or hide column:</p>
 		  
-		<select id="colShow" onchange="showColumns">
+		<select id="colShow" >
 		    <option value="peptide">peptide</option>
 <option value="gene">gene</option>
 <option value="tpm">tpm</option>
@@ -369,11 +369,10 @@
   <script src="../../static/js/blowup.min.js"></script>
 
 <script>
-function showColumns() {
-	    var x = document.getElementById("colShow").value;
-	    console.log(x);
-	    document.getElementById("example-table").showColumn(x);
-	};
+$( "colShow" ).change(function() {
+  alert( "Handler for .change() called." );
+});
+
 var modal = document.getElementById("myModal");
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption

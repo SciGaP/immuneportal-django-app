@@ -1205,6 +1205,39 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
 }
 
 
+var browser =  new Browser({
+								      chr:          '22',
+								      viewStart:    30700000,
+								      viewEnd:      30900000,
+
+								      coordSystem: {
+									speciesName: 'Human',
+									taxon: 9606,
+									auth: 'GRCh',
+									version: '38',
+									ucscName: 'hg38'
+								      },
+
+								      sources:     [{name:                 'Genome',
+										     twoBitURI:            'https://www.biodalliance.org/datasets/hg38.2bit',
+										     tier_type:            'sequence'},
+										    {name:                 'Genes',
+										     desc:                 'Gene structures from GENCODE 20',
+										     bwgURI:               'https://www.biodalliance.org/datasets/gencode.bb',
+										     stylesheet_uri:       'https://www.biodalliance.org/stylesheets/gencode.xml',
+										     collapseSuperGroups:  true,
+										     trixURI:              'https://www.biodalliance.org/datasets/geneIndex.ix'},
+										    {name:                 'Repeats',
+										     desc:                 'Repeat annotation from Ensembl',
+										     bwgURI:               'https://www.biodalliance.org/datasets/repeats.bb',
+										     stylesheet_uri:       'https://www.biodalliance.org/stylesheets/bb-repeats.xml'},
+										    {name:                 'Conservation',
+										     desc:                 'Conservation', 
+										     bwgURI:               'https://immuneportal.ccbb.iupui.edu/data/hg38.100way.phyloP100way.bw',
+										     noDownsample:         true}],
+
+								    });
+
 
 var table2 = new Tabulator("#example-table", {
     data:jsonout,
@@ -1255,6 +1288,14 @@ var table2 = new Tabulator("#example-table", {
     //e - the click event object
     //row - row component
     console.log(row);
+    
+    var temp=row.cells[1].value.split('@')[1]
+  var chr=temp.split(':')[0].substring(3)
+  var start=parseInt(temp.split(':')[1].split('-')[0])
+  var end=parseInt(temp.split(':')[1].split('-')[1])
+   browser.setLocation(chr, start-50, end + 50);
+   document.getElementById('gblabel').style.display="block";
+  document.getElementById('svgHolder').style.display="block";
     },
    
 });
@@ -1315,38 +1356,7 @@ $( "#colShow" ).change(function() {
 							
 							
 							
-								var browser =  new Browser({
-								      chr:          '22',
-								      viewStart:    30700000,
-								      viewEnd:      30900000,
-
-								      coordSystem: {
-									speciesName: 'Human',
-									taxon: 9606,
-									auth: 'GRCh',
-									version: '38',
-									ucscName: 'hg38'
-								      },
-
-								      sources:     [{name:                 'Genome',
-										     twoBitURI:            'https://www.biodalliance.org/datasets/hg19.2bit',
-										     tier_type:            'sequence'},
-										    {name:                 'Genes',
-										     desc:                 'Gene structures from GENCODE 19',
-										     bwgURI:               'https://www.biodalliance.org/datasets/gencode.bb',
-										     stylesheet_uri:       'https://www.biodalliance.org/stylesheets/gencode.xml',
-										     collapseSuperGroups:  true,
-										     trixURI:              'https://www.biodalliance.org/datasets/geneIndex.ix'},
-										    {name:                 'Repeats',
-										     desc:                 'Repeat annotation from Ensembl',
-										     bwgURI:               'https://www.biodalliance.org/datasets/repeats.bb',
-										     stylesheet_uri:       'https://www.biodalliance.org/stylesheets/bb-repeats.xml'},
-										    {name:                 'Conservation',
-										     desc:                 'Conservation', 
-										     bwgURI:               'https://immuneportal.ccbb.iupui.edu/data/hg19.100way.phyloP100way.bw',
-										     noDownsample:         true}],
-
-								    });
+								
 
 					    /*
 					    //HLALOAD SECTION

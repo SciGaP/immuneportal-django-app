@@ -339,6 +339,36 @@
 	    width: 100%;
 	  }
 	}
+	.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 2px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 2px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
 	
 
 	</style>
@@ -1018,7 +1048,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
 	
 
-    var fieldvalue = "<label for='price-min'></label><input style='width: 100px;' type='range' name='price-min' id='price-min' value='200' min='0' max='1000'><label for='price-max'></label><input style='width: 100px;' type='range' name='price-max' id='price-max' value='800' min='0' max='1000'>";
+    var fieldvalue = "<label for='price-min'></label><input style='width: 70px;' class='slider' type='range' name='price-min' id='price-min' value='0' min='0' max='100'><label for='price-max'></label><input style='width: 70px;' class='slider' type='range' name='price-max' id='price-max' value='100' min='0' max='100'>";
     
     subcontainer.innerHTML=fieldvalue;
     

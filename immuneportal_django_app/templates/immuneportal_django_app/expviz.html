@@ -65,6 +65,7 @@
   Showing <span id="search_count"></span> results from (<span id="total_count"></span>)  
 </span>
 <div id='rowData' style="display:none"><br/><p>All Row Columns</p></div>
+<p id='colDescription2' sytle="display:none"></p>
 <div id="example-table3" style="display:none"></div>
 		
 		
@@ -1103,7 +1104,7 @@ var customTitleFormatter2 = function(cell){
         console.log(headerEl.innerText);
         
         document.getElementById('colDescription2').innerHTML=headerEl.innerText+':'+descriptionDict[headerEl.innerText];
-        
+        document.getElementById('colDescription2').display='block';
         
     });
 

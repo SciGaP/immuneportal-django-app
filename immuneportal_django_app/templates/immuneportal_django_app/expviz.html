@@ -1320,7 +1320,9 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //filterParams - params object passed to the headerFilterFuncParams property
         if(rowValue){
             if(headerValue.start != "0" && headerValue.start != "" ){
+                console.log('start is 0');
                 if(headerValue.end != "1" && headerValue.end != ""){
+                console.log('end is 1');
                 //console.log('filtering');
                     return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != "0" && rowValue != "1";
                 }

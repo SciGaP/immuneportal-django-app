@@ -1140,6 +1140,18 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     startbox.style.boxSizing = "border-box";
 
     startbox.value = cell.getValue();
+    
+    
+    var endbox = document.createElement("input");
+    endbox.setAttribute("type", "number");
+    endbox.setAttribute("placeholder", "Max");
+    endbox.setAttribute("min", 0.00);
+    endbox.setAttribute("max", 1.00);
+    endbox.style.padding = "4px";
+    endbox.style.width = "75px";
+    endbox.style.boxSizing = "border-box";
+
+    endbox.value = cell.getValue();
 
     function buildValues(){
         success({
@@ -1182,8 +1194,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     }
     
     
-    endbox = start.cloneNode();
-    endbox.setAttribute("placeholder", "Max");
+    
     
     start.addEventListener("mousemove",MouseMove );
     start.addEventListener("change", buildValues);

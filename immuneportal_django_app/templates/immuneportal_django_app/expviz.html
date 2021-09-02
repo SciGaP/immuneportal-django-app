@@ -20,7 +20,7 @@
 		  <!--<div id='forResultTable'></div>-->
 		  <p>Show or hide column:</p>
 		  
-		<select id="colShow" >
+		<span><select id="colShow" >
 		    <option value="">Select Column</option>
 		    <option value="peptide">peptide</option>
 <option value="gene">gene</option>
@@ -53,10 +53,9 @@
 <option value="pep_pTuneos">pep_pTuneos</option>
 <option value="rf_predict">rf_predict</option>
 <option value="pep_pTuneos">pep_pTuneos</option>>
-		</select>
-		<p style="visibility:hidden" ></p>
+		</select></span>
 
-<button id="download-csv">Download CSV</button>
+<span><button id="download-csv">Download CSV</button></span>
 
 <div id="example-table"></div>
 
@@ -1607,7 +1606,7 @@ $( "#colShow" ).change(function() {
 
 
 document.getElementById("download-csv").addEventListener("click", function(){
-    table.download("csv", "data.csv");
+    table2.download("csv", "data.csv");
 });
 
 

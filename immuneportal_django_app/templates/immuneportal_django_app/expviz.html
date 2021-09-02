@@ -1151,6 +1151,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     startbox.setAttribute("max", 1.00);
     startbox.style.margin="0px";
     startbox.style.left="0px";
+    startbox.setAttribute("step", 0.01);
+    startbox.setAttribute("value", 0.00);
     startbox.style.width = "75px";
     startbox.style.zIndex="2";
 
@@ -1162,7 +1164,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     endbox.setAttribute("placeholder", "Max");
     endbox.setAttribute('class','maxbox');
     endbox.setAttribute("min", 0.00);
+    endbox.setAttribute("step", 0.01);
     endbox.setAttribute("max", 1.00);
+    endbox.setAttribute("value", 1.00);
     //endbox.style.padding = "4px";
     endbox.style.width = "75px";
     endbox.style.zIndex="2";

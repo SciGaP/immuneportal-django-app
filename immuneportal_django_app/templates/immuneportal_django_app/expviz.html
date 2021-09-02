@@ -1437,13 +1437,19 @@ var retJson=[{
   "undefined": "-0.0"
 }];
 
+
+function onHoverTable(){
+	console.log('columnHovered');
+
+    }
+
 var table2 = new Tabulator("#example-table", {
     data:jsonout,
     height:"311px",
     layout:"fitDataFill",
     //movableColumns: true,
     columns:[
-        {title:"peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+        {title:"peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter,tooltip:onHoverTable},
         {title:"gene", field:"gene", width:150,headerFilter:"input"},
         {title:"tpm", field:"tpm", width:150,headerFilter:"input"},
         {title:"rf_predict_prob", field:"rf_predict_prob", width:300,headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction, headerFilterLiveFilter:false},

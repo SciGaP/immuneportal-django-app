@@ -1229,9 +1229,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     
     startbox.addEventListener("change",boxalter);
-    startbox.addEventListener("onkeydown",boxalter);
+    startbox.addEventListener("input",boxalter);
     endbox.addEventListener("change",boxalter);
-    endbox.addEventListener("onkeydown",boxalter);
+    endbox.addEventListener("input",boxalter);
     
     start.addEventListener("mousemove",MouseMove );
     start.addEventListener("change", buildValues);

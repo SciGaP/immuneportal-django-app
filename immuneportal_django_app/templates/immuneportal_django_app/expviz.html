@@ -1083,7 +1083,7 @@ var customTitleFormatter = function(cell){
         //console.log(e);
         console.log(headerEl.innerText);
         
-        document.getElementById('colDescription').innerHTML=headerEl.innerText+':'+descriptionDict[headerEl.innerText];
+        document.getElementById('colDescription').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
         
         
     });
@@ -1103,7 +1103,7 @@ var customTitleFormatter2 = function(cell){
         //console.log(e);
         console.log(headerEl.innerText);
         
-        document.getElementById('colDescription2').innerHTML=headerEl.innerText+':'+descriptionDict[headerEl.innerText];
+        document.getElementById('colDescription2').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
         document.getElementById('colDescription2').display='block';
         
     });

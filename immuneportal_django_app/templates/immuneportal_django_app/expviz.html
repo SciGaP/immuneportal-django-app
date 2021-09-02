@@ -1397,7 +1397,39 @@ var browser =  new Browser({
 
 
 
-var retJson={};
+var retJson={
+  "peptide": "AEMKVWET",
+  "gene": "ENSG00000180096-16@chr16:30379535-30379931",
+  "tpm": "0.8473",
+  "HLA-A*24:02": "0.016",
+  "HLA-A*25:01": "ENSG00000180096",
+  "HLA-B*07:02": "SEPTIN1",
+  "HLA-B*18:01": "52.0",
+  "HLA-C*07:02": "55.0",
+  "HLA-C*12:03": "50.0",
+  "hla": "1.825",
+  "wt_pep": "53.0",
+  "pep_hydro": "56.667",
+  "pep_polar": "HLA-B18:01",
+  "pep_charge": "AEQGVWET",
+  "pep_entropy": "-4.6",
+  "pep_molsize": "53.56",
+  "pep_TAP": "-1",
+  "pep_Cle": "1754.17",
+  "pep_Comb": "992",
+  "neo_aff": "-0.296",
+  "neo_rank": "0.09325",
+  "iedb_immunescore": "0.29258",
+  "pep_DAI": "5301.04",
+  "pep_Rscore": "1.825",
+  "pep_NRP": "0.0592",
+  "pep_pTuneos": "-0.9346",
+  "rf_predict": "0.0",
+  "rf_predict_prob": "-0.0",
+  "ensembl": "-0.0",
+  "geneSymbol": "Negative",
+  "undefined": "-0.0"
+};
 
 var table2 = new Tabulator("#example-table", {
     data:jsonout,
@@ -1520,19 +1552,7 @@ var table3 = new Tabulator("#example-table3", {
         //var el = document.getElementById("total_count");
         //el.innerHTML = data.length;
     },
-    rowClick:function(e, row){
-    //e - the click event object
-    //row - row component
-    console.log(row);
     
-    var temp=row._row.cells[1].value.split('@')[1]
-  var chr=temp.split(':')[0].substring(3)
-  var start=parseInt(temp.split(':')[1].split('-')[0])
-  var end=parseInt(temp.split(':')[1].split('-')[1])
-   browser.setLocation(chr, start-50, end + 50);
-   document.getElementById('gblabel').style.display="block";
-  document.getElementById('svgHolder').style.display="block";
-    },
    
 });
 

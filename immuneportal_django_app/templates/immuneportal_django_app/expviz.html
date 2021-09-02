@@ -1156,11 +1156,11 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     startbox.style.margin="0px";
     startbox.style.left="0px";
     startbox.setAttribute("step", 0.01);
-    startbox.setAttribute("value", 0.00);
+    //startbox.setAttribute("value", 0.00);
     startbox.style.width = "70px";
     startbox.style.zIndex="2";
 
-    //startbox.value = cell.getValue();
+    startbox.value = cell.getValue();
     
     
     var endbox = document.createElement("input");
@@ -1170,18 +1170,29 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     endbox.setAttribute("min", 0.00);
     endbox.setAttribute("step", 0.01);
     endbox.setAttribute("max", 1.00);
-    endbox.setAttribute("value", 1.00);
+    //endbox.setAttribute("value", 1.00);
     //endbox.style.padding = "4px";
     endbox.style.width = "70px";
     endbox.style.zIndex="2";
     //endbox.style.boxSizing = "border-box";
 
-    //endbox.value = cell.getValue();
+    endbox.value = cell.getValue();
 
     function buildValues(){
         success({
             start:start.value,
             end:end.value,
+            startbox:start.value,
+            endbox:end.value,
+        });
+    }
+    
+    
+    var boxalter = function(eventArg) 
+    {
+        success({
+            start:startbox.value,
+            end:endbox.value,
         });
     }
     
@@ -1219,7 +1230,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     }
     
     
-    
+    startbox.addEventLister("change",boxalter);
+    endbox.addEventLister("change",boxalter);
     
     start.addEventListener("mousemove",MouseMove );
     start.addEventListener("change", buildValues);

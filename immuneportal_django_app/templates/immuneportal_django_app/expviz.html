@@ -1453,6 +1453,12 @@ var table2 = new Tabulator("#example-table", {
     	headers.push(Object.keys(jsonout[0])[i]);
     }
     console.log('rowclickheaders',headers);
+    var rowvals=row._row.cells;
+    var retJson={};
+    for(var i=0;i<rowvals.length;i++){
+    	retJson[headers[i]]=rowvals[i]['value'];
+    }
+    console.log('retJson',retJson);
     
     var temp=row._row.cells[1].value.split('@')[1]
   var chr=temp.split(':')[0].substring(3)

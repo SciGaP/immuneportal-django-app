@@ -1222,6 +1222,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
                 end.style.zIndex = 1;
             }
         }
+        startbox.setAttribute("value",start.value);
+    	endbox.setAttribute("value",end.value);
         //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
     }
     

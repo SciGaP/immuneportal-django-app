@@ -1171,14 +1171,14 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     endbox.value = cell.getValue();
 
     function buildValues(){
-    	startbox.setAttribute("value",start.value);
-    	endbox.setAttribute("value",end.value);
+    	//startbox.setAttribute("value",start.value);
+    	//endbox.setAttribute("value",end.value);
     	//startbox.innerHTML='1';
         success({
             start:start.value,
             end:end.value,
-            //startbox:start.value,
-            //endbox:end.value,
+            startbox:start.value,
+            endbox:end.value,
         });
     }
     

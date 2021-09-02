@@ -1130,7 +1130,16 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     
     
-    
+    var startbox = document.createElement("input");
+    startbox.setAttribute("type", "number");
+    startbox.setAttribute("placeholder", "Min");
+    startbox.setAttribute("min", 0.00);
+    startbox.setAttribute("max", 1.00);
+    startbox.style.padding = "4px";
+    startbox.style.width = "50%";
+    startbox.style.boxSizing = "border-box";
+
+    startbox.value = cell.getValue();
 
     function buildValues(){
         success({
@@ -1172,6 +1181,10 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
         //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
     }
     
+    
+    endbox = start.cloneNode();
+    endbox.setAttribute("placeholder", "Max");
+    
     start.addEventListener("mousemove",MouseMove );
     start.addEventListener("change", buildValues);
     start.addEventListener("blur", buildValues);
@@ -1184,10 +1197,10 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     
     
-    container.append(lmin);
+    container.append(startbox);
     container.append(start);
     //container.append(lmax);
-    container.append(end);
+    container.append(endbox);
     container.append(lmax);
     //container.append(lmax);
 

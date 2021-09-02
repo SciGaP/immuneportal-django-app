@@ -1320,22 +1320,22 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //filterParams - params object passed to the headerFilterFuncParams property
         if(rowValue){
             //console.log(headerValue.start);
-            if(headerValue.start != 0 && headerValue.start != "" ){
+            if((headerValue.start != 0 || headerValue.start != 0.0)  && headerValue.start != "" ){
                 //console.log('start is 0');
-                if(headerValue.end != 1 && headerValue.end != ""){
+                if((headerValue.end != 1 || headerValue.start != 1.0) && headerValue.end != ""){
                 //console.log('end is 1');
                 //console.log('filtering');
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 0 && rowValue != 0.00 && rowValue != 1 && rowValue != 1.00;
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end &&  rowValue != 0 && rowValue != "0" && rowValue != 0.00 && rowValue != 1 && rowValue != 1.00;
                 }
                 if(headerValue.end != ""){
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 0 && rowValue != 0.00 ;
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 0 && rowValue != "0" && rowValue != 0.00 ;
                 }
                	else{
-                    return rowValue >=headerValue.start && rowValue != 0 && rowValue != 0.00;
+                    return rowValue >=headerValue.start && rowValue != 0 && rowValue != "0" && rowValue != 0.00;
                 }
             }
             if( headerValue.start != "" ){
-                if(headerValue.end != 1 && headerValue.end != ""){
+                if((headerValue.end != 1 || headerValue.start != 1.0) && headerValue.end != ""){
                 //console.log('filtering');
                     return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 1 && rowValue != 1.00;
                 }

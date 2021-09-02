@@ -64,7 +64,7 @@
 		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
   Showing <span id="search_count"></span> results from (<span id="total_count"></span>)  
 </span>
-<div id='rowData' style="display:none"><br/><p>All Row Columns</p></div>
+<div id='rowData' style="display:none"><br/><p>All Row Columns</p><p id='colDescription2'></p></div>
 <div id="example-table3" style="display:none"></div>
 		
 		
@@ -1088,7 +1088,27 @@ var customTitleFormatter = function(cell){
     });
 
     return cell.getValue(); // ensure the title is set on the cell
-}	
+}
+
+
+
+var customTitleFormatter2 = function(cell){
+
+    var headerEl = cell.getElement(); //get the column header element from above the title element
+
+    headerEl.addEventListener("mouseover", function(e){
+        //do something
+        console.log('mousover');
+        //console.log(e);
+        console.log(headerEl.innerText);
+        
+        document.getElementById('colDescription2').innerHTML=headerEl.innerText+':'+descriptionDict[headerEl.innerText];
+        
+        
+    });
+
+    return cell.getValue(); // ensure the title is set on the cell
+}		
 				
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 

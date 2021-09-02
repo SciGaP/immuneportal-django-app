@@ -1319,6 +1319,9 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //rowData - the data for the row being filtered
     //filterParams - params object passed to the headerFilterFuncParams property
         if(rowValue){
+            if (rowValue==0){
+            	console.log('zero case');
+            }
             //console.log(headerValue.start);
             if((headerValue.start != 0 || headerValue.start != 0.0)  && headerValue.start != "" ){
                 //console.log('start is 0');

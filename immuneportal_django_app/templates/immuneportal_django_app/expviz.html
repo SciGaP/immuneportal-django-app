@@ -1190,6 +1190,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     var boxalter = function(eventArg) 
     {
+    	start.setAttribute("value",startbox.value);
+    	end.setAttribute("value",endbox.value);
         success({
             start:startbox.value,
             end:endbox.value,

@@ -1395,6 +1395,9 @@ var browser =  new Browser({
 								    });
 
 
+
+
+
 var table2 = new Tabulator("#example-table", {
     data:jsonout,
     height:"311px",
@@ -1443,7 +1446,7 @@ var table2 = new Tabulator("#example-table", {
     rowClick:function(e, row){
     //e - the click event object
     //row - row component
-    console.log(row);
+    console.log('rowclick',row);
     
     var temp=row._row.cells[1].value.split('@')[1]
   var chr=temp.split(':')[0].substring(3)
@@ -1456,7 +1459,66 @@ var table2 = new Tabulator("#example-table", {
    
 });
 
-
+var table3 = new Tabulator("#example-table3", {
+    data:jsonout,
+    height:"311px",
+    layout:"fitDataFill",
+    //movableColumns: true,
+    columns:[
+        {title:"peptide", field:"peptide", width:150},
+        {title:"gene", field:"gene", width:150},
+        {title:"tpm", field:"tpm", width:150},
+        {title:"rf_predict_prob", field:"rf_predict_prob", width:150},
+        {title:"ensembl", field:"ensembl", width:150},
+        {title:"geneSymbol", field:"geneSymbol", width:150},
+        {title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:true},
+        {title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:true},
+        {title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:true},
+        {title:"HLA-B*18:01", field:"HLA-B*18:01", width:150,visible:true},
+        {title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:true},
+        {title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:true},
+        {title:"HLA", field:"hla", width:150,visible:true},
+        {title:"wt_pep", field:"wt_pep", width:150,visible:true},
+        {title:"pep_hydro", field:"pep_hydro", width:150,visible:true},
+        {title:"pep_polar", field:"pep_polar", width:150,visible:true},
+        {title:"pep_charge", field:"pep_charge", width:150,visible:true},
+        {title:"pep_entropy", field:"pep_entropy", width:150,visible:true},
+        {title:"pep_molsize", field:"pep_molsize", width:150,visible:true},
+        {title:"pep_TAP", field:"pep_TAP", width:150,visible:true},
+        {title:"pep_Cle", field:"pep_Cle", width:150,visible:true},
+        {title:"pep_Comb", field:"pep_Comb", width:150,visible:true},
+        {title:"neo_aff", field:"neo_aff", width:150,visible:true},
+        {title:"neo_rank", field:"neo_rank", width:150,visible:true},
+        {title:"iedb_immunescore", field:"iedb_immunescore", width:150,visible:true},
+        {title:"pep_DAI", field:"pep_DAI", width:150,visible:true},
+        {title:"pep_Rscore", field:"pep_Rscore", width:150,visible:true},
+        {title:"pep_NRP", field:"pep_NRP", width:150,visible:true},
+        {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true},
+        {title:"rf_predict", field:"rf_predict", width:150,visible:true},
+        {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true},
+        
+        ],
+        dataFiltered: function(filters, rows) {
+        var el = document.getElementById("search_count");
+        el.innerHTML = rows.length;
+        //var el = document.getElementById("total_count");
+        //el.innerHTML = data.length;
+    },
+    rowClick:function(e, row){
+    //e - the click event object
+    //row - row component
+    console.log(row);
+    
+    var temp=row._row.cells[1].value.split('@')[1]
+  var chr=temp.split(':')[0].substring(3)
+  var start=parseInt(temp.split(':')[1].split('-')[0])
+  var end=parseInt(temp.split(':')[1].split('-')[1])
+   browser.setLocation(chr, start-50, end + 50);
+   document.getElementById('gblabel').style.display="block";
+  document.getElementById('svgHolder').style.display="block";
+    },
+   
+});
 
 
 

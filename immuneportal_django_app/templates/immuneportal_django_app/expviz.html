@@ -55,7 +55,7 @@
 		</select></span>
 
 <span><button class="button" id="download-csv">Download CSV</button></span>
-<p></p>
+<p id='colDescription'></p>
 
 <div id="example-table"></div>
 
@@ -1069,7 +1069,9 @@ var data_file2=data_file.split("?")[1];
 				</table>
 				*/
 				
-				
+
+
+descriptionDict={'Id': 'random assigned peptide id','hla':  'human leukocyte antigen (HLA) allele','mut_pep': 'peptide derived from retained intron regions','wt_pep': 'the most similar peptide from human reference protein database','pep_hydro': 'sum of amino acids hydrophobicity for peptide','pep_polar': 'sum of amino acids residues polarity for peptide','pep_charge': 'sum of amino acids residues net charge for peptide (at neutral pH)','pep_entropy': 'sum of amino acids residues entropy for peptide','pep_molsize': 'sum of amino acids residues molecular weight for peptide','pep_TAP':  'TAP transport efficiency, predicted by NetCTL1.2','pep_Cle': 'C terminal cleavage affinity, predicted by NetCTL1.2','pep_Comb': 'Overall prediction score, predicted by NetCTL1.2','neo_aff': 'NetMHCpan 4.1 predicted IC50 values (Aff, nM unit)','neo_rank': 'NetMHCpan 4.1 predicted percentile rank binding affinity value','iedb_immunescore': 'Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity','pep_DAI': 'differential agretopicity index, from Ghorani et al’s study (PMID:29361136)','pep_Rscore': 'neoantigen fitness score from Łuksza et al’s study (PMID:29132144)','pep_NRP': 'Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146)','pep_pTuneos': 'pTuneos prediction score, Zhou et al’s study (PMID:31666118)','rf_predict': 'intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells' };	
 var customTitleFormatter = function(cell){
 
     var headerEl = cell.getElement(); //get the column header element from above the title element
@@ -1079,6 +1081,10 @@ var customTitleFormatter = function(cell){
         console.log('mousover');
         //console.log(e);
         console.log(headerEl.innerText);
+        
+        document.getElementById('colDescription').innerHTML=headerEl.innerText+':'+descriptionDict[header.innerText];
+        
+        
     });
 
     return cell.getValue(); // ensure the title is set on the cell

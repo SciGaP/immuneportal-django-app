@@ -741,7 +741,7 @@ function tsvJSON(tsv){
       for(var j=0;j<headers.length;j++){
       	  if(headers[j]=='rf_predict_prob'){
       	    if(currentline[j]=='0'){
-      	     obj[headers[j]]='0.00'
+      	     obj[headers[j]]='0.00';
       	    }
       	    else{
       	    obj[headers[j]] = currentline[j];
@@ -1324,10 +1324,10 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //rowData - the data for the row being filtered
     //filterParams - params object passed to the headerFilterFuncParams property
         if(rowValue){
-            console.log(rowValue)
-            if (rowValue==0){
-            	console.log('zero case');
-            }
+            //console.log(rowValue)
+            //if (rowValue==0){
+            //	console.log('zero case');
+            //}
             //console.log(headerValue.start);
             if((headerValue.start != 0 || headerValue.start != 0.0)  && headerValue.start != "" ){
                 //console.log('start is 0');

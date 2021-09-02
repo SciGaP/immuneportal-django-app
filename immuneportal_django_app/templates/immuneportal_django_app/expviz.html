@@ -1397,7 +1397,7 @@ var browser =  new Browser({
 
 
 
-var retJson={
+var retJson=[{
   "peptide": "AEMKVWET",
   "gene": "ENSG00000180096-16@chr16:30379535-30379931",
   "tpm": "0.8473",
@@ -1429,7 +1429,7 @@ var retJson={
   "ensembl": "-0.0",
   "geneSymbol": "Negative",
   "undefined": "-0.0"
-};
+}];
 
 var table2 = new Tabulator("#example-table", {
     data:jsonout,
@@ -1488,9 +1488,12 @@ var table2 = new Tabulator("#example-table", {
     console.log('rowclickheaders',headers);
     var rowvals=row._row.cells;
     //var retJson={};
+    var tempDict={};
+    retJson=[];
     for(var i=0;i<rowvals.length;i++){
-    	retJson[headers[i]]=rowvals[i]['value'];
+    	tempDict[headers[i]]=rowvals[i]['value'];
     }
+    retJson.push(tempDict);
     console.log('retJson',retJson);
     
     

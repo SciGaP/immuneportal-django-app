@@ -1319,16 +1319,28 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
     //rowData - the data for the row being filtered
     //filterParams - params object passed to the headerFilterFuncParams property
         if(rowValue){
-            if(headerValue.start != ""){
-                if(headerValue.end != ""){
+            if(headerValue.start != "0" && headerValue.start != "" ){
+                if(headerValue.end != "1" && headerValue.end != ""){
                 //console.log('filtering');
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end;
-                }else{
-                    return rowValue >=headerValue.start;
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != "0" && rowValue != "1";
                 }
-            }else{
                 if(headerValue.end != ""){
-                    return parseFloat(rowValue) <= parseFloat(headerValue.end);
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != "0" ;
+                }
+               	else{
+                    return rowValue >=headerValue.start && rowValue != "0";
+                }
+            }
+            if( headerValue.start != "" ){
+                if(headerValue.end != "1" && headerValue.end != ""){
+                //console.log('filtering');
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != "1";
+                }
+                if(headerValue.end != ""){
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end ;
+                }
+               	else{
+                    return rowValue >=headerValue.start ;
                 }
             }
         }

@@ -1090,6 +1090,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     start.max='1.00';
     start.setAttribute("step","0.01");
     start.setAttribute("value",'0.00');
+    start.style.width='120px;'
     
     var end=document.createElement('input');
     end.type="range";
@@ -1099,6 +1100,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     end.max='1.00';
     end.setAttribute("step","0.01");
     end.setAttribute("value",'1.00');
+    end.style.width='120px;'
 /*
     var start=document.createElement('input');
     start.setAttribute('class','slider');

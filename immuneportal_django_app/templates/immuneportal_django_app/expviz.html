@@ -1448,6 +1448,12 @@ var table2 = new Tabulator("#example-table", {
     //row - row component
     console.log('rowclick',row);
     
+    var headers=[];
+    for(var i=0;i<Object.keys(jsonout[0]).length;i++){
+    	headers.push(Object.keys(jsonout[0])[i]);
+    }
+    console.log('rowclickheaders',headers);
+    
     var temp=row._row.cells[1].value.split('@')[1]
   var chr=temp.split(':')[0].substring(3)
   var start=parseInt(temp.split(':')[1].split('-')[0])
@@ -1460,7 +1466,7 @@ var table2 = new Tabulator("#example-table", {
 });
 
 var table3 = new Tabulator("#example-table3", {
-    data:jsonout,
+    data:resultJson,
     height:"311px",
     layout:"fitDataFill",
     //movableColumns: true,

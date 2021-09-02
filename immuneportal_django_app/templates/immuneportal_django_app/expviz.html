@@ -59,7 +59,7 @@
 		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
   Showing <span id="search_count"></span> results from (<span id="total_count"></span>)  
 </span>
-
+<div id='rowData' style="display:none"><br/><p>All Row Columns</p></div>
 <div id="example-table3" style="display:none"></div>
 		
 		
@@ -1496,7 +1496,7 @@ var table2 = new Tabulator("#example-table", {
     retJson.push(tempDict);
     console.log('retJson',retJson);
     
-    
+    document.getElementById('rowData').style.display="block";
      document.getElementById('example-table3').style.display="block";
     
     var temp=row._row.cells[1].value.split('@')[1]
@@ -1512,7 +1512,7 @@ var table2 = new Tabulator("#example-table", {
 
 var table3 = new Tabulator("#example-table3", {
     data:retJson,
-    height:"311px",
+    height:"50px",
     layout:"fitDataFill",
     //movableColumns: true,
     columns:[

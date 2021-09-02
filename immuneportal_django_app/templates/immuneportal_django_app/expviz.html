@@ -56,6 +56,10 @@
 		</select>
 		<p style="visibility:hidden" ></p>
 <div id="example-table"></div>
+
+
+<button id="download-csv">Download CSV</button>
+<p id='coldescription><p>
 		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
   Showing <span id="search_count"></span> results from (<span id="total_count"></span>)  
 </span>
@@ -1508,6 +1512,11 @@ var table2 = new Tabulator("#example-table", {
   document.getElementById('svgHolder').style.display="block";
     },
    
+});
+
+
+document.getElementById("download-csv").addEventListener("click", function(){
+    table2.download("csv", "data.csv");
 });
 
 var table3 = new Tabulator("#example-table3", {

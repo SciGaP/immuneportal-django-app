@@ -1322,9 +1322,9 @@ function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
             if(headerValue.start != ""){
                 if(headerValue.end != ""){
                 //console.log('filtering');
-                    return parseFloat(rowValue) >= parseFloat(headerValue.start) && parseFloat(rowValue) <= parseFloat(headerValue.end);
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end;
                 }else{
-                    return parseFloat(rowValue) >=parseFloat(headerValue.start);
+                    return rowValue >=headerValue.start;
                 }
             }else{
                 if(headerValue.end != ""){

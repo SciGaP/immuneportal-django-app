@@ -1069,23 +1069,23 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     
     var subcontainer=document.createElement("div");
 
-    var a=document.createElement('input');
-    a.type="range";
-    a.id="a";
-    a.setAttribute('class','sliderinput');
-    a.min='0.00';
-    a.max='1.00';
-    a.setAttribute("step","0.01");
-    a.setAttribute("value",'0.00');
+    var start=document.createElement('input');
+    start.type="range";
+    start.id="start";
+    start.setAttribute('class','sliderinput');
+    start.min='0.00';
+    start.max='1.00';
+    start.setAttribute("step","0.01");
+    start.setAttribute("value",'0.00');
     
-    var b=document.createElement('input');
-    b.type="range";
-    b.id="b";
-    b.setAttribute('class','sliderinput');
-    b.min='0.00';
-    b.max='1.00';
-    b.setAttribute("step","0.01");
-    b.setAttribute("value",'1.00');
+    var end=document.createElement('input');
+    end.type="range";
+    end.id="end";
+    end.setAttribute('class','sliderinput');
+    end.min='0.00';
+    end.max='1.00';
+    end.setAttribute("step","0.01");
+    end.setAttribute("value",'1.00');
 /*
     var start=document.createElement('input');
     start.setAttribute('class','slider');
@@ -1119,14 +1119,14 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
 
     var lmin=document.createElement('label');
-    lmin.setAttribute("for","a");
+    lmin.setAttribute("for","start");
     lmin.id='price-min-lbl';
     var lmax=document.createElement('label');
-    lmax.setAttribute("for","b");
+    lmax.setAttribute("for","end");
     lmax.id='price-max-lbl';
     
-    //lmax.innerHTML='1.00';
-    //lmin.innerHTML='0.00';
+    lmax.innerHTML='1.00';
+    lmin.innerHTML='0.00';
     
     
     
@@ -1134,8 +1134,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     function buildValues(){
         success({
-            a:a.value,
-            b:b.value,
+            start:start.value,
+            end:end.value,
         });
     }
     
@@ -1144,13 +1144,13 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     {
         /* percentage position X of cursor  */
         //console.log(eventArg.clientX);
-        var recta = a.getBoundingClientRect();
+        var recta = start.getBoundingClientRect();
         var x100 = Math.abs(eventArg.clientX-recta.left)/(recta.right-recta.left);
 
 
         /* absolute distance from respective slider values */
-        var da = Math.abs(a.value-x100);
-        var db = Math.abs(b.value-x100);
+        var da = Math.abs(start.value-x100);
+        var db = Math.abs(end.value-x100);
         console.log(x100,da,db);
         console.log(recta.left);
         console.log(recta.right-recta.left);
@@ -1172,22 +1172,22 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
         //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
     }
     
-    a.addEventListener("mousemove",MouseMove );
-    a.addEventListener("change", buildValues);
-    a.addEventListener("blur", buildValues);
+    start.addEventListener("mousemove",MouseMove );
+    start.addEventListener("change", buildValues);
+    start.addEventListener("blur", buildValues);
     //start.addEventListener("keydown", keypress);
 
-    b.addEventListener('mousemove',MouseMove);
-    b.addEventListener("change", buildValues);
-    b.addEventListener("blur", buildValues);
+    end.addEventListener('mousemove',MouseMove);
+    end.addEventListener("change", buildValues);
+    end.addEventListener("blur", buildValues);
     //end.addEventListener("keydown", keypress);
     
     
     
     container.append(lmin);
-    container.append(a);
+    container.append(start);
     //container.append(lmax);
-    container.append(b);
+    container.append(end);
     container.append(lmax);
     //container.append(lmax);
 

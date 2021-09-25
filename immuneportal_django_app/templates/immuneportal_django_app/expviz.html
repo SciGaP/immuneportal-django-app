@@ -458,53 +458,241 @@ span.onclick = function() {
 
 
 
+descriptionDict={'Id': 'random assigned peptide id','hla':  'human leukocyte antigen (HLA) allele','mut_pep': 'peptide derived from retained intron regions','wt_pep': 'the most similar peptide from human reference protein database','pep_hydro': 'sum of amino acids hydrophobicity for peptide','pep_polar': 'sum of amino acids residues polarity for peptide','pep_charge': 'sum of amino acids residues net charge for peptide (at neutral pH)','pep_entropy': 'sum of amino acids residues entropy for peptide','pep_molsize': 'sum of amino acids residues molecular weight for peptide','pep_TAP':  'TAP transport efficiency, predicted by NetCTL1.2','pep_Cle': 'C terminal cleavage affinity, predicted by NetCTL1.2','pep_Comb': 'Overall prediction score, predicted by NetCTL1.2','neo_aff': 'NetMHCpan 4.1 predicted IC50 values (Aff, nM unit)','neo_rank': 'NetMHCpan 4.1 predicted percentile rank binding affinity value','iedb_immunescore': 'Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity','pep_DAI': 'differential agretopicity index, from Ghorani et al’s study (PMID:29361136)','pep_Rscore': 'neoantigen fitness score from Łuksza et al’s study (PMID:29132144)','pep_NRP': 'Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146)','pep_pTuneos': 'pTuneos prediction score, Zhou et al’s study (PMID:31666118)','rf_predict': 'intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells' };	
+var customTitleFormatter = function(cell){
 
+    var headerEl = cell.getElement(); //get the column header element from above the title element
 
+    headerEl.addEventListener("mouseover", function(e){
+        //do something
+        console.log('mousover');
+        //console.log(e);
+        console.log(headerEl.innerText);
+        
+        document.getElementById('colDescription').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
+        
+        
+    });
 
-function miniTable() {
-
-
-	descriptionDict={'Id': 'random assigned peptide id','hla':  'human leukocyte antigen (HLA) allele','mut_pep': 'peptide derived from retained intron regions','wt_pep': 'the most similar peptide from human reference protein database','pep_hydro': 'sum of amino acids hydrophobicity for peptide','pep_polar': 'sum of amino acids residues polarity for peptide','pep_charge': 'sum of amino acids residues net charge for peptide (at neutral pH)','pep_entropy': 'sum of amino acids residues entropy for peptide','pep_molsize': 'sum of amino acids residues molecular weight for peptide','pep_TAP':  'TAP transport efficiency, predicted by NetCTL1.2','pep_Cle': 'C terminal cleavage affinity, predicted by NetCTL1.2','pep_Comb': 'Overall prediction score, predicted by NetCTL1.2','neo_aff': 'NetMHCpan 4.1 predicted IC50 values (Aff, nM unit)','neo_rank': 'NetMHCpan 4.1 predicted percentile rank binding affinity value','iedb_immunescore': 'Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity','pep_DAI': 'differential agretopicity index, from Ghorani et al’s study (PMID:29361136)','pep_Rscore': 'neoantigen fitness score from Łuksza et al’s study (PMID:29132144)','pep_NRP': 'Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146)','pep_pTuneos': 'pTuneos prediction score, Zhou et al’s study (PMID:31666118)','rf_predict': 'intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells' };
-	console.log('selectValue',document.getElementById('colSelect').value);
-	var ai2=document.getElementById('additionalInfo2');
-	ai2.innerHTML="";
-	var table = document.createElement('table');
-	//table.border="1";
-	 var select=document.getElementById('colSelect');
-	for (var i = 1; i < 2; i++){
-	    var tr = document.createElement('tr');   
-
-	    var td1 = document.createElement('td');
-	    var td2 = document.createElement('td');
-	    
-	    //var tempText=sel.options[sel.selectedIndex].text;
-	    var text1 = document.createTextNode(select.options[select.selectedIndex].text);
-	    var text2 = document.createTextNode(select.value.toString());
-	    
-	    td1.style="padding-left:5px;padding-right:5px";
-	    td2.style="padding-left:5px;padding-right:5px";
-
-	    td1.innerHTML='<b>'+select.options[select.selectedIndex].text+':</b>'
-	    td2.innerHTML=select.value.toString()
-	    //td1.appendChild(text1);
-	    //td2.appendChild(text2);
-	    tr.appendChild(td1);
-	    tr.appendChild(td2);
-
-	    table.appendChild(tr);
-	}
-	var p=document.createElement('p');
-	p.innerHTML='Description: '+descriptionDict[select.options[select.selectedIndex].text];
-	ai2.appendChild(p);
-	table.style="border:solid black 1px;border-radius:6px"
-	var br = document.createElement('br');
-	ai2.appendChild(table);
-	ai2.appendChild(br);
-	ai2.appendChild(br);
-	
-	
-	document.getElementById('additionalInfo2').style.display="block";
+    return cell.getValue(); // ensure the title is set on the cell
 }
+
+
+
+var customTitleFormatter2 = function(cell){
+
+    var headerEl = cell.getElement(); //get the column header element from above the title element
+
+    headerEl.addEventListener("mouseover", function(e){
+        //do something
+        console.log('mousover');
+        //console.log(e);
+        console.log(headerEl.innerText);
+        
+        document.getElementById('colDescription2').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
+        document.getElementById('colDescription2').display='block';
+        
+    });
+
+    return cell.getValue(); // ensure the title is set on the cell
+}		
+				
+var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
+
+    
+    
+    
+    
+
+    var container = document.createElement("span");
+    
+    var subcontainer=document.createElement("div");
+
+    var start=document.createElement('input');
+    start.type="range";
+    start.id="start";
+    start.setAttribute('class','sliderinput');
+    start.min='0.00';
+    start.max='1.00';
+    start.setAttribute("step","0.01");
+    start.setAttribute("value",'0.00');
+    start.style.width='120px;'
+    
+    var end=document.createElement('input');
+    end.type="range";
+    end.id="end";
+    end.setAttribute('class','sliderinput');
+    end.min='0.00';
+    end.max='1.00';
+    end.setAttribute("step","0.01");
+    end.setAttribute("value",'1.00');
+    end.style.width='120px;'
+
+    var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label>100</label>";
+
+    var startbox = document.createElement("input");
+    startbox.setAttribute("type", "number");
+    startbox.setAttribute("placeholder", "Min");
+    startbox.setAttribute('class','minbox');
+    startbox.setAttribute("min", 0.00);
+    startbox.setAttribute("max", 1.00);
+    startbox.style.margin="0px";
+    startbox.style.left="0px";
+    startbox.setAttribute("step", 0.01);
+    //startbox.setAttribute("value", 0.00);
+    startbox.style.width = "70px";
+    startbox.style.zIndex="2";
+
+    startbox.value = cell.getValue();
+    
+    
+    var endbox = document.createElement("input");
+    endbox.setAttribute("type", "number");
+    endbox.setAttribute("placeholder", "Max");
+    endbox.setAttribute('class','maxbox');
+    endbox.setAttribute("min", 0.00);
+    endbox.setAttribute("step", 0.01);
+    endbox.setAttribute("max", 1.00);
+    //endbox.setAttribute("value", 1.00);
+    //endbox.style.padding = "4px";
+    endbox.style.width = "70px";
+    endbox.style.zIndex="2";
+    //endbox.style.boxSizing = "border-box";
+
+    endbox.value = cell.getValue();
+
+    function buildValues(){
+    	//startbox.setAttribute("value",start.value);
+    	//endbox.setAttribute("value",end.value);
+    	startbox.value=start.value;
+    	endbox.value=end.value;
+        success({
+            start:start.value,
+            end:end.value,
+            startbox:start.value,
+            endbox:end.value,
+        });
+    }
+    
+    
+    var boxalter = function(eventArg) 
+    {
+    	start.setAttribute("value",startbox.value);
+    	end.setAttribute("value",endbox.value);
+        success({
+            start:startbox.value,
+            end:endbox.value,
+        });
+    }
+    
+    
+    var MouseMove = function(eventArg) 
+    {
+        /* percentage position X of cursor  */
+        //console.log(eventArg.clientX);
+        var recta = start.getBoundingClientRect();
+        var x100 = Math.abs(eventArg.clientX-recta.left)/(recta.right-recta.left);
+
+
+        /* absolute distance from respective slider values */
+        var da = Math.abs(start.value-x100);
+        var db = Math.abs(end.value-x100);
+        console.log(x100,da,db);
+        console.log(recta.left);
+        console.log(recta.right-recta.left);
+        console.log(eventArg.clientX-recta.left);
+        // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
+        if (!eventArg.buttons) 
+        {
+            if (da > db) 
+            {
+                start.style.zIndex = 1;
+                end.style.zIndex = 2;
+            } 
+            else 
+            {
+                start.style.zIndex = 2;
+                end.style.zIndex = 1;
+            }
+        }
+        
+        //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
+    }
+    
+    
+    startbox.addEventListener("change",boxalter);
+    startbox.addEventListener("input",boxalter);
+    endbox.addEventListener("change",boxalter);
+    endbox.addEventListener("input",boxalter);
+    
+    start.addEventListener("mousemove",MouseMove );
+    start.addEventListener("change", buildValues);
+    start.addEventListener("blur", buildValues);
+    //start.addEventListener("keydown", keypress);
+
+    end.addEventListener('mousemove',MouseMove);
+    end.addEventListener("change", buildValues);
+    end.addEventListener("blur", buildValues);
+    //end.addEventListener("keydown", keypress);
+    
+    
+    
+    container.append(startbox);
+    container.append(start);
+    //container.append(lmax);
+    container.append(end);
+    container.append(endbox);
+    //container.append(lmax);
+
+    return container;
+ }
+ 
+
+//custom max min filter function
+function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
+    //headerValue - the value of the header filter element
+    //rowValue - the value of the column in this row
+    //rowData - the data for the row being filtered
+    //filterParams - params object passed to the headerFilterFuncParams property
+        if(rowValue){
+            //console.log(rowValue)
+            //if (rowValue==0){
+            //	console.log('zero case');
+            //}
+            //console.log(headerValue.start);
+            if((headerValue.start != 0 || headerValue.start != 0.0)  && headerValue.start != "" ){
+                //console.log('start is 0');
+                if((headerValue.end != 1 || headerValue.start != 1.0) && headerValue.end != ""){
+                //console.log('end is 1');
+                //console.log('filtering');
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end &&  rowValue != 0 && rowValue != "0" && rowValue != 0.00 && rowValue != 1 && rowValue != 1.00;
+                }
+                if(headerValue.end != ""){
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 0 && rowValue != "0" && rowValue != 0.00 ;
+                }
+               	else{
+                    return rowValue >=headerValue.start && rowValue != 0 && rowValue != "0" && rowValue != 0.00;
+                }
+            }
+            if( headerValue.start != "" ){
+                if((headerValue.end != 1 || headerValue.start != 1.0) && headerValue.end != ""){
+                //console.log('filtering');
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 1 && rowValue != 1.00;
+                }
+                if(headerValue.end != ""){
+                    return rowValue >= headerValue.start && rowValue <= headerValue.end ;
+                }
+               	else{
+                    return rowValue >=headerValue.start ;
+                }
+            }
+        }
+
+    return true; //must return a boolean, true if it passes the filter.
+}
+
+
+
 
 function CSVToArray(strData, strDelimiter) {
     // Check to see if the delimiter is defined. If not,
@@ -1008,23 +1196,6 @@ var data_file2=data_file.split("?")[1];
 						    jsonout.pop();
 						    console.log('JSONOUT',jsonout);
 						
-						    //console.log('postfunc',dataout);
-						    //$.fn.dataTableExt.sErrMode = 'throw';
-						    /*var base=document.getElementById('forResultTable');
-						    var tbl=document.createElement('table');
-						    tbl.id='resultTable'
-						    tbl.classList.add('table');
-						    //tbl.classList.add('table-striped');
-						    tbl.classList.add('table-bordered');
-						    tbl.classList.add('table-hover');
-						    
-						    //tbl.set="table table-striped table-bordered table-hover";
-						    tbl.style="cursor:pointer;"
-						    tbl.cellspacing="0";
-						    tbl.width="100%";
-						    var thd=document.createElement('thead');
-						    var tr=document.createElement('tr');
-						    */
 						    var columnDefs=[]
 						    console.log('DataOut',dataout[0]);
 						    for(var i=0;i<dataout[0].length;i++){
@@ -1044,361 +1215,14 @@ var data_file2=data_file.split("?")[1];
 						    }
 						    
 						    
-					/*	    
-						    <table id="resultTable" class="table table-striped table-bordered table-hover" style="cursor:pointer;" cellspacing="0" width="100%">
-				  <thead>
-				      <tr>
-					   <th style="display:none">id</th>
-					    <th class="HlaWithComment">hla <span class="HlaComment"  >human leukocyte antigen (HLA) allele </span> </th>
-					    
-					    <th class="WtWithComment" >mut_pep<span class="WtComment">peptide derived from retained intron regions; </span></th>
-					    <th style="display:none" class="WtWithComment">wt_pep <span class="WtComment">WildType Peptide: </span></th>
-					    <th style="display:none">pep_hydro</th>
-					    <th style="display:none">pep_polar</th>
-					    <th style="display:none">pep_charge</th>
-					    <th style="display:none">pep_entropy</th>
-					    <th style="display:none">pep_molsize</th>
-					    <th style="display:none">pep_TAP</th>
-					    <th style="display:none">pep_Cle</th>
-					    <th style="display:none">pep_Comb</th>
-					    <th style="display:none">neo_aff</th>
-					    <th style="display:none">neo_rank</th>
-					    <th style="display:none">iedb_immunescore</th>
-					    <th style="display:none">pep_DAI</th>
-					    <th style="display:none">pep_Rscore</th>
-					    <th style="display:none">pep_NRP</th>
-					    <th style="display:none"> pep_pTuneos</th>
-					    <th>rf_predict</th>
-				      </tr>
-				  </thead>
-				</table>
-				*/
+					
 				
 
 
-descriptionDict={'Id': 'random assigned peptide id','hla':  'human leukocyte antigen (HLA) allele','mut_pep': 'peptide derived from retained intron regions','wt_pep': 'the most similar peptide from human reference protein database','pep_hydro': 'sum of amino acids hydrophobicity for peptide','pep_polar': 'sum of amino acids residues polarity for peptide','pep_charge': 'sum of amino acids residues net charge for peptide (at neutral pH)','pep_entropy': 'sum of amino acids residues entropy for peptide','pep_molsize': 'sum of amino acids residues molecular weight for peptide','pep_TAP':  'TAP transport efficiency, predicted by NetCTL1.2','pep_Cle': 'C terminal cleavage affinity, predicted by NetCTL1.2','pep_Comb': 'Overall prediction score, predicted by NetCTL1.2','neo_aff': 'NetMHCpan 4.1 predicted IC50 values (Aff, nM unit)','neo_rank': 'NetMHCpan 4.1 predicted percentile rank binding affinity value','iedb_immunescore': 'Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity','pep_DAI': 'differential agretopicity index, from Ghorani et al’s study (PMID:29361136)','pep_Rscore': 'neoantigen fitness score from Łuksza et al’s study (PMID:29132144)','pep_NRP': 'Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146)','pep_pTuneos': 'pTuneos prediction score, Zhou et al’s study (PMID:31666118)','rf_predict': 'intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells' };	
-var customTitleFormatter = function(cell){
-
-    var headerEl = cell.getElement(); //get the column header element from above the title element
-
-    headerEl.addEventListener("mouseover", function(e){
-        //do something
-        console.log('mousover');
-        //console.log(e);
-        console.log(headerEl.innerText);
-        
-        document.getElementById('colDescription').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
-        
-        
-    });
-
-    return cell.getValue(); // ensure the title is set on the cell
-}
 
 
 
-var customTitleFormatter2 = function(cell){
-
-    var headerEl = cell.getElement(); //get the column header element from above the title element
-
-    headerEl.addEventListener("mouseover", function(e){
-        //do something
-        console.log('mousover');
-        //console.log(e);
-        console.log(headerEl.innerText);
-        
-        document.getElementById('colDescription2').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
-        document.getElementById('colDescription2').display='block';
-        
-    });
-
-    return cell.getValue(); // ensure the title is set on the cell
-}		
-				
-var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
-
-    
-    
-    
-    
-
-    var container = document.createElement("span");
-    
-    var subcontainer=document.createElement("div");
-
-    var start=document.createElement('input');
-    start.type="range";
-    start.id="start";
-    start.setAttribute('class','sliderinput');
-    start.min='0.00';
-    start.max='1.00';
-    start.setAttribute("step","0.01");
-    start.setAttribute("value",'0.00');
-    start.style.width='120px;'
-    
-    var end=document.createElement('input');
-    end.type="range";
-    end.id="end";
-    end.setAttribute('class','sliderinput');
-    end.min='0.00';
-    end.max='1.00';
-    end.setAttribute("step","0.01");
-    end.setAttribute("value",'1.00');
-    end.style.width='120px;'
-/*
-    var start=document.createElement('input');
-    start.setAttribute('class','slider');
-    start.setAttribute("oninput","document.getElementById('price-min-lbl').innerHTML = 'Min:'+this.value");
-    start.type='range';
-    start.name='price-min';
-    start.id='price-minid';
-    start.setAttribute("value",'0');
-    start.setAttribute("step","0.01");
-    start.min='0.00';
-    start.max='1.00';
-    
-    
-    var end=document.createElement('input');
-    end.setAttribute('class','slider');
-    end.setAttribute("oninput","document.getElementById('price-max-lbl').innerHTML = ' Max:' +this.value");
-    end.type='range';
-    end.name='price-max';
-    end.id='price-maxid';
-    end.setAttribute("value",'1.00');
-    end.setAttribute("step","0.01");
-    end.min='0.00';
-    end.max='1.00';
-    
-    */
-    var fieldvalue = "<label for='price-min' id='price-min-lbl'>0</label>100</label>";
-    
-    //subcontainer.innerHTML=fieldvalue;
-   
-    //  
-
-
-    
-    
-    
-    
-    var startbox = document.createElement("input");
-    startbox.setAttribute("type", "number");
-    startbox.setAttribute("placeholder", "Min");
-    startbox.setAttribute('class','minbox');
-    startbox.setAttribute("min", 0.00);
-    startbox.setAttribute("max", 1.00);
-    startbox.style.margin="0px";
-    startbox.style.left="0px";
-    startbox.setAttribute("step", 0.01);
-    //startbox.setAttribute("value", 0.00);
-    startbox.style.width = "70px";
-    startbox.style.zIndex="2";
-
-    startbox.value = cell.getValue();
-    
-    
-    var endbox = document.createElement("input");
-    endbox.setAttribute("type", "number");
-    endbox.setAttribute("placeholder", "Max");
-    endbox.setAttribute('class','maxbox');
-    endbox.setAttribute("min", 0.00);
-    endbox.setAttribute("step", 0.01);
-    endbox.setAttribute("max", 1.00);
-    //endbox.setAttribute("value", 1.00);
-    //endbox.style.padding = "4px";
-    endbox.style.width = "70px";
-    endbox.style.zIndex="2";
-    //endbox.style.boxSizing = "border-box";
-
-    endbox.value = cell.getValue();
-
-    function buildValues(){
-    	//startbox.setAttribute("value",start.value);
-    	//endbox.setAttribute("value",end.value);
-    	startbox.value=start.value;
-    	endbox.value=end.value;
-        success({
-            start:start.value,
-            end:end.value,
-            startbox:start.value,
-            endbox:end.value,
-        });
-    }
-    
-    
-    var boxalter = function(eventArg) 
-    {
-    	start.setAttribute("value",startbox.value);
-    	end.setAttribute("value",endbox.value);
-        success({
-            start:startbox.value,
-            end:endbox.value,
-        });
-    }
-    
-    
-    var MouseMove = function(eventArg) 
-    {
-        /* percentage position X of cursor  */
-        //console.log(eventArg.clientX);
-        var recta = start.getBoundingClientRect();
-        var x100 = Math.abs(eventArg.clientX-recta.left)/(recta.right-recta.left);
-
-
-        /* absolute distance from respective slider values */
-        var da = Math.abs(start.value-x100);
-        var db = Math.abs(end.value-x100);
-        console.log(x100,da,db);
-        console.log(recta.left);
-        console.log(recta.right-recta.left);
-        console.log(eventArg.clientX-recta.left);
-        // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
-        if (!eventArg.buttons) 
-        {
-            if (da > db) 
-            {
-                start.style.zIndex = 1;
-                end.style.zIndex = 2;
-            } 
-            else 
-            {
-                start.style.zIndex = 2;
-                end.style.zIndex = 1;
-            }
-        }
-        
-        //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
-    }
-    
-    
-    startbox.addEventListener("change",boxalter);
-    startbox.addEventListener("input",boxalter);
-    endbox.addEventListener("change",boxalter);
-    endbox.addEventListener("input",boxalter);
-    
-    start.addEventListener("mousemove",MouseMove );
-    start.addEventListener("change", buildValues);
-    start.addEventListener("blur", buildValues);
-    //start.addEventListener("keydown", keypress);
-
-    end.addEventListener('mousemove',MouseMove);
-    end.addEventListener("change", buildValues);
-    end.addEventListener("blur", buildValues);
-    //end.addEventListener("keydown", keypress);
-    
-    
-    
-    container.append(startbox);
-    container.append(start);
-    //container.append(lmax);
-    container.append(end);
-    container.append(endbox);
-    //container.append(lmax);
-
-    return container;
- }
- 
-
- /*
-var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
-
-    var end;
-    
-    
-    var container = document.createElement("span");
-
-    //create and style inputs
-    var start = document.createElement("input");
-    start.setAttribute("type", "number");
-    start.setAttribute("placeholder", "Min");
-    start.setAttribute("min", 0);
-    start.setAttribute("max", 100);
-    start.style.padding = "4px";
-    start.style.width = "50%";
-    start.style.boxSizing = "border-box";
-
-    start.value = cell.getValue();
-
-    function buildValues(){
-        success({
-            start:start.value,
-            end:end.value,
-        });
-    }
-
-    function keypress(e){
-        if(e.keyCode == 13){
-            buildValues();
-        }
-
-        if(e.keyCode == 27){
-            cancel();
-        }
-    }
-
-    end = start.cloneNode();
-    end.setAttribute("placeholder", "Max");
-
-    start.addEventListener("change", buildValues);
-    start.addEventListener("blur", buildValues);
-    start.addEventListener("keydown", keypress);
-
-    end.addEventListener("change", buildValues);
-    end.addEventListener("blur", buildValues);
-    end.addEventListener("keydown", keypress);
-
-
-    container.appendChild(start);
-    container.appendChild(end);
-
-    return container;
- }*/
-
-//custom max min filter function
-function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
-    //headerValue - the value of the header filter element
-    //rowValue - the value of the column in this row
-    //rowData - the data for the row being filtered
-    //filterParams - params object passed to the headerFilterFuncParams property
-        if(rowValue){
-            //console.log(rowValue)
-            //if (rowValue==0){
-            //	console.log('zero case');
-            //}
-            //console.log(headerValue.start);
-            if((headerValue.start != 0 || headerValue.start != 0.0)  && headerValue.start != "" ){
-                //console.log('start is 0');
-                if((headerValue.end != 1 || headerValue.start != 1.0) && headerValue.end != ""){
-                //console.log('end is 1');
-                //console.log('filtering');
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end &&  rowValue != 0 && rowValue != "0" && rowValue != 0.00 && rowValue != 1 && rowValue != 1.00;
-                }
-                if(headerValue.end != ""){
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 0 && rowValue != "0" && rowValue != 0.00 ;
-                }
-               	else{
-                    return rowValue >=headerValue.start && rowValue != 0 && rowValue != "0" && rowValue != 0.00;
-                }
-            }
-            if( headerValue.start != "" ){
-                if((headerValue.end != 1 || headerValue.start != 1.0) && headerValue.end != ""){
-                //console.log('filtering');
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end && rowValue != 1 && rowValue != 1.00;
-                }
-                if(headerValue.end != ""){
-                    return rowValue >= headerValue.start && rowValue <= headerValue.end ;
-                }
-               	else{
-                    return rowValue >=headerValue.start ;
-                }
-            }
-        }
-
-    return true; //must return a boolean, true if it passes the filter.
-}
-
-
-var browser =  new Browser({
+				var browser =  new Browser({
 								      chr:          '22',
 								      viewStart:    30700000,
 								      viewEnd:      30900000,
@@ -1433,218 +1257,185 @@ var browser =  new Browser({
 
 
 
-var retJson=[{
-  "peptide": "AEMKVWET",
-  "gene": "ENSG00000180096-16@chr16:30379535-30379931",
-  "tpm": "0.8473",
-  "HLA-A*24:02": "0.016",
-  "HLA-A*25:01": "ENSG00000180096",
-  "HLA-B*07:02": "SEPTIN1",
-  "HLA-B*18:01": "52.0",
-  "HLA-C*07:02": "55.0",
-  "HLA-C*12:03": "50.0",
-  "hla": "1.825",
-  "wt_pep": "53.0",
-  "pep_hydro": "56.667",
-  "pep_polar": "HLA-B18:01",
-  "pep_charge": "AEQGVWET",
-  "pep_entropy": "-4.6",
-  "pep_molsize": "53.56",
-  "pep_TAP": "-1",
-  "pep_Cle": "1754.17",
-  "pep_Comb": "992",
-  "neo_aff": "-0.296",
-  "neo_rank": "0.09325",
-  "iedb_immunescore": "0.29258",
-  "pep_DAI": "5301.04",
-  "pep_Rscore": "1.825",
-  "pep_NRP": "0.0592",
-  "pep_pTuneos": "-0.9346",
-  "rf_predict": "0.0",
-  "rf_predict_prob": "-0.0",
-  "ensembl": "-0.0",
-  "geneSymbol": "Negative",
-  "undefined": "-0.0"
-}];
 
 
-function onHoverTable(){
-	console.log('columnHovered');
+						function onHoverTable(){
+							console.log('columnHovered');
 
-    }
+						    }
 
-var table2 = new Tabulator("#example-table", {
-    data:jsonout,
-    height:"311px",
-    layout:"fitDataFill",
-    //movableColumns: true,
-    columns:[
-        {title:"peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter,tooltip:onHoverTable},
-        {title:"gene", field:"gene", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"tpm", field:"tpm", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"rf_predict_prob", field:"rf_predict_prob", width:300,titleFormatter:customTitleFormatter,headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction, headerFilterLiveFilter:false},
-        {title:"ensembl", field:"ensembl", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"geneSymbol", field:"geneSymbol", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA-B*18:01", field:"HLA-B*18:01", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"HLA", field:"hla", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"wt_pep", field:"wt_pep", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_hydro", field:"pep_hydro", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_polar", field:"pep_polar", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_charge", field:"pep_charge", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_entropy", field:"pep_entropy", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_molsize", field:"pep_molsize", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_TAP", field:"pep_TAP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_Cle", field:"pep_Cle", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_Comb", field:"pep_Comb", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"neo_aff", field:"neo_aff", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"neo_rank", field:"neo_rank", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"iedb_immunescore", field:"iedb_immunescore", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_DAI", field:"pep_DAI", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_Rscore", field:"pep_Rscore", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_NRP", field:"pep_NRP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"rf_predict", field:"rf_predict", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-        
-        ],
-        dataFiltered: function(filters, rows) {
-        var el = document.getElementById("search_count");
-        el.innerHTML = rows.length;
-        //var el = document.getElementById("total_count");
-        //el.innerHTML = data.length;
-    },
-    rowClick:function(e, row){
-    //e - the click event object
-    //row - row component
-    console.log('rowclick',row);
-    
-    var headers=[];
-    for(var i=0;i<Object.keys(jsonout[0]).length;i++){
-    	headers.push(Object.keys(jsonout[0])[i]);
-    }
-    console.log('rowclickheaders',headers);
-    var rowvals=row._row.cells;
-    //var retJson={};
-    var tempDict={};
-    retJson=[];
-    for(var i=0;i<rowvals.length;i++){
-    	tempDict[headers[i]]=rowvals[i]['value'];
-    }
-    retJson.push(tempDict);
-    console.log('retJson',retJson);
-    
-    document.getElementById('rowData').style.display="block";
-     document.getElementById('example-table3').style.display="block";
-    
-    var temp=row._row.cells[1].value.split('@')[1]
-  var chr=temp.split(':')[0].substring(3)
-  var start=parseInt(temp.split(':')[1].split('-')[0])
-  var end=parseInt(temp.split(':')[1].split('-')[1])
-   browser.setLocation(chr, start-50, end + 50);
-   document.getElementById('gblabel').style.display="block";
-  document.getElementById('svgHolder').style.display="block";
-    },
-   
-});
+						var table2 = new Tabulator("#example-table", {
+						    data:jsonout,
+						    height:"311px",
+						    layout:"fitDataFill",
+						    //movableColumns: true,
+						    columns:[
+							{title:"peptide", field:"peptide", width:150,headerFilter:"input",titleFormatter:customTitleFormatter,tooltip:onHoverTable},
+							{title:"gene", field:"gene", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"tpm", field:"tpm", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"rf_predict_prob", field:"rf_predict_prob", width:300,titleFormatter:customTitleFormatter,headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction, headerFilterLiveFilter:false},
+							{title:"ensembl", field:"ensembl", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"geneSymbol", field:"geneSymbol", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA-B*18:01", field:"HLA-B*18:01", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"HLA", field:"hla", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"wt_pep", field:"wt_pep", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_hydro", field:"pep_hydro", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_polar", field:"pep_polar", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_charge", field:"pep_charge", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_entropy", field:"pep_entropy", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_molsize", field:"pep_molsize", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_TAP", field:"pep_TAP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_Cle", field:"pep_Cle", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_Comb", field:"pep_Comb", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"neo_aff", field:"neo_aff", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"neo_rank", field:"neo_rank", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"iedb_immunescore", field:"iedb_immunescore", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_DAI", field:"pep_DAI", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_Rscore", field:"pep_Rscore", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_NRP", field:"pep_NRP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"rf_predict", field:"rf_predict", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							
+							],
+							dataFiltered: function(filters, rows) {
+							var el = document.getElementById("search_count");
+							el.innerHTML = rows.length;
+							//var el = document.getElementById("total_count");
+							//el.innerHTML = data.length;
+						    },
+						    rowClick:function(e, row){
+						    //e - the click event object
+						    //row - row component
+						    console.log('rowclick',row);
+						    
+						    var headers=[];
+						    for(var i=0;i<Object.keys(jsonout[0]).length;i++){
+						    	headers.push(Object.keys(jsonout[0])[i]);
+						    }
+						    console.log('rowclickheaders',headers);
+						    var rowvals=row._row.cells;
+						    //var retJson={};
+						    var tempDict={};
+						    retJson=[];
+						    for(var i=0;i<rowvals.length;i++){
+						    	tempDict[headers[i]]=rowvals[i]['value'];
+						    }
+						    retJson.push(tempDict);
+						    console.log('retJson',retJson);
+						    
+						    document.getElementById('rowData').style.display="block";
+						     document.getElementById('example-table3').style.display="block";
+						    
+						    var temp=row._row.cells[1].value.split('@')[1]
+						  var chr=temp.split(':')[0].substring(3)
+						  var start=parseInt(temp.split(':')[1].split('-')[0])
+						  var end=parseInt(temp.split(':')[1].split('-')[1])
+						   browser.setLocation(chr, start-50, end + 50);
+						   document.getElementById('gblabel').style.display="block";
+						  document.getElementById('svgHolder').style.display="block";
+						    },
+						   
+						});
 
 
 
-var table3 = new Tabulator("#example-table3", {
-    data:retJson,
-    height:"80px",
-    layout:"fitDataFill",
-    //movableColumns: true,
-    columns:[
-        {title:"peptide", field:"peptide", width:150,titleFormatter:customTitleFormatter2},
-        {title:"gene", field:"gene", width:150,titleFormatter:customTitleFormatter2},
-        {title:"tpm", field:"tpm", width:150,titleFormatter:customTitleFormatter2},
-        {title:"rf_predict_prob", field:"rf_predict_prob", width:150,titleFormatter:customTitleFormatter2},
-        {title:"ensembl", field:"ensembl", width:150,titleFormatter:customTitleFormatter2},
-        {title:"geneSymbol", field:"geneSymbol", width:150,titleFormatter:customTitleFormatter2},
-        {title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"HLA-B*18:01", field:"HLA-B*18:01", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"HLA", field:"hla", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"wt_pep", field:"wt_pep", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_hydro", field:"pep_hydro", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_polar", field:"pep_polar", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_charge", field:"pep_charge", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_entropy", field:"pep_entropy", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_molsize", field:"pep_molsize", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_TAP", field:"pep_TAP", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_Cle", field:"pep_Cle", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_Comb", field:"pep_Comb", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"neo_aff", field:"neo_aff", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"neo_rank", field:"neo_rank", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"iedb_immunescore", field:"iedb_immunescore", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_DAI", field:"pep_DAI", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_Rscore", field:"pep_Rscore", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_NRP", field:"pep_NRP", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"rf_predict", field:"rf_predict", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true,titleFormatter:customTitleFormatter2},
-        
-        ],
-        dataFiltered: function(filters, rows) {
-        var el = document.getElementById("search_count");
-        el.innerHTML = rows.length;
-        //var el = document.getElementById("total_count");
-        //el.innerHTML = data.length;
-    },
-    
-   
-});
+						var table3 = new Tabulator("#example-table3", {
+						    data:retJson,
+						    height:"80px",
+						    layout:"fitDataFill",
+						    //movableColumns: true,
+						    columns:[
+							{title:"peptide", field:"peptide", width:150,titleFormatter:customTitleFormatter2},
+							{title:"gene", field:"gene", width:150,titleFormatter:customTitleFormatter2},
+							{title:"tpm", field:"tpm", width:150,titleFormatter:customTitleFormatter2},
+							{title:"rf_predict_prob", field:"rf_predict_prob", width:150,titleFormatter:customTitleFormatter2},
+							{title:"ensembl", field:"ensembl", width:150,titleFormatter:customTitleFormatter2},
+							{title:"geneSymbol", field:"geneSymbol", width:150,titleFormatter:customTitleFormatter2},
+							{title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"HLA-B*18:01", field:"HLA-B*18:01", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"HLA", field:"hla", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"wt_pep", field:"wt_pep", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_hydro", field:"pep_hydro", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_polar", field:"pep_polar", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_charge", field:"pep_charge", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_entropy", field:"pep_entropy", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_molsize", field:"pep_molsize", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_TAP", field:"pep_TAP", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_Cle", field:"pep_Cle", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_Comb", field:"pep_Comb", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"neo_aff", field:"neo_aff", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"neo_rank", field:"neo_rank", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"iedb_immunescore", field:"iedb_immunescore", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_DAI", field:"pep_DAI", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_Rscore", field:"pep_Rscore", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_NRP", field:"pep_NRP", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"rf_predict", field:"rf_predict", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true,titleFormatter:customTitleFormatter2},
+							
+							],
+							dataFiltered: function(filters, rows) {
+							var el = document.getElementById("search_count");
+							el.innerHTML = rows.length;
+							//var el = document.getElementById("total_count");
+							//el.innerHTML = data.length;
+						    },
+						    
+						   
+						});
 
 
 
 
 
 
-//var total_count = $(".tabulator-footer").find('.tabulator-cell:first-child()').text();
-//$("#total_count").text(total_count);
+						//var total_count = $(".tabulator-footer").find('.tabulator-cell:first-child()').text();
+						//$("#total_count").text(total_count);
 
-$( "#colShow" ).change(function() {
-  //alert( "Handler for .change() called." );
-  var x=$("#colShow" ).val();
-  console.log(x);
-  //console.log(table2);
-  //table2.showColumn(x);
-  var objkeys=Object.entries(table2.columnManager.columnsByField);
-  for(var i=0;i<objkeys.length;i++){
-  	var title=objkeys[i][1].definition['field'];
-  	//console.log('title',title,'x',x);
-  	if(title==x){
-  		console.log(table2.columnManager);
-  		var visible=table2.columnManager.columnsByField[title].definition.visible;
-  		console.log(visible);
-  		if(visible==true || visible==null){
-  			//table2.hideColumn(x);
-  			//console.log('hiding');
-  			table2.columnManager.columnsByField[title].definition.visible=false;
-  			table2.hideColumn(x);
-  		}
-  		else{
-  		        table2.columnManager.columnsByField[title].definition.visible=true;
-  			table2.showColumn(x);
-  			console.log('showing');
-  		}
-  	}
-  	
-  }
-});
+						$( "#colShow" ).change(function() {
+						  //alert( "Handler for .change() called." );
+						  var x=$("#colShow" ).val();
+						  console.log(x);
+						  //console.log(table2);
+						  //table2.showColumn(x);
+						  var objkeys=Object.entries(table2.columnManager.columnsByField);
+						  for(var i=0;i<objkeys.length;i++){
+						  	var title=objkeys[i][1].definition['field'];
+						  	//console.log('title',title,'x',x);
+						  	if(title==x){
+						  		console.log(table2.columnManager);
+						  		var visible=table2.columnManager.columnsByField[title].definition.visible;
+						  		console.log(visible);
+						  		if(visible==true || visible==null){
+						  			//table2.hideColumn(x);
+						  			//console.log('hiding');
+						  			table2.columnManager.columnsByField[title].definition.visible=false;
+						  			table2.hideColumn(x);
+						  		}
+						  		else{
+						  		        table2.columnManager.columnsByField[title].definition.visible=true;
+						  			table2.showColumn(x);
+						  			console.log('showing');
+						  		}
+						  	}
+						  	
+						  }
+						});
 
 
-document.getElementById("download-csv").addEventListener("click", function(){
-    table2.download("csv", "data.csv");
-});
+						document.getElementById("download-csv").addEventListener("click", function(){
+						    table2.download("csv", "data.csv");
+						});
 
 
 
@@ -1659,7 +1450,7 @@ document.getElementById("download-csv").addEventListener("click", function(){
 							
 							   	  
 								
-							document.getElementById('additionalInfo').style.display="block";
+							//document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";
 							document.getElementById('outer').style.display="block";
 							
@@ -1667,49 +1458,6 @@ document.getElementById("download-csv").addEventListener("click", function(){
 							
 								
 
-					    /*
-					    //HLALOAD SECTION
-					    $.ajax({
-					    async: false,
-					    url: 'https://immuneportal.ccbb.iupui.edu/static/files/TCGA_IRneoAg_load_in_8cancers_summary.csv',
-					    method: 'GET',
-					    //datatype: 'json',
-					    
-					    
-					       	    //console.log(data_file);
-						    //console.log(data_file);
-						    success: function (TCGAbreakdown) {
-						    		var TCGAarray=CSVToArray(TCGAbreakdown);
-						    		console.log(TCGAarray);
-						    		//var TCGAjson=CSV2JSON(TCGAbreakdown);
-						    		//console.log('tcgajson',TCGAjson);
-						    		var currCanc=[];
-						    		for(var i=1;i<TCGAarray.length;i++){
-						    			if(TCGAarray[i][0].includes(currcantype)){
-						    				currCanc.push(parseInt(TCGAarray[i][0].split(',')[1]));
-						    			}
-						    		}
-						    		console.log('currcanc',currCanc);
-						    		console.log('CURRCANCE Min:',Math.min.apply(Math,currCanc));
-						    		console.log('CURRCANCE RANGE:',Math.max.apply(Math,currCanc)-Math.min.apply(Math,currCanc));
-						    		var currCancRange=Math.max.apply(Math,currCanc)-Math.min.apply(Math,currCanc)
-						    		
-								  
-								  
-								
-
-  
-
-
-								  
-							}
-					    });
-					    
-					    */
-					    
-					    
-					    
-					    
 					    
 					    
 					    $.ajax({
@@ -1723,6 +1471,7 @@ document.getElementById("download-csv").addEventListener("click", function(){
 					    	//console.log('made it here');
 					    	
 						//console.log('json',data);
+							console.log('shouldBeHere');
 							var userspecific=dataout;
 							console.log('userspecific',userspecific);
 							console.log('indexof',userspecific[0].indexOf('hla'));

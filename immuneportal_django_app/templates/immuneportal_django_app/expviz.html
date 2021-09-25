@@ -107,11 +107,11 @@
             
 	    <div class="card">
                 <div class="card-header" >
-                    , Intersecting Selections of HLA by antigens (<b>click to see enlarged</b>):
+                    Upset Plot, Intersecting Selections of HLA by antigens (<b>click to see enlarged</b>):
                 </div>
                 <div class="card-body" style="overflow:hidden" >
 		        
-		            		<img id="myImg" class="maglarge" src='https://immuneportal.ccbb.iupui.edu/static/files/Upset.png' width="1350" height="320" style="margin-left:-150px;" ></img>
+		            		<img id="upset" class="maglarge" src='' width="1350" height="320" style="margin-left:-150px;" ></img>
 		            	
 		        <div id="myModal" class="modal">
 				  <span class="close">&times;</span>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="card-body">
                     <p>The red line indicates how the individual compares to TCGA samples:</p>
-                    <img id="hlaLoad2" src='https://immuneportal.ccbb.iupui.edu/static/files/HLALoad.png'></img>
+                    <img id="hlaLoad2" src=''></img>
                     <!--<img  id="hlaload"></img>-->
                 </div>
             </div>
@@ -436,7 +436,7 @@
 var modal = document.getElementById("myModal");
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
+var img = document.getElementById("upset");
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 img.onclick = function(){
@@ -847,9 +847,13 @@ var data_file2=data_file.split("?")[1];
 	    			///api/download?data-product-uri=airavata-dp%3A%2F%2Fddc9b4c5-7704-421a-a458-81a717203c6b
 	    			
 	    			console.log('EXPOUT',data['experimentOutputs']);
-	    			var geneFreq='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[1];
+	    			var geneFreq='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[9];
 	    			//var finalOutput='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[4];
-	    			var tableData='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[0];
+	    			var tableData='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[4];
+	    			
+	    			
+	    			document.getElementById("hlaload2").src="https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri="+allFiles[1];
+	    			document.getElementById("upset").src="https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri="+allFiles[6];
 	    			console.log('TABLEDATA',tableData);
 	    			
 	    			//FOR GENEFREQ SECTION

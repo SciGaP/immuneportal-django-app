@@ -16,7 +16,7 @@ import io
 #import seaborn as sns
 from subprocess import check_output
 from io import StringIO
-from airavata_django_portal_sdk import user_storage
+#from airavata_django_portal_sdk import user_storage
 import base64
 from collections import Counter
 from airavata_django_portal_sdk import urls
@@ -26,7 +26,7 @@ import json
 
 
 
-
+'''
 @login_required
 def image_view(request):
 	requestStr=str(request)
@@ -89,7 +89,8 @@ def image_view(request):
 	
 	return HttpResponse(image_bytes, content_type="image/png")
 	
-
+'''
+'''
 @login_required
 def upset_view(request):
 	currkey=None
@@ -158,8 +159,8 @@ def upset_view(request):
 	
 	return HttpResponse(image_bytes2, content_type="image/png")
 	
-	
-
+'''	
+'''
 @login_required
 def hlaload_view(request):
 	currkey=None
@@ -185,7 +186,8 @@ def hlaload_view(request):
 	#time.sleep(1)
 	
 	return HttpResponse(image_bytes, content_type="image/png")
-	
+'''
+'''
 @login_required
 def delete(request):
 	print("THESE KEYS",request.GET.keys())
@@ -203,14 +205,14 @@ def delete(request):
 	
 	return HttpResponse('deleted', content_type="text/html")
 
-
+'''
 @login_required
 def expviz(request):
 	return render(request, "immuneportal_django_app/expviz.html")
 
-@login_required
-def splice_res(request):
-	return render(request, "immuneportal_django_app/splicetable.html")
+#@login_required
+#def splice_res(request):
+#	return render(request, "immuneportal_django_app/splicetable.html")
 
 '''
 

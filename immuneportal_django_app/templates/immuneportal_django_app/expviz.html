@@ -18,7 +18,7 @@
 	    		<option value={{outputFilePath}} selected>Select genome </option>
 		  </select>
 		  <!--<div id='forResultTable'></div>-->
-		  
+
 		<span><select id="colShow" >
 		    <option value="">Show/Hide Column</option>
 		    <option value="peptide">peptide</option>
@@ -62,37 +62,138 @@
 
 
 		<span style="color:#102D4F;font-size:12px;font-family:Arial, Helvetica, sans-serif">
-  Showing <span id="search_count"></span> results from (<span id="total_count"></span>)  
+  Showing <span id="search_count"></span> results from (<span id="total_count"></span>)
 </span>
 <div id='rowData' style="display:none"><br/><p><u>All Row Columns</u></p></div>
-<p id='colDescription2' sytle="display:none"></p>
+<p id='colDescription2' style="display:none"></p>
+
 <div id="example-table3" style="display:none"></div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<p>&nbsp;</p> 
+<!-- Description -->
+<p class="font-weight-bold text-primary" style="display:none" id="sample-data-title"></p>
+<div class="sdata-table-one" style="display:none" id="sdata-table-one-id">
+</div>
+<div class="smaple-data-table" style="display:none" id="sample-data-table-id">
+</div>
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.sdata-table-one{
+  width: 50%;
+  display: flex;
+  margin-top: 15px;
+  margin-bottom:15px;
+}
+.smaple-data-table{
+  width: 50%;
+  display: flex;
+  /* margin-right: 15px; */
+  margin-top: 15px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+
+
+}
+
+.sample-data-cat-table{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.cat-row-holder{
+  display: flex;
+}
+.cat-description{
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 150px;
+  background: #F3F3F3;
+  color: #565959;
+  padding-left: 5px;
+  border: 1px solid #f3f3f3;
+
+}
+
+.cat-value{
+  height: 40px;
+  width: 150px;
+  backgroundt: transperent;
+  color: #565959;
+  border-top: 1px solid #F3F3F3;
+  border-bottom: 1px solid #F3F3F3;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+</style>
+
+<body>
+
+<!-- class="a-section table-padding" -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<p>&nbsp;</p>
 		<div>
-		
+
 		<p id='gblabel'  style="display:none"><p>
 		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
 		</div>
         </div>
-            
+
             <!-- Adding a list of "Hello" greetings
             <div class="card">
                 <div class="card-header">
@@ -104,15 +205,15 @@
                 </div>
             </div>
             -->
-            
+
 	    <div class="card">
                 <div class="card-header" >
                     Upset Plot, Intersecting Selections of HLA by antigens (<b>click to see enlarged</b>):
                 </div>
                 <div class="card-body" style="overflow:hidden" >
-		        
+
 		            		<img id="upset" class="maglarge" src='' width="1350" height="320" style="margin-left:-150px;" ></img>
-		            	
+
 		        <div id="myModal" class="modal">
 				  <span class="close">&times;</span>
 				  <img class="modal-content" id="img01">
@@ -120,7 +221,7 @@
 				</div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header" id="hlaLoadHeader">
                 </div>
@@ -130,13 +231,13 @@
                     <!--<img  id="hlaload"></img>-->
                 </div>
             </div>
-            
+
             <div class="card" style='display:none'>
                 <div class="card-header">
                     Individual and 1000 Genome HLA statistics (<b>Use the Dropdown to switch between sets</b>)
                 </div>
                 <div class="card-body">
-                
+
                     <div id="myDiv2"></div>
 
                 </div>
@@ -161,7 +262,7 @@
 
                 </div>
             </div>
-            
+
         </div>
     </main>
 </div>
@@ -173,13 +274,13 @@
         <link rel="stylesheet" href="../../static/css/jquery-ui.css">
         <link rel="stylesheet" href="../../static/css/buttons.dataTables.min.css">
         <link href="../../static/css/tabulator.min.css" rel="stylesheet">
-         
+
         <style>
-	       
+
         #resultTable th{
 	  position:relative;
 	  z-index:100;
-	  
+
 	}
 	#resultTable td{
 	  position:relative;
@@ -194,15 +295,15 @@
 
 	.HlaComment {
 	  visibility: hidden;
-	  position:absolute; 
+	  position:absolute;
 	  z-index: 99999;
 	  border:1px;
 	  background-color:white;
 	  border-style:solid;
 	  border-color:black;
 	  width:220px;
-	  color:black; 
-	  top:2px; 
+	  color:black;
+	  top:2px;
 	  left:40px;
 	}
 
@@ -210,10 +311,10 @@
 	  visibility: visible;
 	  opacity: 1;
 	  width:220px;
-	  position:absolute; 
+	  position:absolute;
 	  z-index:99999;
 	}
-	
+
 	.WtWithComment{
 	cursor: pointer;
 	  position:relative;
@@ -223,15 +324,15 @@
 	.WtComment {
 	cursor: pointer;
 	  visibility: hidden;
-	  position:absolute; 
+	  position:absolute;
 	  z-index: 99998;
 	  border:1px;
 	  background-color:white;
 	  border-style:solid;
 	  border-color:black;
 	  width:300px;
-	  color:black; 
-	  top:2px; 
+	  color:black;
+	  top:2px;
 	  left:40px;
 	}
 
@@ -240,10 +341,10 @@
 	  visibility: visible;
 	  opacity: 1;
 	  width:300px;
-	  position:absolute; 
+	  position:absolute;
 	  z-index:99998;
 	}
-	
+
 	#myImg {
 	  border-radius: 5px;
 	  cursor: pointer;
@@ -269,10 +370,10 @@
 
 	/* Modal Content (image) */
 	.modal-content {
-	  
+
 	  display: block;
 	  width: 200%;
-	  
+
 	}
 
 	/* Caption of Modal Image */
@@ -288,7 +389,7 @@
 	}
 
 	/* Add Animation */
-	.modal-content, #caption {  
+	.modal-content, #caption {
 	  -webkit-animation-name: zoom;
 	  -webkit-animation-duration: 0.6s;
 	  animation-name: zoom;
@@ -296,12 +397,12 @@
 	}
 
 	@-webkit-keyframes zoom {
-	  from {-webkit-transform:scale(0)} 
+	  from {-webkit-transform:scale(0)}
 	  to {-webkit-transform:scale(1)}
 	}
 
 	@keyframes zoom {
-	  from {transform:scale(0)} 
+	  from {transform:scale(0)}
 	  to {transform:scale(1)}
 	}
 
@@ -361,20 +462,20 @@
 }
 
 .sliderinput {
-    
+
     margin: 0px;
     position: absolute;
     left: 72px;
 }
 
 .minbox {
-    
+
     margin: 0px;
     position: absolute;
     left: 0px;
 }
 .maxbox {
-    
+
     margin: 0px;
     position: absolute;
     left: 194px;
@@ -398,11 +499,11 @@
 .tabulator-footer {
     display: none;
 }
-	
+
 
 	</style>
   {% endblock %}
-  
+
 {% block scripts %}
 <script src="{% static 'django_airavata_api/dist/airavata-api.js' %}"></script>
 
@@ -413,7 +514,7 @@
   <script src="../../static/js/buttons.colVis.min.js"defer ></script>
   <script src="../../static/js/jquery-ui.js" defer></script>
   <script src="../../static/js/tabulator.min.js" defer></script>
-  
+
   <script src="../../static/js/dalliance-compiled.js" defer></script>
   <!--for IRNEO-->
   <script src="../../static/js/plotly-latest.min.js" ></script>
@@ -423,10 +524,10 @@
   <script src="../../static/js/data.js" ></script>
   <script src="../../static/js/jstat.min.js" ></script>
   <script src="../../static/js/processDensity.js" ></script>
-  
-  
-  
- 
+
+
+
+
 
   <script src="../../static/js/blowup.min.js"></script>
 
@@ -449,7 +550,7 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+span.onclick = function() {
   modal.style.display = "none";
 }
 
@@ -458,7 +559,7 @@ span.onclick = function() {
 
 
 
-descriptionDict={'Id': 'random assigned peptide id','hla':  'human leukocyte antigen (HLA) allele','mut_pep': 'peptide derived from retained intron regions','wt_pep': 'the most similar peptide from human reference protein database','pep_hydro': 'sum of amino acids hydrophobicity for peptide','pep_polar': 'sum of amino acids residues polarity for peptide','pep_charge': 'sum of amino acids residues net charge for peptide (at neutral pH)','pep_entropy': 'sum of amino acids residues entropy for peptide','pep_molsize': 'sum of amino acids residues molecular weight for peptide','pep_TAP':  'TAP transport efficiency, predicted by NetCTL1.2','pep_Cle': 'C terminal cleavage affinity, predicted by NetCTL1.2','pep_Comb': 'Overall prediction score, predicted by NetCTL1.2','neo_aff': 'NetMHCpan 4.1 predicted IC50 values (Aff, nM unit)','neo_rank': 'NetMHCpan 4.1 predicted percentile rank binding affinity value','iedb_immunescore': 'Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity','pep_DAI': 'differential agretopicity index, from Ghorani et al’s study (PMID:29361136)','pep_Rscore': 'neoantigen fitness score from Łuksza et al’s study (PMID:29132144)','pep_NRP': 'Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146)','pep_pTuneos': 'pTuneos prediction score, Zhou et al’s study (PMID:31666118)','rf_predict': 'intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells' };	
+descriptionDict={'Id': 'random assigned peptide id','hla':  'human leukocyte antigen (HLA) allele','mut_pep': 'peptide derived from retained intron regions','wt_pep': 'the most similar peptide from human reference protein database','pep_hydro': 'sum of amino acids hydrophobicity for peptide','pep_polar': 'sum of amino acids residues polarity for peptide','pep_charge': 'sum of amino acids residues net charge for peptide (at neutral pH)','pep_entropy': 'sum of amino acids residues entropy for peptide','pep_molsize': 'sum of amino acids residues molecular weight for peptide','pep_TAP':  'TAP transport efficiency, predicted by NetCTL1.2','pep_Cle': 'C terminal cleavage affinity, predicted by NetCTL1.2','pep_Comb': 'Overall prediction score, predicted by NetCTL1.2','neo_aff': 'NetMHCpan 4.1 predicted IC50 values (Aff, nM unit)','neo_rank': 'NetMHCpan 4.1 predicted percentile rank binding affinity value','iedb_immunescore': 'Class I Immunogenicity score from IEDB, http://tools.iedb.org/immunogenicity','pep_DAI': 'differential agretopicity index, from Ghorani et al’s study (PMID:29361136)','pep_Rscore': 'neoantigen fitness score from Łuksza et al’s study (PMID:29132144)','pep_NRP': 'Neoantigen Recognition Potential score, Balachandran et al’s study (PMID:29132146)','pep_pTuneos': 'pTuneos prediction score, Zhou et al’s study (PMID:31666118)','rf_predict': 'intronNeoantigen random forest model prediction, Positive/Negative represent the ability for recognition by CD8+ cytotoxic T cells' };
 var customTitleFormatter = function(cell){
 
     var headerEl = cell.getElement(); //get the column header element from above the title element
@@ -468,10 +569,10 @@ var customTitleFormatter = function(cell){
         console.log('mousover');
         //console.log(e);
         console.log(headerEl.innerText);
-        
+
         document.getElementById('colDescription').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
-        
-        
+
+
     });
 
     return cell.getValue(); // ensure the title is set on the cell
@@ -488,24 +589,24 @@ var customTitleFormatter2 = function(cell){
         console.log('mousover');
         //console.log(e);
         console.log(headerEl.innerText);
-        
+
         document.getElementById('colDescription2').innerHTML='<b>'+headerEl.innerText+'</b> : '+descriptionDict[headerEl.innerText];
         document.getElementById('colDescription2').display='block';
-        
+
     });
 
     return cell.getValue(); // ensure the title is set on the cell
-}		
-				
+}
+
 var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
 
-    
-    
-    
-    
+
+
+
+
 
     var container = document.createElement("span");
-    
+
     var subcontainer=document.createElement("div");
 
     var start=document.createElement('input');
@@ -517,7 +618,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     start.setAttribute("step","0.01");
     start.setAttribute("value",'0.00');
     start.style.width='120px;'
-    
+
     var end=document.createElement('input');
     end.type="range";
     end.id="end";
@@ -544,8 +645,8 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     startbox.style.zIndex="2";
 
     startbox.value = cell.getValue();
-    
-    
+
+
     var endbox = document.createElement("input");
     endbox.setAttribute("type", "number");
     endbox.setAttribute("placeholder", "Max");
@@ -573,9 +674,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
             endbox:end.value,
         });
     }
-    
-    
-    var boxalter = function(eventArg) 
+
+
+    var boxalter = function(eventArg)
     {
     	start.setAttribute("value",startbox.value);
     	end.setAttribute("value",endbox.value);
@@ -584,9 +685,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
             end:endbox.value,
         });
     }
-    
-    
-    var MouseMove = function(eventArg) 
+
+
+    var MouseMove = function(eventArg)
     {
         /* percentage position X of cursor  */
         //console.log(eventArg.clientX);
@@ -602,29 +703,29 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
         console.log(recta.right-recta.left);
         console.log(eventArg.clientX-recta.left);
         // Making the two sliders appear above one another only when no mouse button is pressed, this oondition may be removed at will
-        if (!eventArg.buttons) 
+        if (!eventArg.buttons)
         {
-            if (da > db) 
+            if (da > db)
             {
                 start.style.zIndex = 1;
                 end.style.zIndex = 2;
-            } 
-            else 
+            }
+            else
             {
                 start.style.zIndex = 2;
                 end.style.zIndex = 1;
             }
         }
-        
+
         //document.querySelector('label').innerHTML = 'Red: ' + a.value + ', Green: ' + b.value + ', X: ' + eventArg.clientX;
     }
-    
-    
+
+
     startbox.addEventListener("change",boxalter);
     startbox.addEventListener("input",boxalter);
     endbox.addEventListener("change",boxalter);
     endbox.addEventListener("input",boxalter);
-    
+
     start.addEventListener("mousemove",MouseMove );
     start.addEventListener("change", buildValues);
     start.addEventListener("blur", buildValues);
@@ -634,9 +735,9 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
     end.addEventListener("change", buildValues);
     end.addEventListener("blur", buildValues);
     //end.addEventListener("keydown", keypress);
-    
-    
-    
+
+
+
     container.append(startbox);
     container.append(start);
     //container.append(lmax);
@@ -646,7 +747,7 @@ var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParam
 
     return container;
  }
- 
+
 
 //custom max min filter function
 function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
@@ -752,8 +853,8 @@ function CSVToArray(strData, strDelimiter) {
 function CSV2JSON(csv) {
     var array = CSVToArray(csv);
     var objArray = [];
-    
-    
+
+
     for (var i = 1; i < array.length; i++) {
         objArray[i - 1] = {};
         for (var k = 0; k < array[0].length && k < array[i].length; k++) {
@@ -815,7 +916,7 @@ function numInstanceOrig(arr,index) {
   for (var i = 0; i < arr[index].length; i++) {
     //if (arr[i] !== prev) {
       //var temp=String(arr[i]).split(",")[index];
-      
+
       //console.log("postSplit");
       //console.log(temp2);
       console.log("index",index);
@@ -828,9 +929,9 @@ function numInstanceOrig(arr,index) {
 	      	a.push(temp2);
 	      }
       //}
-      
+
       }
-    
+
   	b.push(0);
   console.log('apost');
   console.log(a);
@@ -867,9 +968,9 @@ function numInstance(arr,index,exclusive) {
 	      	a.push(temp2);
 	      }
       }
-      
+
       }
-    
+
   	b.push(0);
   console.log('apost');
   console.log(a);
@@ -923,7 +1024,7 @@ function tsvJSON(tsv){
   var result = [];
   console.log('FIRSTLINE',lines[0]);
   // NOTE: If your columns contain commas in their values, you'll need
-  // to deal with those before doing the next step 
+  // to deal with those before doing the next step
   // (you might convert them to &&& or something, then covert them back later)
   // jsfiddle showing the issue https://jsfiddle.net/
   var headers=lines[0].split("\t");
@@ -1004,18 +1105,19 @@ var data_file2=data_file.split("?")[1];
 	var dataout;
 	var currcantype='';
 	$.ajax({
-	    url: 'https://immuneportal.ccbb.iupui.edu/api/experiments/'+data_file,
+	    //url: 'https://immuneportal.ccbb.iupui.edu/api/experiments/'+data_file,
+      url: '/api/experiments/'+data_file,
 	    method: 'GET',
 	    //datatype: 'json',
-	    
-	    
+
+
        	    //console.log(data_file);
             //console.log(data_file);
 	    success: function (data) {
 	    	//console.log('experiment info',data['experimentOutputs']);
 	    	console.log(data);
-	    	
-	    	
+
+
 	    	for(var i=0; i<data['experimentInputs'].length;i++){
 	    		//console.log(Object.keys(data['experimentInputs'][i]))
 	    		if(data['experimentInputs'][i]['name']=='Cancer Type'){
@@ -1023,35 +1125,39 @@ var data_file2=data_file.split("?")[1];
 	    			console.log(currcantype);
 	    		}
 	    	}
-	    	//SET THE CANCER TITLES ACCORDINGLY 
+	    	//SET THE CANCER TITLES ACCORDINGLY
                 document.getElementById('hlaLoadHeader').innerHTML="HLA Load (Load Based on Individual's <b>"+currcantype+"</b> Sample)"
                 document.getElementById('relGenExpHeader').innerHTML="Gene Expression Relative to TCGA for cancer type <b>"+currcantype+"</b>"
-                
+
 	    	for(var i=0; i<data['experimentOutputs'].length;i++){
 	    		if(data['experimentOutputs'][i]['name']=='Associated Files'){
 	    			console.log('files',data['experimentOutputs'][i]['value']);
 	    			var allFiles=data['experimentOutputs'][i]['value'].split(',');
 	    			//console.log('#files',data['experimentOutputs'][i]['value'].split(',').length);
 	    			///api/download?data-product-uri=airavata-dp%3A%2F%2Fddc9b4c5-7704-421a-a458-81a717203c6b
-	    			
+
 	    			console.log('EXPOUT',data['experimentOutputs']);
-	    			var geneFreq='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[9];
+	    			//var geneFreq='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[9];
+            var geneFreq='/api/download?data-product-uri='+allFiles[9];
 	    			//var finalOutput='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[4];
-	    			var tableData='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[4];
-	    			
-	    			
-	    			document.getElementById("hlaLoad2").src="https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri="+allFiles[1];
-	    			document.getElementById("upset").src="https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri="+allFiles[6];
-	    			console.log('TABLEDATA',tableData);
-	    			
+	    			//var tableData='https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+allFiles[4];
+            var tableData='/api/download?data-product-uri='+allFiles[4];
+
+
+	    			//document.getElementById("hlaLoad2").src="https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri="+allFiles[1];
+            document.getElementById("hlaLoad2").src="/api/download?data-product-uri="+allFiles[1];
+	    			//document.getElementById("upset").src="https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri="+allFiles[6];
+            document.getElementById("upset").src="/api/download?data-product-uri="+allFiles[6];
+            console.log('TABLEDATA',tableData);
+
 	    			//FOR GENEFREQ SECTION
-	    			
+
 	    			$.ajax({
 				    url: geneFreq,
 				    method: 'GET',
 				    success: function (geneFreqData) {
 	    				     //console.log(CSVToArray(geneFreqData))
-					      
+
 					      //TITLES OF CSV COLUMNS
 						console.log(CSVToArray(geneFreqData)[0]);
 						var temp=CSVToArray(geneFreqData);
@@ -1060,18 +1166,19 @@ var data_file2=data_file.split("?")[1];
 						var personalGenesDict={};
 						console.log(geneFreqDataArr);
 						for(var i=0;i<geneFreqDataArr.length;i++){
-							
+
 
 							personalGenesDict[geneFreqDataArr[i][0]]=parseFloat(geneFreqDataArr[i][1])
 						}
 						console.log('personGenes',personalGenesDict);
 						$.ajax({
 							    async: false,
-							    url: 'https://immuneportal.ccbb.iupui.edu/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',
+							    //url: 'https://immuneportal.ccbb.iupui.edu/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',
+                  url: '/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',
 							    method: 'GET',
 							    //datatype: 'json',
-							    
-							    
+
+
 						       	    //console.log(data_file);
 							    //console.log(data_file);
 							    success: function (tcgaGeneFreqs) {
@@ -1081,7 +1188,7 @@ var data_file2=data_file.split("?")[1];
 									console.log(tcgaGeneFreqsTitles);
 									var tcgaGeneFreqsArr=temp.slice(1, temp.length);
 									console.log(tcgaGeneFreqsArr[0]);
-									
+
 									var titleArr=tcgaGeneFreqsTitles[0].split(',');
 									var geneDict={};
 									//INITIALIZING GENE DICT
@@ -1093,13 +1200,13 @@ var data_file2=data_file.split("?")[1];
 										else{
 											geneDict[titleArr[j]]=[];
 										}
-										
+
 									}
 									//FILLING GENE DICT
 									for(var i=0;i<tcgaGeneFreqsArr.length;i++){
 										var currLst=tcgaGeneFreqsArr[i][0].split(',');
 										if(currLst[titleArr.length-1]==currcantype){
-											
+
 											for(var j=0;j<titleArr.length;j++){
 
 												if(j==0| j==titleArr.length-1){
@@ -1108,7 +1215,7 @@ var data_file2=data_file.split("?")[1];
 												else{
 													geneDict[titleArr[j]].push(parseFloat(currLst[j]));
 												}
-												
+
 											}
 										}
 										else{
@@ -1116,7 +1223,7 @@ var data_file2=data_file.split("?")[1];
 										}
 									}
 									console.log('part of b2m',geneDict['B2M'].slice(0,5));
-									
+
 									var keysForIt=Object.keys(geneDict).reverse();
 									var traces=[];
 									for(var i=0;i<keysForIt.length;i++){
@@ -1165,8 +1272,8 @@ var data_file2=data_file.split("?")[1];
 									Plotly.newPlot('boxes', data, layout);
 								}
 						});
-				
-				
+
+
 	    				}
 	    			});
 	    			/*$(document).ready(function () {
@@ -1181,21 +1288,21 @@ var data_file2=data_file.split("?")[1];
 				    //url: tableData,
 				    method: 'GET',
 				    //datatype: 'json',
-				    
-				    
+
+
 			       	    //console.log(data_file);
 				    //console.log(data_file);
 				    success: function (data) {
 				//console.log('hello');
 						//console.log(data_file);
-						    //console.log(data);
+						    console.log(data);
 						    var dataout=CSVToArray(data);
 						    dataoutTable = dataout.slice(1, dataout.length);
-						    
+
 						    var jsonout=tsvJSON(data);
 						    jsonout.pop();
 						    console.log('JSONOUT',jsonout);
-						
+
 						    var columnDefs=[]
 						    console.log('DataOut',dataout[0]);
 						    for(var i=0;i<dataout[0].length;i++){
@@ -1210,13 +1317,13 @@ var data_file2=data_file.split("?")[1];
 						    		columnDefs.push({"targets":[i],"visible":true,"searchable":true,"className":"noVis"})
 						    	}
 
-						    	
-						    	
+
+
 						    }
-						    
-						    
-					
-				
+
+
+
+
 
 
 
@@ -1249,7 +1356,7 @@ var data_file2=data_file.split("?")[1];
 										     bwgURI:               'https://www.biodalliance.org/datasets/repeats.bb',
 										     stylesheet_uri:       'https://www.biodalliance.org/stylesheets/bb-repeats.xml'},
 										    {name:                 'Conservation',
-										     desc:                 'Conservation', 
+										     desc:                 'Conservation',
 										     bwgURI:               'https://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/hg38.phyloP100way.bw',
 										     noDownsample:         true}],
 
@@ -1258,13 +1365,39 @@ var data_file2=data_file.split("?")[1];
 
 
 
-						var retJson=[{}];
+						 var retJson=[{}];
 
 						function onHoverTable(){
 							console.log('columnHovered');
 
 						    }
+                var table3 = new Tabulator("#example-table3", {
+    						    data:retJson,
+                    height:"58px",
+                    layout:"fitDataFill",
 
+    						    //movableColumns: true,
+
+
+    						    columns:[
+
+
+    							{title:"gene", field:"gene", width:150,titleFormatter:customTitleFormatter2},
+
+
+    							{title:"ensembl", field:"ensembl", width:150,titleFormatter:customTitleFormatter2},
+    							{title:"geneSymbol", field:"geneSymbol", width:150,titleFormatter:customTitleFormatter2},
+
+    							],
+    							// dataFiltered: function(filters, rows) {
+    							// var el = document.getElementById("search_count");
+    							// el.innerHTML = rows.length;
+    							// var el = document.getElementById("total_count");
+    							// el.innerHTML = data.length;
+    						  //   },
+
+
+    						});
 						var table2 = new Tabulator("#example-table", {
 						    data:jsonout,
 						    height:"311px",
@@ -1301,99 +1434,172 @@ var data_file2=data_file.split("?")[1];
 							{title:"pep_NRP", field:"pep_NRP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"rf_predict", field:"rf_predict", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-							
+							// {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+
 							],
 							dataFiltered: function(filters, rows) {
 							var el = document.getElementById("search_count");
 							el.innerHTML = rows.length;
-							//var el = document.getElementById("total_count");
-							//el.innerHTML = data.length;
+							var el = document.getElementById("total_count");
+							el.innerHTML = data.length;
 						    },
 						    rowClick:function(e, row){
 						    //e - the click event object
 						    //row - row component
-						    console.log('rowclick',row);
-						    
-						    var headers=[];
-						    for(var i=0;i<Object.keys(jsonout[0]).length;i++){
-						    	headers.push(Object.keys(jsonout[0])[i]);
-						    }
-						    console.log('rowclickheaders',headers);
+						    //console.log('rowclick',row);
+
+						    // var headers=[];
+						    // for(var i=0;i<Object.keys(jsonout[0]).length;i++){
+						    // 	headers.push(Object.keys(jsonout[0])[i]);
+                //
+						    // }
+
+
+						    //console.log('rowclickheaders',headers);
 						    var rowvals=row._row.cells;
+                console.log('rowvals',rowvals);
+
+                var headers=[];
+                for(var i=0;i<rowvals.length;i++){
+                  headers[i] = rowvals[i]['column']['field'];
+
+                  //tempDict[parameters[i]]= rowvals[i][]
+						    }
+
 						    //var retJson={};
+
+                console.log('headerone',headers)
 						    var tempDict={};
+
 						    retJson=[];
 						    for(var i=0;i<rowvals.length;i++){
 						    	tempDict[headers[i]]=rowvals[i]['value'];
+                  //tempDict[parameters[i]]= rowvals[i][]
 						    }
-						    //retJson.push(tempDict);
-						    console.log('retJson',retJson);
-						    
-						    document.getElementById('rowData').style.display="block";
+
+                // var list_values=[];
+                //
+                // for(var i=0;i<rowvals.length;i++){
+                //   if(i == 1 || i==4 || i==5)
+                //   {
+                //
+                //   }
+                //   else {
+                //     list_values[i]=rowvals[i].value
+                //   }
+                //
+                //
+                // }
+
+                // var total_value=[[]]
+                // for(var i=0;i<rowvals.length;i++){
+                //   var description =list_values[i]
+                //   var value = header[i]
+                //
+                // }
+                //console.log('listvalues',list_values)
+						    retJson.push(tempDict);
+						    console.log('clicked retJson',retJson);
+
+                document.getElementById("sample-data-title").style.display="block";
+
+                document.getElementById("sdata-table-one-id").style.display="flex";
+
+                document.getElementById("sample-data-table-id").style.display="flex";
+                let parent_conatiner = document.getElementById("sample-data-table-id");
+                parent_conatiner.innerHTML="";
+
+                var cat_table_1 = document.createElement("div");
+                var cat_table_2 = document.createElement("div");
+                var cat_table_3 = document.createElement("div");
+
+                //add class names to parent;
+                cat_table_1.classList.add("sample-data-cat-table");
+                cat_table_2.classList.add("sample-data-cat-table");
+                cat_table_3.classList.add("sample-data-cat-table");
+
+                parent_conatiner.appendChild( cat_table_1);
+                parent_conatiner.appendChild( cat_table_2);
+                parent_conatiner.appendChild( cat_table_3);
+                const names_small=['gene','geneSymbol','ensembl']
+                const column_names=['peptide','gene','tpm','rf_predict_prob','ensembl','geneSymbol','HLA-A*24:02','HLA-A*25:01','HLA-B*07:02','HLA-B*18:01','HLA-C*07:02','HLA-C*12:03','HLA','wt_pep','pep_hydro','pep_polar','pep_charge','pep_entropy','pep_molsize','pep_TAP','pep_Cle','pep_Comb','neo_aff','neo_rank','iedb_immunescore','pep_DAI','pep_Rscore','pep_NRP','pep_pTuneos','rf_predict'];
+
+                // <div class="cat-row-holder">
+                //   <div class="cat-description">sample</div>
+                //   <div class="cat-value">23</div>
+                // </div>
+
+
+                const generate_sample_data = ( start_index, table_name ) => {
+
+                  if (start_index==0)
+                  { var count_index=11}
+                  else{
+                    var count_index =8
+                  }
+
+                  for( let i = start_index; i<=start_index+count_index; i++ ){
+                         let row_container=document.createElement("div");
+                         let description = document.createElement("div");
+                         let value = document.createElement("div");
+
+                         row_container.classList.add("cat-row-holder")
+                         description.classList.add("cat-description")
+                         value.classList.add("cat-value")
+
+                         // description.innerHTML=column_names[i]
+                         description.innerHTML=headers[i]
+                         value.innerHTML=rowvals[i].value
+                         // value.innerHTML=parseFloat(value.innerHTML).toFixed(4);
+                         if (description.innerHTML!='rf_predict' && description.innerHTML!='wt_pep' &&
+                         description.innerHTML!='hla' && value.innerHTML!=0 && description.innerHTML!='peptide')
+                         {value.innerHTML=parseFloat(value.innerHTML).toFixed(3);}
+
+                         if (description.innerHTML=='gene' || description.innerHTML=='geneSymbol' || description.innerHTML=='ensembl')
+                         {}
+                         else{
+
+                           row_container.appendChild( description )
+                           row_container.appendChild(value)
+                           table_name.appendChild( row_container )
+
+                         }
+                  }
+                }
+
+
+            generate_sample_data( 0, cat_table_1 );
+            generate_sample_data(12, cat_table_2);
+            generate_sample_data(21,cat_table_3);
+
+
+
+
+
+
+
+
+                 table3.clearData();
+                 table3.updateOrAddData(retJson);
+              //
+						     document.getElementById('rowData').style.display="block";
 						     document.getElementById('example-table3').style.display="block";
-						    
-						    var temp=row._row.cells[1].value.split('@')[1]
-						  var chr=temp.split(':')[0].substring(3)
-						  var start=parseInt(temp.split(':')[1].split('-')[0])
-						  var end=parseInt(temp.split(':')[1].split('-')[1])
-						   browser.setLocation(chr, start-50, end + 50);
-						   document.getElementById('gblabel').style.display="block";
-						  document.getElementById('svgHolder').style.display="block";
+              //
+              //
+						     var temp=row._row.cells[1].value.split('@')[1]
+						     var chr=temp.split(':')[0].substring(3)
+						     var start=parseInt(temp.split(':')[1].split('-')[0])
+						     var end=parseInt(temp.split(':')[1].split('-')[1])
+						     browser.setLocation(chr, start-50, end + 50);
+						     document.getElementById('gblabel').style.display="block";
+						     document.getElementById('svgHolder').style.display="block";
 						    },
-						   
+
 						});
 
 
 
-						var table3 = new Tabulator("#example-table3", {
-						    data:retJson,
-						    height:"80px",
-						    layout:"fitDataFill",
-						    //movableColumns: true,
-						    columns:[
-							{title:"peptide", field:"peptide", width:150,titleFormatter:customTitleFormatter2},
-							{title:"gene", field:"gene", width:150,titleFormatter:customTitleFormatter2},
-							{title:"tpm", field:"tpm", width:150,titleFormatter:customTitleFormatter2},
-							{title:"rf_predict_prob", field:"rf_predict_prob", width:150,titleFormatter:customTitleFormatter2},
-							{title:"ensembl", field:"ensembl", width:150,titleFormatter:customTitleFormatter2},
-							{title:"geneSymbol", field:"geneSymbol", width:150,titleFormatter:customTitleFormatter2},
-							{title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"HLA-B*18:01", field:"HLA-B*18:01", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"HLA-C*07:02", field:"HLA-C*07:02", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"HLA-C*12:03", field:"HLA-C*12:03", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"HLA", field:"hla", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"wt_pep", field:"wt_pep", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_hydro", field:"pep_hydro", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_polar", field:"pep_polar", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_charge", field:"pep_charge", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_entropy", field:"pep_entropy", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_molsize", field:"pep_molsize", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_TAP", field:"pep_TAP", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_Cle", field:"pep_Cle", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_Comb", field:"pep_Comb", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"neo_aff", field:"neo_aff", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"neo_rank", field:"neo_rank", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"iedb_immunescore", field:"iedb_immunescore", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_DAI", field:"pep_DAI", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_Rscore", field:"pep_Rscore", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_NRP", field:"pep_NRP", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"rf_predict", field:"rf_predict", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:true,titleFormatter:customTitleFormatter2},
-							
-							],
-							dataFiltered: function(filters, rows) {
-							var el = document.getElementById("search_count");
-							el.innerHTML = rows.length;
-							//var el = document.getElementById("total_count");
-							//el.innerHTML = data.length;
-						    },
-						    
-						   
-						});
+
 
 
 
@@ -1429,7 +1635,7 @@ var data_file2=data_file.split("?")[1];
 						  			console.log('showing');
 						  		}
 						  	}
-						  	
+
 						  }
 						});
 
@@ -1440,37 +1646,37 @@ var data_file2=data_file.split("?")[1];
 
 
 
-				
+
 						   console.log('DATATOTABLE',dataoutTable);
-						    
-						    
-							    //SEARCHABLE COLUMNS	  
-							
-							//END OF SEARCHABLE COLUMNS 
-							    
-							
-							   	  
-								
+
+
+							    //SEARCHABLE COLUMNS
+
+							//END OF SEARCHABLE COLUMNS
+
+
+
+
 							//document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";
 							//document.getElementById('outer').style.display="block";
-							
-							
-							
-								
 
-					    
-					    
+
+
+
+
+
+
 					    $.ajax({
 					   async: false,
 					   type: "GET",
-					    url: "https://immuneportal.ccbb.iupui.edu/static/files/1000genomes_HLA_freq_statistics.csv",
-					    
+					    //url: "https://immuneportal.ccbb.iupui.edu/static/files/1000genomes_HLA_freq_statistics.csv",
+              url: "/static/files/1000genomes_HLA_freq_statistics.csv",
 
 					    success: function (data) {
 					    	var genomes=CSVToArray(data);
 					    	//console.log('made it here');
-					    	
+
 						//console.log('json',data);
 							console.log('shouldBeHere');
 							var userspecific=dataout;
@@ -1484,9 +1690,9 @@ var data_file2=data_file.split("?")[1];
 							allTypes.forEach(e => count[e] ? count[e]++ : count[e] = 1 );
 							console.log("count");
 							console.log(count);
-							
+
 							var nKeys=Object.values(count).length;
-							
+
 							var values=Object.values(count);
 							console.log('thesevals',values);
 							var proportions=new Array(nKeys);
@@ -1497,7 +1703,7 @@ var data_file2=data_file.split("?")[1];
 							console.log("Individual HLA",Object.keys(count));
 							//count.entries();
 							//var hlatypes= numInstance(transpose(genomes.slice(1,genomes.length)),String(genomes[0]).split(",").indexOf('HLA_list'))[0];
-							
+
 							//console.log(transpose(genomes.slice(1,genomes.length)));
 							//console.log('hlalist');
 							//console.log(numInstance(transpose(genomes.slice(1,genomes.length)),[genomes[0].indexOf('HLA_list')])[0]);
@@ -1507,18 +1713,18 @@ var data_file2=data_file.split("?")[1];
 							//console.log(numInstance(transpose(genomes.slice(1,genomes.length))[genomes[0].indexOf('')])[0]
 							//console.log(numInstance(transpose(genomes.slice(1,genomes.length))[genomes[0].indexOf('')])[0]
 							//var hlatypes= numInstanceOrig(transpose(genomes.slice(1,genomes.length)),String(genomes[0]).split(",").indexOf('HLA_list'))[0];
-							
+
 							//console.log("indexTest",String(genomes[0]).split(",").indexOf('HLA_list'))
 							console.log('HOPEFULLY KEYS',Object.keys(count));
 							console.log('numinstance',numInstance(transpose(genomes.slice(1,genomes.length)),String(genomes[0]).split(",").indexOf('SAS'),Object.keys(count)));
-							
+
 							/*var trace1 = {
 							  x: Object.keys(count),
 							  y: numInstance(transpose(genomes.slice(1,genomes.length)),String(genomes[0]).split(",").indexOf('ALL'),Object.keys(count))[0],
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'ALL' 
+							  name: 'ALL'
 							};*/
 
 							var trace2 = {
@@ -1527,7 +1733,7 @@ var data_file2=data_file.split("?")[1];
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'AFR' 
+							  name: 'AFR'
 							};
 
 							var trace3 = {
@@ -1536,7 +1742,7 @@ var data_file2=data_file.split("?")[1];
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'AMR' 
+							  name: 'AMR'
 							};
 
 							var trace4 = {
@@ -1545,7 +1751,7 @@ var data_file2=data_file.split("?")[1];
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'EAS' 
+							  name: 'EAS'
 							};
 							var trace5 = {
 							  x: Object.keys(count),
@@ -1553,7 +1759,7 @@ var data_file2=data_file.split("?")[1];
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'EUR' 
+							  name: 'EUR'
 							};
 
 							var trace6 = {
@@ -1562,7 +1768,7 @@ var data_file2=data_file.split("?")[1];
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'SAS' 
+							  name: 'SAS'
 							};
 							/*
 							var trace7 = {
@@ -1571,7 +1777,7 @@ var data_file2=data_file.split("?")[1];
 							  xaxis: 'HLA Type',
 							  yaxis: 'Proportion',
 							  type: 'bar',
-							  name: 'User Sample' 
+							  name: 'User Sample'
 							};*/
 
 							//var data = [ trace2, trace3, trace4,trace5,trace6,trace7];
@@ -1590,7 +1796,7 @@ var data_file2=data_file.split("?")[1];
 							    t: 100,
 							    pad: 4
 							  },
-										  
+
 							  //width: 1800,
 					 		  //height: 1250,
 							};
@@ -1598,25 +1804,26 @@ var data_file2=data_file.split("?")[1];
 
 
 							Plotly.newPlot('myDiv1', data, layout);
-						
+
 					    }
 					  });
-					    
-					    
-					  	
+
+
+
 					}
 				});
-				
-				
 
-			
-			
-			
+
+
+
+
+
 			$.ajax({
 			   async: true,
 			   type: "GET",
 			   cache: true ,
-			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view",
+			    //url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/upset_view",
+          url: "/immuneportal_django_app/upset_view",
 			    contentType: "image/jpg",
 			    data:tableData.split('=')[1],
 			    success: function (data) {
@@ -1624,22 +1831,23 @@ var data_file2=data_file.split("?")[1];
 				console.log(data);
 				//console.log('https://immuneportal.ccbb.iupui.edu/api/download?data-product-uri='+data)
 				document.getElementById('upset').src = 'data:image/jpg;base64,' + data;
-				
+
 			//document.getElementById('hlaload').src = 'data:image/jpg;base64,' + +dataUris[0];
-				   
-				
-			    
-				
+
+
+
+
 			    }
 			});
-			
-			
-			
+
+
+
 			$.ajax({
 			   async: true,
 			   type: "GET",
 			   cache: true,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
+          //url: "/immuneportal_django_app/hlaload_view",
 			    mimeType: "text/plain; charset=x-user-defined",
 			    //contentType: "image/jpg",
 			    data:tableData.split('=')[1],
@@ -1656,14 +1864,14 @@ var data_file2=data_file.split("?")[1];
 
 			    }
 			});
-			
-			
-	
-	
-    
+
+
+
+
+
     //console.log('firstOnly',output[0]);
     //$.fn.dataTable.ext.errMode = 'throw';
-    
+
     /*$.each(data, function(i, data) {
 	    var body = "<tr>";
 	    body    += "<td>" + data.id + "</td>";
@@ -1686,32 +1894,32 @@ var data_file2=data_file.split("?")[1];
 	    body    += "<td>" + data.pep_NRP + "</td>";
 	    body    += "<td>" + data.pep_pTuneos + "</td>";
 	    body    += "<td>" + data.rf_predict + "</td>";
-	    
+
 	    body    += "</tr>";
 	    $( '#resultTable').append(body);
     });*/
-    
-    
-    
-    
-    
-  
 
-	    		
+
+
+
+
+
+
+
 	    		break;
 	    		}
 	    	}
 	    }
 	});
 	//console.log('https://immuneportal.ccbb.iupui.edu/api/experiments/'+data_file);
-	
-	
-	
-	    
-    
+
+
+
+
+
     //console.log('firstOnly',output[0]);
     //$.fn.dataTable.ext.errMode = 'throw';
-    
+
     /*$.each(data, function(i, data) {
 	    var body = "<tr>";
 	    body    += "<td>" + data.id + "</td>";
@@ -1734,14 +1942,14 @@ var data_file2=data_file.split("?")[1];
 	    body    += "<td>" + data.pep_NRP + "</td>";
 	    body    += "<td>" + data.pep_pTuneos + "</td>";
 	    body    += "<td>" + data.rf_predict + "</td>";
-	    
+
 	    body    += "</tr>";
 	    $( '#resultTable').append(body);
     });*/
-    
-    
-    
-    
+
+
+
+
 	/*
     $.ajax({
 	   type: "GET",
@@ -1755,16 +1963,16 @@ var data_file2=data_file.split("?")[1];
 	    }
 	});
 	*/
-	
-	
+
+
     //});
 
-	
-    
-	
-   
-	    	
-	    
+
+
+
+
+
+
 /*
 
 	    $.fn.dataTable.ext.errMode = 'throw';
@@ -1798,7 +2006,7 @@ Plotly.newPlot('myPltTable', data);
 
 myPlot.on('plotly_click', function(data){
     console.log(data);
-    
+
     var newData=[];
     var curveNumber=data.points[0].curveNumber;
     for (i=1;i<output.length;i++){
@@ -1819,7 +2027,7 @@ myPlot.on('plotly_click', function(data){
     		}
     	}
     }
-    
+
     var data = [{
 	  type: 'table',
 	  header: {
@@ -1840,7 +2048,7 @@ myPlot.on('plotly_click', function(data){
     //Plotly.redraw('myPltTable');
     Plotly.newPlot('myPltTable', data);
 
-    
+
     /*var pts = '';
     for(var i=0; i < data.points.length; i++){
         pts = 'x = '+data.points[i].x +'\ny = '+
@@ -1857,10 +2065,10 @@ myPlot.on('plotly_click', function(data){
 
 </script>
 <script>
-    
+
     const { models, services, session, utils } = AiravataAPI;
-    
-    
+
+
 
     const appInterfaceId = "Echo_23d67491-1bef-47bd-a0f5-faf069e09773";
 

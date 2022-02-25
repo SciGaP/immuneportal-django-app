@@ -26,6 +26,7 @@
 <option value="tpm">tpm</option>
 <option value="rf_predict_prob">rf_predict_prob</option>
 <option value="ensembl">ensembl</option>
+<option value="description">description</option>
 <option value="geneSymbol">geneSymbol</option>
 <option value="HLA-A*24:02">HLA-A*24:02</option>
 <option value="HLA-A*25:01">HLA-A*25:01</option>
@@ -156,7 +157,7 @@ tr:nth-child(even) {
 .cat-value{
   height: 40px;
   width: 150px;
-  backgroundt: transperent;
+  background: transperent;
   color: #565959;
   border-top: 1px solid #F3F3F3;
   border-bottom: 1px solid #F3F3F3;
@@ -1293,8 +1294,9 @@ var data_file2=data_file.split("?")[1];
 			       	    //console.log(data_file);
 				    //console.log(data_file);
 				    success: function (data) {
-				//console.log('hello');
+
 						//console.log(data_file);
+
 						    console.log(data);
 						    var dataout=CSVToArray(data);
 						    dataoutTable = dataout.slice(1, dataout.length);
@@ -1382,11 +1384,12 @@ var data_file2=data_file.split("?")[1];
     						    columns:[
 
 
-    							{title:"gene", field:"gene", width:150,titleFormatter:customTitleFormatter2},
+    							{title:"gene", field:"gene", width:300,titleFormatter:customTitleFormatter2},
 
 
     							{title:"ensembl", field:"ensembl", width:150,titleFormatter:customTitleFormatter2},
     							{title:"geneSymbol", field:"geneSymbol", width:150,titleFormatter:customTitleFormatter2},
+                  {title:"description", field:"description",width:495,titleFormatter:customTitleFormatter2},
 
     							],
     							// dataFiltered: function(filters, rows) {
@@ -1410,6 +1413,7 @@ var data_file2=data_file.split("?")[1];
 							{title:"rf_predict_prob", field:"rf_predict_prob", width:300,titleFormatter:customTitleFormatter,headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction, headerFilterLiveFilter:false},
 							{title:"ensembl", field:"ensembl", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"geneSymbol", field:"geneSymbol", width:150,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"description", field:"description", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"HLA-A*24:02", field:"HLA-A*24:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"HLA-A*25:01", field:"HLA-A*25:01", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"HLA-B*07:02", field:"HLA-B*07:02", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
@@ -1474,30 +1478,7 @@ var data_file2=data_file.split("?")[1];
 						    retJson=[];
 						    for(var i=0;i<rowvals.length;i++){
 						    	tempDict[headers[i]]=rowvals[i]['value'];
-                  //tempDict[parameters[i]]= rowvals[i][]
 						    }
-
-                // var list_values=[];
-                //
-                // for(var i=0;i<rowvals.length;i++){
-                //   if(i == 1 || i==4 || i==5)
-                //   {
-                //
-                //   }
-                //   else {
-                //     list_values[i]=rowvals[i].value
-                //   }
-                //
-                //
-                // }
-
-                // var total_value=[[]]
-                // for(var i=0;i<rowvals.length;i++){
-                //   var description =list_values[i]
-                //   var value = header[i]
-                //
-                // }
-                //console.log('listvalues',list_values)
 						    retJson.push(tempDict);
 						    console.log('clicked retJson',retJson);
 
@@ -1524,10 +1505,7 @@ var data_file2=data_file.split("?")[1];
                 const names_small=['gene','geneSymbol','ensembl']
                 const column_names=['peptide','gene','tpm','rf_predict_prob','ensembl','geneSymbol','HLA-A*24:02','HLA-A*25:01','HLA-B*07:02','HLA-B*18:01','HLA-C*07:02','HLA-C*12:03','HLA','wt_pep','pep_hydro','pep_polar','pep_charge','pep_entropy','pep_molsize','pep_TAP','pep_Cle','pep_Comb','neo_aff','neo_rank','iedb_immunescore','pep_DAI','pep_Rscore','pep_NRP','pep_pTuneos','rf_predict'];
 
-                // <div class="cat-row-holder">
-                //   <div class="cat-description">sample</div>
-                //   <div class="cat-value">23</div>
-                // </div>
+
 
 
                 const generate_sample_data = ( start_index, table_name ) => {
@@ -1847,7 +1825,6 @@ var data_file2=data_file.split("?")[1];
 			   type: "GET",
 			   cache: true,
 			    url: "https://immuneportal.ccbb.iupui.edu/immuneportal_django_app/hlaload_view",
-          //url: "/immuneportal_django_app/hlaload_view",
 			    mimeType: "text/plain; charset=x-user-defined",
 			    //contentType: "image/jpg",
 			    data:tableData.split('=')[1],

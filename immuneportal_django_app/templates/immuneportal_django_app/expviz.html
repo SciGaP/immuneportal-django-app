@@ -69,6 +69,8 @@
 <p id='colDescription2' style="display:none"></p>
 
 <div id="example-table3" style="display:none"></div>
+
+
 <!-- Description -->
 <p class="font-weight-bold text-primary" style="display:none" id="sample-data-title"></p>
 <div class="sdata-table-one" style="display:none" id="sdata-table-one-id">
@@ -93,7 +95,6 @@
   width: 50%;
   padding: 5px;
 }
-
 /* Clearfix (clear floats) */
 .row::after {
   content: "";
@@ -174,38 +175,14 @@ tr:nth-child(even) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<p>&nbsp;</p>
 		<div>
 
+    <div  id='test-plot1' style="display:none">Feature contribution to immunogenicity</div>
 		<p id='gblabel'  style="display:none"><p>
 		<div id='svgHolder' style="display:none;width=0px;height=0px;"></div>
 		</div>
         </div>
-
-            <!-- Adding a list of "Hello" greetings
-            <div class="card">
-                <div class="card-header">
-                    Run "echo" for different languages
-                </div>
-                <div class="card-body">
-                    <select id="greeting-select"></select>
-                    <button id="run-button" class="btn btn-primary">Run</button>
-                </div>
-            </div>
-            -->
 
 	    <div class="card">
                 <div class="card-header" >
@@ -264,6 +241,15 @@ tr:nth-child(even) {
                 </div>
             </div>
 
+            <div class="card">
+                <div class="card-header">
+                  SHAP value plot
+                </div>
+                <div class="card-body">
+                    <div id="boxDiv1"></div>
+                </div>
+            </div>
+
         </div>
     </main>
 </div>
@@ -275,7 +261,6 @@ tr:nth-child(even) {
         <link rel="stylesheet" href="../../static/css/jquery-ui.css">
         <link rel="stylesheet" href="../../static/css/buttons.dataTables.min.css">
         <link href="../../static/css/tabulator.min.css" rel="stylesheet">
-
         <style>
 
         #resultTable th{
@@ -525,10 +510,6 @@ tr:nth-child(even) {
   <script src="../../static/js/data.js" ></script>
   <script src="../../static/js/jstat.min.js" ></script>
   <script src="../../static/js/processDensity.js" ></script>
-
-
-
-
 
   <script src="../../static/js/blowup.min.js"></script>
 
@@ -1123,7 +1104,7 @@ var data_file2=data_file.split("?")[1];
 	    		//console.log(Object.keys(data['experimentInputs'][i]))
 	    		if(data['experimentInputs'][i]['name']=='Cancer Type'){
 	    			currcantype=data['experimentInputs'][i]['value']
-	    			console.log(currcantype);
+	    			console.log('values of cuurcantype',currcantype);
 	    		}
 	    	}
 	    	//SET THE CANCER TITLES ACCORDINGLY
@@ -1172,6 +1153,7 @@ var data_file2=data_file.split("?")[1];
 							personalGenesDict[geneFreqDataArr[i][0]]=parseFloat(geneFreqDataArr[i][1])
 						}
 						console.log('personGenes',personalGenesDict);
+
 						$.ajax({
 							    async: false,
 							    //url: 'https://immuneportal.ccbb.iupui.edu/static/files/OSF_TCGA_ALL_ICB_genes_exprs.csv',
@@ -1186,11 +1168,12 @@ var data_file2=data_file.split("?")[1];
 							    		var temp=CSVToArray(tcgaGeneFreqs);
 							    		//console.log(tcgaGeneFreqsArray);
 									var tcgaGeneFreqsTitles=temp[0];
-									console.log(tcgaGeneFreqsTitles);
+									console.log('tiles of question',tcgaGeneFreqsTitles);
 									var tcgaGeneFreqsArr=temp.slice(1, temp.length);
 									console.log(tcgaGeneFreqsArr[0]);
 
 									var titleArr=tcgaGeneFreqsTitles[0].split(',');
+                  console.log('tiles of desired',titleArr);
 									var geneDict={};
 									//INITIALIZING GENE DICT
 									for(var j=0;j<titleArr.length;j++){
@@ -1203,6 +1186,7 @@ var data_file2=data_file.split("?")[1];
 										}
 
 									}
+                  console.log('GENE DICT',geneDict);
 									//FILLING GENE DICT
 									for(var i=0;i<tcgaGeneFreqsArr.length;i++){
 										var currLst=tcgaGeneFreqsArr[i][0].split(',');
@@ -1240,30 +1224,12 @@ var data_file2=data_file.split("?")[1];
 											y: [keysForIt[i]],
 											marker: {
 												color: '#FF0000',
-												/*line:{
-													width:6
-												}*/
 											},
 									  		type: 'scatter',
-									  		//text: 'Patient '+keysForIt[i],
 									  		name: 'Patient '+keysForIt[i]
 										}
 										traces.push(temptrace);
 									}
-							    		//TITLES OF CSV COLUMNS
-							    		/*console.log(dataout[0]);
-						    			var trace1 = {
-									  x: [1, 2, 3, 4, 4, 4, 8, 9, 10],
-									  type: 'box',
-									  name: 'Set 1'
-									};
-
-									var trace2 = {
-									  x: [2, 3, 3, 3, 3, 5, 6, 6, 7],
-									  type: 'box',
-									  name: 'Set 2'
-									};*/
-
 									var data = traces;
 
 									var layout = {
@@ -1273,35 +1239,126 @@ var data_file2=data_file.split("?")[1];
 									Plotly.newPlot('boxes', data, layout);
 								}
 						});
-
-
 	    				}
 	    			});
-	    			/*$(document).ready(function () {
-					$(".upset2").blowup({
-						background : "#FCEBB6"
-					});
-				})*/
-	    			//FOR GENEFREQ Section ENDED
+
+            $.ajax({
+				    async: false,
+				    url: tableData,
+				    method: 'GET',
+				    success: function (data) {
+				    console.log(data);
+						    var dataout=CSVToArray(data);
+                const cols = [33,34,35,36,37,38,39,40,41,42,43,44,45,46];
+                const res = dataout.map(r => cols.map(i => r[i-1]));
+                // console.log('testing',res);
+                var sHAP_tiles=res[0];
+                var replaced_values = ['hydrophobic score','polarity value','charge value','entropy value','molecular size','predict TAP score','predict cleavage','predict combined score','predict binding affinity','predict %Rank','IEDB immunogenicity','diff agretopicity index','neoantigen fitness','recognition potential'];
+                // console.log('SHAP TILES',sHAP_tiles);
+                var shapgeneArr=res.slice(1, res.length);
+                var shapDict={};
+                //INITIALIZING SHAP DICT
+                for(var j=0;j<replaced_values.length;j++){
+
+                  if( j==replaced_values.length){
+                    continue;
+                  }
+                  else{
+                    shapDict[replaced_values[j]]=[];
+                  }
+
+                }
+                console.log('Dictionary befre:',shapDict)
+                //FILLING SHAP DICT
+                for(var i=0;i<shapgeneArr.length;i++){
+                  var currentLst=shapgeneArr[i];
+                    for(var j=0;j<sHAP_tiles.length;j++){
+
+                      if(j==sHAP_tiles.length){
+                        continue;
+                      }
+                      else{
+                        shapDict[replaced_values[j]].push(parseFloat(currentLst[j]));
+                      }
+                    }
+                }
+                var keysForIt=Object.keys(shapDict).reverse();
+                console.log('keysForIt VALUES',keysForIt);
+               var new_legend=['immugenic scores', 'dummy1', 'dummy2', 'dummy3', 'dummy4', 'netMHCpan MHC binding', 'dummy7','peptide processing', 'dummy8', 'dummy9', 'dummy10', 'dummy11', 'dummy12', 'physical characteristic']
+
+                var traces=[];
+                for(var i=0;i<keysForIt.length;i++){
+                  if(keysForIt[i]=='predict combined score' ||keysForIt[i]=='recognition potential' || keysForIt[i]=='neoantigen fitness'|| keysForIt[i]=='diff agretopicity index' || keysForIt[i]=='IEDB immunogenicity')
+                  {clr='#dc3545'
+                    namefeat='immugenic scores'  }
+                  else if(keysForIt[i]=='predict binding affinity' || keysForIt[i]=='predict %Rank')
+                  {clr='#04b304'
+                  namefeat='MHC binding metrics'}
+                  else if(keysForIt[i]=='predict cleavage'|| keysForIt[i]=='predict TAP score')
+                  {clr='#fd7e14'
+                  namefeat='peptide processing'}
+                  else{
+                    clr='#0208b0'
+                    namefeat='physical characteristic'}
+                if(keysForIt[i]=='predict binding affinity'||keysForIt[i]=='predict cleavage'||keysForIt[i]=='recognition potential'||keysForIt[i]=='hydrophobic score'){
+                  legendshow=true
+                }
+                else{
+                  legendshow=false
+                }
+                  var temptrace={
+                    x: shapDict[keysForIt[i]],
+                      type: 'box',
+                      boxmean: false,
+                      name: new_legend[i],
+                      legendgroup: namefeat,
+                      showlegend: legendshow,
+                    marker: {color: clr}
+                  }
+                  traces.push(temptrace);
+                }
+                var data = traces;
+
+                var layout = {
+                  title:'Distribution of feature countribution to immunogenicity',
+                  yaxis: {
+                    ticktext: ['recognition potential', 'neoantigen fitness', 'diff agretopicity index', 'IEDB immunogenicity', 'Peptide-MHC binding affinity ranking', 'Peptide-MHC binding affinity score','netCTLpan combined score', 'Proteasomal cleavage score', 'Transporter antigen processing efficiency', 'molecular size', 'entropy value', 'charge value', 'polarity value', 'hydrophobic score'],
+                    tickvals: [0,1, 2, 3, 4,5,6,7,8,9,10,11,12,13],
+                    tickmode: 'array',
+                    automargin: true,
+                    titlefont: { size:30 },
+                  },
+                  xaxis: {
+                    title: 'SHAP value',
+                    zeroline: false
+                  },
+
+                };
+
+
+                Plotly.newPlot('boxDiv1', data,layout)
+                // .then(gd => {
+                //   gd.on('plotly_legendclick',function() { return false; })
+                // });
+
+
+              }
+    				});
+
+
 	    			$.ajax({
 				    async: false,
 				    url: tableData,
 				    //url: tableData,
 				    method: 'GET',
 				    //datatype: 'json',
-
-
-			       	    //console.log(data_file);
-				    //console.log(data_file);
 				    success: function (data) {
-
-						//console.log(data_file);
-
 						    console.log(data);
 						    var dataout=CSVToArray(data);
 						    dataoutTable = dataout.slice(1, dataout.length);
-
 						    var jsonout=tsvJSON(data);
+                dataoutTablearray = dataout.slice(1, dataout.length);
+                console.log('wholetablearray',dataoutTablearray[0]);
 						    jsonout.pop();
 						    console.log('JSONOUT',jsonout);
 
@@ -1322,14 +1379,6 @@ var data_file2=data_file.split("?")[1];
 
 
 						    }
-
-
-
-
-
-
-
-
 
 				var browser =  new Browser({
 								      chr:          '22',
@@ -1364,9 +1413,6 @@ var data_file2=data_file.split("?")[1];
 
 								    });
 
-
-
-
 						 var retJson=[{}];
 
 						function onHoverTable(){
@@ -1377,31 +1423,14 @@ var data_file2=data_file.split("?")[1];
     						    data:retJson,
                     height:"58px",
                     layout:"fitDataFill",
-
-    						    //movableColumns: true,
-
-
     						    columns:[
-
-
     							{title:"gene", field:"gene", width:300,titleFormatter:customTitleFormatter2},
-
-
     							{title:"ensembl", field:"ensembl", width:150,titleFormatter:customTitleFormatter2},
     							{title:"geneSymbol", field:"geneSymbol", width:150,titleFormatter:customTitleFormatter2},
                   {title:"description", field:"description",width:495,titleFormatter:customTitleFormatter2},
-
     							],
-    							// dataFiltered: function(filters, rows) {
-    							// var el = document.getElementById("search_count");
-    							// el.innerHTML = rows.length;
-    							// var el = document.getElementById("total_count");
-    							// el.innerHTML = data.length;
-    						  //   },
-
-
     						});
-						var table2 = new Tabulator("#example-table", {
+                var table2 = new Tabulator("#example-table", {
 						    data:jsonout,
 						    height:"311px",
 						    layout:"fitDataFill",
@@ -1438,8 +1467,20 @@ var data_file2=data_file.split("?")[1];
 							{title:"pep_NRP", field:"pep_NRP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							{title:"rf_predict", field:"rf_predict", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-							// {title:"pep_pTuneos", field:"pep_pTuneos", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
-
+              {title:"SHAP_pep_hydro", field:"SHAP_pep_hydro", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_polar", field:"SHAP_pep_polar", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_charge", field:"SHAP_pep_charge", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_entropy", field:"SHAP_pep_entropy", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_molsize", field:"SHAP_pep_molsize", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_TAP", field:"SHAP_pep_TAP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_Cle", field:"SHAP_pep_Cle", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+							{title:"SHAP_neo_aff", field:"SHAP_neo_aff", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_neo_rank", field:"SHAP_neo_rank", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_iedb_immunescore", field:"SHAP_iedb_immunescore", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_DAI", field:"SHAP_pep_DAI", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_Rscore", field:"SHAP_pep_Rscore", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_NRP", field:"SHAP_pep_NRP", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
+              {title:"SHAP_pep_Comb", field:"SHAP_pep_Comb", width:150,visible:false,headerFilter:"input",titleFormatter:customTitleFormatter},
 							],
 							dataFiltered: function(filters, rows) {
 							var el = document.getElementById("search_count");
@@ -1448,29 +1489,84 @@ var data_file2=data_file.split("?")[1];
 							el.innerHTML = data.length;
 						    },
 						    rowClick:function(e, row){
-						    //e - the click event object
-						    //row - row component
-						    //console.log('rowclick',row);
 
-						    // var headers=[];
-						    // for(var i=0;i<Object.keys(jsonout[0]).length;i++){
-						    // 	headers.push(Object.keys(jsonout[0])[i]);
-                //
-						    // }
-
-
-						    //console.log('rowclickheaders',headers);
 						    var rowvals=row._row.cells;
                 console.log('rowvals',rowvals);
+
+                value_x=[];
+
+						    for(var i=31;i<rowvals.length;i++){
+						    	value_x[i]=rowvals[i]['value'];
+						    }
+                console.log('values of x',value_x);
+                var filtered = value_x.filter(function (el) {
+                  return el != null;
+                });
+                console.log('filtered values',filtered);
+
+                const filtered1 = filtered.slice(0, 5)
+                console.log('values of filtered1',filtered1);
+
+
+                const filtered2 = filtered.slice(5, 7)
+                console.log('values of filtered2',filtered2);
+
+                const filtered3 = filtered.slice(7, 9)
+                console.log('values of filtered3',filtered3);
+
+                const filtered4 = filtered.slice(9, 14)
+                console.log('values of filtered4',filtered4);
+              var trace1 = {
+                y: ['hydrophobic score', 'polarity value', 'charge value', 'entropy value', 'molecular size'],
+                x: filtered1,
+                orientation: 'h',
+                name: 'physical characteristic',
+                type: 'bar'
+              };
+              var trace2 = {
+                y: ['predict TAP score', 'predict cleavage'],
+                x: filtered2,
+                orientation: 'h',
+                name: 'peptide processing',
+                type: 'bar'
+              };
+              var trace3 = {
+                y: ['predict binding affinity','predict %Rank'],
+                x: filtered3,
+                orientation: 'h',
+                name: 'netMHCpan MHC binding',
+                type: 'bar'
+              };
+              var trace4 = {
+                y: ['IEDB immunogenicity','diff agretopicity index','neoantigen fitness','recognition potential','predict combined score'],
+                x: filtered4,
+                orientation: 'h',
+                name: 'immugenic scores',
+                type: 'bar'
+              };
+              var data_test=[trace1,trace2,trace3,trace4];
+                var layout = {
+                  autosize: false,
+                  width: 800,
+                  height: 500,
+                  yaxis: {
+                    ticktext: ['hydrophobic score', 'polarity value', 'charge value', 'entropy value', 'molecular size', 'Transporter antigen processing efficiency', 'Proteasomal cleavage score','Peptide-MHC binding affinity score','Peptide-MHC binding affinity ranking','IEDB immunogenicity','diff agretopicity index','neoantigen fitness','recognition potential','netCTLpan combined score'],
+                    tickvals: [0,1, 2, 3, 4,5,6,7,8,9,10,11,12,13],
+                    tickmode: 'array',
+                    automargin: true,
+                    titlefont: { size:30 },
+                  },
+                  xaxis: {
+                    title: 'SHAP value',
+                    zeroline: false
+                  }
+                };
+                Plotly.newPlot('test-plot1', data_test,layout);
 
                 var headers=[];
                 for(var i=0;i<rowvals.length;i++){
                   headers[i] = rowvals[i]['column']['field'];
-
-                  //tempDict[parameters[i]]= rowvals[i][]
 						    }
-
-						    //var retJson={};
 
                 console.log('headerone',headers)
 						    var tempDict={};
@@ -1504,9 +1600,6 @@ var data_file2=data_file.split("?")[1];
                 parent_conatiner.appendChild( cat_table_3);
                 const names_small=['gene','geneSymbol','ensembl']
                 const column_names=['peptide','gene','tpm','rf_predict_prob','ensembl','geneSymbol','HLA-A*24:02','HLA-A*25:01','HLA-B*07:02','HLA-B*18:01','HLA-C*07:02','HLA-C*12:03','HLA','wt_pep','pep_hydro','pep_polar','pep_charge','pep_entropy','pep_molsize','pep_TAP','pep_Cle','pep_Comb','neo_aff','neo_rank','iedb_immunescore','pep_DAI','pep_Rscore','pep_NRP','pep_pTuneos','rf_predict'];
-
-
-
 
                 const generate_sample_data = ( start_index, table_name ) => {
 
@@ -1550,38 +1643,24 @@ var data_file2=data_file.split("?")[1];
             generate_sample_data(12, cat_table_2);
             generate_sample_data(21,cat_table_3);
 
-
-
-
-
-
-
-
                  table3.clearData();
                  table3.updateOrAddData(retJson);
               //
-						     document.getElementById('rowData').style.display="block";
-						     document.getElementById('example-table3').style.display="block";
-              //
-              //
+               document.getElementById('rowData').style.display="block";
+               document.getElementById('example-table3').style.display="block";
+
 						     var temp=row._row.cells[1].value.split('@')[1]
 						     var chr=temp.split(':')[0].substring(3)
 						     var start=parseInt(temp.split(':')[1].split('-')[0])
 						     var end=parseInt(temp.split(':')[1].split('-')[1])
 						     browser.setLocation(chr, start-50, end + 50);
+                 document.getElementById('test-plot1').style.display="block";
 						     document.getElementById('gblabel').style.display="block";
 						     document.getElementById('svgHolder').style.display="block";
+
 						    },
 
 						});
-
-
-
-
-
-
-
-
 
 
 						//var total_count = $(".tabulator-footer").find('.tabulator-cell:first-child()').text();
@@ -1638,12 +1717,6 @@ var data_file2=data_file.split("?")[1];
 							//document.getElementById('additionalInfo').style.display="block";
 							//document.getElementById('additionalInfo2').style.display="block";
 							//document.getElementById('outer').style.display="block";
-
-
-
-
-
-
 
 					    $.ajax({
 					   async: false,
@@ -1748,15 +1821,6 @@ var data_file2=data_file.split("?")[1];
 							  type: 'bar',
 							  name: 'SAS'
 							};
-							/*
-							var trace7 = {
-							  x: Object.keys(count),
-							  y: proportions,
-							  xaxis: 'HLA Type',
-							  yaxis: 'Proportion',
-							  type: 'bar',
-							  name: 'User Sample'
-							};*/
 
 							//var data = [ trace2, trace3, trace4,trace5,trace6,trace7];
 							var data = [ trace2, trace3, trace4,trace5,trace6];
@@ -1778,11 +1842,7 @@ var data_file2=data_file.split("?")[1];
 							  //width: 1800,
 					 		  //height: 1250,
 							};
-
-
-
 							Plotly.newPlot('myDiv1', data, layout);
-
 					    }
 					  });
 
